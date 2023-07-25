@@ -1,0 +1,51 @@
+.navbar {
+  background-color: green;
+  color: #f5f5f5;
+  font-family: 'Impact', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.nav-bar-left{
+  padding: 5px;
+  border: 10px solid green;
+  background-color: #f5f5f5;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+}
+
+.nav-bar-center{
+  padding: 5px;
+  border: 10px solid green;
+  background-color: #f5f5f5;
+}
+
+.nav-bar-right{
+  padding: 5px;
+  border: 10px solid green;
+  background-color: #f5f5f5;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.navbar .bars {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .bars .bar {
+  margin-right: 10px;
+}
+
+.navbar .profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}

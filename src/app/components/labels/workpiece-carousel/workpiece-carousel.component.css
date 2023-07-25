@@ -1,0 +1,13 @@
+.carousel-grid{
+  display: grid;
+  /* grid-template-columns: repeat(3, 1fr) ; */
+  grid-gap: 5px;
+  /* grid-template-rows: 100px 200px; */
+  justify-content: center;
+  overflow: auto;
+  height: 430px;
+}
+
+.carousel-grid::-webkit-scrollbar {
+  display: none;
+}

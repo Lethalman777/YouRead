@@ -1,0 +1,25 @@
+<div class="user-workpiece-box">
+  <div class="user-workpiece-grid">
+    <div class="user-workpiece-label">
+      <app-workpiece-label [props]="{workpiece:workpiece, isAuthorVisible:false}"></app-workpiece-label>
+    </div>
+    <div class="user-workpiece-chapters-box">
+      <app-user-workpiece-chapter-box [props]="{isVisible:isChapterPosition, workpieceId:workpiece.id}"></app-user-workpiece-chapter-box>
+    </div>
+    <div class="user-workpiece-button-area">
+      <button class="button-normal user-workpiece-button" (click)="editWorkpiece()">Edytuj Informacje</button>
+      <!-- <button class="button-normal user-workpiece-button" (click)="showChapters()">{{developButtonText}}</button> -->
+      <button class="button-normal user-workpiece-button" (click)="addChapter()">Dodaj Nowy Rozdział</button>
+      <button class="button-normal user-workpiece-button" (click)="changeChapterPositionVisibility()">Zmień Pozycjonowanie</button>
+      <button class="button-normal user-workpiece-button" (click)="publish()">
+        {{ workpiece.isPublished ? 'wycofaj publikacje' : 'opublikuj' }}
+      </button>
+    </div>
+    <!-- <div class="user-workpiece-chapter-setup" *ngIf="isChapterSetup">
+      <app-new-chapter (NewChapterEvent)="handleNewChapterEvent($event)" [inputWorkpieceId]="workpiece.id"></app-new-chapter>
+    </div> -->
+  </div>
+<!-- <div *ngIf="isChapterVisible">
+  <app-user-workpiece-chapter-list [inputWorkpieceId]="workpiece.id"></app-user-workpiece-chapter-list>
+</div> -->
+</div>

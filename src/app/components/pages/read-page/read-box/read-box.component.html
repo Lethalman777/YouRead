@@ -1,0 +1,15 @@
+<div class="read-box">
+  <button class="button-normal" (click)="turnPage(false)">
+    <i class="fa fa-angle-left" aria-hidden="true"></i>
+  </button>
+    <div>
+      <app-read-workpiece-page [chapterPage]="chapterPages.pages[chapterPages.leftPage]"></app-read-workpiece-page>
+    </div>
+    <div>
+      <app-read-workpiece-page [chapterPage]="chapterPages.pages[chapterPages.rightPage]"></app-read-workpiece-page>
+    </div>
+  <button class="button-normal" (click)="turnPage(true)">
+    <i class="fa fa-angle-right" aria-hidden="true"></i>
+  </button>
+</div>
+

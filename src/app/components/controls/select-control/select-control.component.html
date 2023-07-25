@@ -1,0 +1,11 @@
+<tr class="control-box">
+  <div class="control-label">{{controlProp.label}}</div>
+  <select class="control-input" [formControl]="controlProp.formControl">
+    <option *ngFor="let option of options" [value]="option.enum">{{option.label}}</option>
+  </select>
+  <!-- <section *ngIf="isWrongDate">
+    <app-form-validation [isWrong]="username?.errors?.['required']" [message]="messages[7]"></app-form-validation>
+    <app-form-validation [isWrong]="username?.errors?.['minlength']" [message]="messages[8]"></app-form-validation>
+  </section>
+  <app-form-validation [isWrong]="isUsedEmail" [message]="messages[9]"></app-form-validation> -->
+</tr>

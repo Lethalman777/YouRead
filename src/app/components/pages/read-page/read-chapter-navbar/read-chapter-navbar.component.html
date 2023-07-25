@@ -1,0 +1,12 @@
+<div class="chapter-navbar-box">
+  <div class="chapter-navbar-grid" >
+    <div *ngFor="let chapter of chapters">
+      <app-chapter-label
+        [ngStyle]="{'color': currentChapter == chapter.chapterNumber ? 'green' : ''}"
+        (click)="chapterChoose(chapter.chapterNumber)"
+        [chapter]="chapter">
+      </app-chapter-label>
+    </div>
+  </div>
+</div>
+

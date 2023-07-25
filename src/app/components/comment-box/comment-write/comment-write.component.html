@@ -1,0 +1,6 @@
+<form class="comment-write" [formGroup]="formModel" (ngSubmit)='submit()'>
+  <app-text-area-control [controlProp]="{label:'Napisz Komentarz', formControl:content}"></app-text-area-control>
+  <tr>
+    <button class="button-submit" type="submit">Opublikuj</button>
+  </tr>
+</form>

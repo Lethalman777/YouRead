@@ -1,0 +1,45 @@
+<div class="workpiece-setup-box">
+  <form class="formGrid" [formGroup]="formModel" (ngSubmit)='submit()'>
+    <div class="workpiece-setup-column-one">
+      <app-normal-control [controlProp]="{label:'Tytuł', formControl:title}"></app-normal-control>
+      <app-text-area-control [controlProp]="{label:'Opis', formControl:description}"></app-text-area-control>
+    </div>
+    <div class="workpiece-setup-column-two">
+      <app-select-control [controlProp]="{label:'Gatunek', formControl:genre}" [options]="genres"></app-select-control>
+      <app-select-control [controlProp]="{label:'Język', formControl:language}" [options]="languages"></app-select-control>
+      <app-file-control [controlProp]="{label:'Okładka', formControl:image}"></app-file-control>
+      <div class="workpiece-setup-button">
+        <button class="button-submit" type="submit">Stwórz</button>
+      </div>
+    </div>
+    <!-- <tr>
+      <div>E-mail:</div>
+      <input type="text" formControlName="email"  />
+      <section *ngIf="isWrongData">
+        <app-form-validation [isWrong]="email?.errors?.['required']" [message]="messages[0]"></app-form-validation>
+      </section>
+    </tr>
+    <div formGroupName="passwordGroup">
+      <tr>
+        <div>Password:</div>
+        <input type="password" formControlName="psd" />
+        <section *ngIf="isWrongData">
+          <app-form-validation [isWrong]="password?.errors?.['required']" [message]="messages[2]"></app-form-validation>
+          <app-form-validation [isWrong]="password?.errors?.['minlength']" [message]="messages[3]"></app-form-validation>
+        </section>
+      </tr>
+    </div> -->
+
+  </form>
+  <div class="workpiece-info-box">
+    <app-workpiece-info
+    [props]="{
+      title:title.value,
+      description:description.value,
+      image:image.value,
+      genre:genre.value,
+      language:language.value
+    }"
+  ></app-workpiece-info>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<!-- <div [ngClass]="{'workpiece-label-grid': isAuthorVisible, 'workpiece-label-grid workpiece-non-author': !isAuthorVisible}"> -->
+<div class="workpiece-label-box">
+  <div class="workpiece-label-grid" (click)="read()">
+    <!-- <div class="workpiece-image-box">
+      <img [src]="workpiece.image" alt="PNG Image" class="workpiece-image">
+    </div>
+    <div class="workpiece-title-description">
+      <div class="workpiece-title">
+        <h1>{{workpiece.title}}</h1>
+      </div>
+      <div class="workpiece-description">
+        {{workpiece.description}}
+      </div>
+    </div> -->
+    <div class="workpiece-info-box">
+      <app-workpiece-info
+      [props]="{
+        title:workpiece.title,
+        description:workpiece.description,
+        image:workpiece.image,
+        genre: getGenreLabel(workpiece.genre),
+        language:getLanguageLabel(workpiece.language)
+      }"
+    ></app-workpiece-info>
+    </div>
+    <div class="workpiece-author" *ngIf="isAuthorVisible">
+      <app-author-label [author]="workpiece.author"></app-author-label>
+    </div>
+    <div class="workpiece-information">
+      <app-information-label [props]="{
+        targetId:workpiece.id,
+        information:workpiece.information,
+        object:reactionObject
+      }">
+      </app-information-label>
+    </div>
+  </div>
+</div>
+

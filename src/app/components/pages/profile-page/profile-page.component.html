@@ -1,0 +1,12 @@
+<div class="profile-page-grid">
+  <div class="profile-page-info">
+    <app-profile-info [inputProfileId]="1"></app-profile-info>
+  </div>
+  <div class="profile-page-navbar">
+    <app-profile-nav-bar (MainAreaEvent)="handleMainAreaEvent($event)"></app-profile-nav-bar>
+  </div>
+  <div class="profile-page-main-area">
+    <app-profile-main-area [props]="{profileId: 1, profileArea:currentArea}"></app-profile-main-area>
+  </div>
+</div>
+

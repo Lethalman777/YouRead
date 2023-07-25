@@ -1,0 +1,16 @@
+.app{
+  padding: 10px;
+  padding-left: minmax(10px, 100px);
+  padding-right: minmax(10px, 100px);
+  background-color: #f5f5f5;
+}
+
+.app-grid{
+  display: grid;
+  grid-template-columns: 1fr minmax(400px, 1200px) 1fr;
+}
+
+.app-main-page{
+  grid-column: 2 / 3;
+  justify-content: stretch;
+}

@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <app-read-workpiece [workpiece]="workpiece"></app-read-workpiece>
+  </div>
+  <div>
+    <app-read-chapter-navbar
+      (ChapterChooseEvent)="handleChapterChooseEvent($event)"
+      [props]="{chapters:workpiece.chapters, currentChapter:currentChapterNumber}">
+    </app-read-chapter-navbar>
+  </div>
+  <div>
+    <app-read-box [inputProps]="{workpieceId:workpiece.workpiece.id, chapterNumber:currentChapterNumber}"></app-read-box>
+  </div>
+  <div>
+    <app-read-comment-box [workpieceId]="workpiece.workpiece.id"></app-read-comment-box>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.comment-write{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-write-control{
+  min-width: 400px;
+  max-width: 800px;
+  height: auto;
+}

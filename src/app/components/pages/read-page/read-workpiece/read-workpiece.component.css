@@ -1,0 +1,29 @@
+.read-workpiece-box{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: minmax(10px, 1fr) minmax(400px, 3fr) minmax(10px, 1fr);
+  /* grid-template-rows: 3fr 1fr; */
+  justify-items: stretch;
+}
+
+.read-workpiece-label{
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  /* grid-area: 1 / 2 / 2 / 3; */
+  justify-self: stretch;
+  align-self: stretch;
+  /* grid-column-start: 2;
+  grid-column-end: span 3;
+  grid-row-start: 2;
+  grid-row-end: span 2; */
+}
+
+.read-button{
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+  /* grid-area: 2 / 2 / 3 / 3; */
+  justify-self: stretch;
+  align-self: stretch;
+}
+

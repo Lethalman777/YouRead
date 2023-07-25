@@ -1,0 +1,14 @@
+.new-chapter-form{
+  display: flex;
+  align-items: center;
+}
+
+.new-chapter-box{
+  display: block;
+  align-items: center;
+}
+
+.new-chapter-header{
+  text-align: center;
+}
+

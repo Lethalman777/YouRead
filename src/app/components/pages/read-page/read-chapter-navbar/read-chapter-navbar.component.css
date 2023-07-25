@@ -1,0 +1,15 @@
+.chapter-navbar-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  justify-content: center;
+}
+
+.chapter-navbar-box{
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: center;
+}
+

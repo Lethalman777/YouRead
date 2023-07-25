@@ -1,0 +1,24 @@
+.information-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.information-item{
+  display: flex;
+  margin: 5px;
+  padding: 10px;
+  font-size: large;
+  border-radius: 24px;
+  background-color: lightgray;
+}
+
+.information-icon{
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.information-info{
+  margin-left: 2px;
+  margin-right: 2px;
+}

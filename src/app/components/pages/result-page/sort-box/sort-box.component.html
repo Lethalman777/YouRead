@@ -1,0 +1,6 @@
+<div>
+  <span *ngFor="let genre of genres">
+    <input type="checkbox" name="{{genre.name}}" (change)="onChange(genre)"/>
+    <label>{{genre.name}}</label> <br/>
+  </span>
+</div>

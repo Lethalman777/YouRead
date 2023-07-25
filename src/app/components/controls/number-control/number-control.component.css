@@ -1,0 +1,14 @@
+/* .control-box{
+  display:flex;
+  align-items: center;
+}
+
+.control-label{
+  margin: 5px;
+  font-size:x-large;
+  display: flex;
+} */
+
+.number-control-input{
+  width: 100px;
+}

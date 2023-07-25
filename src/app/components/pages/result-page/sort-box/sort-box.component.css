@@ -1,0 +1,11 @@
+.sort-box{
+  align-items: center;
+}
+
+.sort-box input[type="text"] {
+  border: 1px solid #ccc; /* Border style for input fields */
+  border-radius: 5px; /* Curved border radius for input fields */
+  padding: 10px; /* Padding for input fields */
+  width: 100%; /* Input fields occupy full width */
+  margin-bottom: 10px; /* Margin between input fields */
+}

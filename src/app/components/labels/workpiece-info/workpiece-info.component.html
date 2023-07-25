@@ -1,0 +1,22 @@
+
+  <div class="workpiece-info-grid">
+    <div class="workpiece-image-box">
+      <img [src]="props.image" alt="PNG Image" class="workpiece-image">
+    </div>
+    <div class="workpiece-title-description">
+      <div class="workpiece-title">
+        <h1>{{props.title}}</h1>
+      </div>
+      <div class="workpiece-description">
+        {{props.description}}
+      </div>
+    </div>
+    <div class="workpiece-extra-info-box">
+      <span class="workpiece-extra-info">
+        Gatunek: <span style="font-weight: bold; text-align: center;">{{props.genre}}</span>
+      </span>
+      <span class="workpiece-extra-info">
+        Język: <span style="font-weight: bold; text-align: center;">{{props.language}}</span>
+      </span>
+    </div>
+  </div>

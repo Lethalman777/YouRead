@@ -1,0 +1,16 @@
+
+<div class="result-grid">
+  <div *ngFor="let result of results">
+    <app-workpiece-label [props]="{workpiece:result, isAuthorVisible:true}"/>
+  </div>
+</div>
+
+<!-- <div class="carousel-container"  #carouselContainer>
+  <div
+    class="carousel"
+    >
+      <div [@moveRight] class="carousel-item"  *ngFor="let visibleResult of carouselItems let i = index">
+        <app-result [inputWorkpieceResult]="visibleResult"/>
+      </div>
+  </div>
+</div> -->

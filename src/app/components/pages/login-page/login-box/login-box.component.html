@@ -1,0 +1,29 @@
+<div class="login-box">
+  <h1 class="login-label">Logowanie</h1>
+  <form [formGroup]="formModel" (ngSubmit)='login()'>
+    <app-normal-control [controlProp]="{label:'E-mail', formControl:email}"></app-normal-control>
+    <app-normal-control [controlProp]="{label:'Password', formControl:password}"></app-normal-control>
+    <!-- <tr>
+      <div>E-mail:</div>
+      <input type="text" formControlName="email"  />
+      <section *ngIf="isWrongData">
+        <app-form-validation [isWrong]="email?.errors?.['required']" [message]="messages[0]"></app-form-validation>
+      </section>
+    </tr>
+    <div formGroupName="passwordGroup">
+      <tr>
+        <div>Password:</div>
+        <input type="password" formControlName="psd" />
+        <section *ngIf="isWrongData">
+          <app-form-validation [isWrong]="password?.errors?.['required']" [message]="messages[2]"></app-form-validation>
+          <app-form-validation [isWrong]="password?.errors?.['minlength']" [message]="messages[3]"></app-form-validation>
+        </section>
+      </tr>
+    </div> -->
+    <tr class="login-button-area">
+      <button class="button-submit" type="submit">Zaloguj się</button>
+      <button class="button-normal" routerLink="/log-in">Powrót</button>
+    </tr>
+  </form>
+</div>
+

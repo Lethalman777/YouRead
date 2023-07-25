@@ -1,0 +1,13 @@
+<div class="register-box">
+  <h1 class="textFormat register-label">Rejestracja</h1>
+  <form [formGroup]="formModel" (ngSubmit)='registration()'>
+    <app-normal-control [controlProp]="{label:'Email', formControl:email}"></app-normal-control>
+    <app-normal-control [controlProp]="{label:'Username', formControl:username}"></app-normal-control>
+    <app-normal-control [controlProp]="{label:'Password', formControl:password}"></app-normal-control>
+    <app-normal-control [controlProp]="{label:'Password Confirmed', formControl:passwordConfirm}"></app-normal-control>
+    <tr class="register-button-area">
+      <button class="button-submit" type="submit">Zarejestruj się</button>
+      <button class="button-normal" routerLink="/log-in">Powrót</button>
+    </tr>
+  </form>
+</div>

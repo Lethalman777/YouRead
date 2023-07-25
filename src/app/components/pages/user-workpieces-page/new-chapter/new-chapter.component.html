@@ -1,0 +1,11 @@
+<div class="new-chapter-box">
+  <h1>Nowy Rozdział</h1>
+  <form class="new-chapter-form" [formGroup]="formModel" (ngSubmit)='submit()'>
+    <app-normal-control [controlProp]="{label:'Tytuł', formControl:title}"></app-normal-control>
+    <app-number-control [controlProp]="{label:'Numer', formControl:chapterNumber}"></app-number-control>
+    <tr>
+      <button class="button-submit" type="submit">Stwórz</button>
+    </tr>
+  </form>
+</div>
+

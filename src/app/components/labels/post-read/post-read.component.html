@@ -1,0 +1,20 @@
+<div class="post-read-grid">
+  <div class="post-author">
+    <app-author-label [author]="post.author"></app-author-label>
+  </div>
+  <div class="post-content">
+    <div>
+      {{post.content}}
+    </div>
+    <div *ngFor="let image of post.images">
+      <img [src]="image" alt="PNG Image"/>
+    </div>
+  </div>
+  <div class="post-information">
+    <app-information-label [props]="{
+      targetId:post.id,
+      information:post.information,
+      object:reactionObject
+    }"></app-information-label>
+  </div>
+</div>

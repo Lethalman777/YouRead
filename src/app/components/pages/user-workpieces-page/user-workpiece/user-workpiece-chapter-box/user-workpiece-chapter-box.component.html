@@ -1,0 +1,9 @@
+<div *ngIf="isChapterPosition">
+  <button class="user-workpiece-chapter-navigation" (click)="changeChapterPosition(true)">Przesuń Wyżej</button>
+</div>
+<div class="user-workpiece-chapters">
+  <app-user-workpiece-chapter-list (chooseChapterEvent)="onChapterPositionClick($event)" [chapters]="chapters"></app-user-workpiece-chapter-list>
+</div>
+<div *ngIf="isChapterPosition">
+  <button class="user-workpiece-chapter-navigation" (click)="changeChapterPosition(false)">Przesuń Niżej</button>
+</div>

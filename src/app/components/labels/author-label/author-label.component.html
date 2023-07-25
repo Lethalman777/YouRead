@@ -1,0 +1,19 @@
+<div class="author-label-box">
+  <div class="author-label-grid" (click)="goToProfile()">
+    <div class="author-image-box">
+      <img class="author-image" [src]="'assets/images/polskagurom.png'" alt="PNG Image">
+    </div>
+    <div class="author-box">
+      <span class="author-name">
+        {{author.username}}
+      </span>
+      <span class="author-subscriptions">
+        1000 subskrybentów
+      </span>
+    </div>
+    <div class="author-subscription-button">
+      <button class="button-submit author-button" (click)="subscribe()">subskrybuj</button>
+    </div>
+  </div>
+</div>
+

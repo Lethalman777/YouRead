@@ -1,0 +1,10 @@
+<button class="carousel-button" (click)="prevSlide()" >Previous</button>
+<button class="carousel-button" (click)="nextSlide()">Next</button>
+<div
+  class="carousel-grid"
+  [style.grid-template-columns]="repeatColumn()"
+  #carouselContainer>
+  <div [@slide]="workpiece" *ngFor="let workpiece of visibleWorkpieces[currentIndex] index as i">
+    <app-result [inputWorkpieceResult]="workpiece"/>
+  </div>
+</div>

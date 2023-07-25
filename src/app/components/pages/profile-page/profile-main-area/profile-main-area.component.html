@@ -1,0 +1,9 @@
+<div *ngIf="isWorkpiecesList()">
+  <app-profile-workpieces-list [inputProfileId]="profileId"></app-profile-workpieces-list>
+</div>
+<div *ngIf="isDashboard()">
+  <app-profile-dashboard [inputProfileId]="profileId"></app-profile-dashboard>
+</div>
+<div *ngIf="isSubscriptions()">
+  <app-profile-subscriptions [inputProfileId]="profileId"></app-profile-subscriptions>
+</div>

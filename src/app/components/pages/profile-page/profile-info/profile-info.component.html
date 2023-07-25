@@ -1,0 +1,8 @@
+<div class="profile-info-grid">
+  <div>
+    <app-author-label [author]="{id: profile.id, username: profile.username, image: profile.image}"></app-author-label>
+  </div>
+  <div *ngIf="isLogedProfile">
+    <button class="button-normal" (click)="editProfile()">Edytuj Profil</button>
+  </div>
+</div>
