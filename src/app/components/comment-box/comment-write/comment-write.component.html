@@ -1,6 +1,14 @@
 <form class="comment-write" [formGroup]="formModel" (ngSubmit)='submit()'>
-  <app-text-area-control [controlProp]="{label:'Napisz Komentarz', formControl:content}"></app-text-area-control>
-  <tr>
-    <button class="button-submit" type="submit">Opublikuj</button>
-  </tr>
+  <div style="min-width: 600px; max-width: 600px;" (click)="changeStatus(true)">
+    <app-text-area-control [props]="{label:'Dodaj Komentarz', formControl:content, placeHolder:'Napisz Komentarz...', type:0, isLabelVisible:false}"></app-text-area-control>
+  </div>
+  <div class="comment-button-box" *ngIf="isFocused">
+    <dx-button class="responsive-paddings border-curved" (click)="changeStatus(false)">Anuluj</dx-button>
+    <dx-button
+      class="responsive-paddings border-curved"
+      [ngStyle]="{'background-color': content.value != '' ? 'green' : 'dimgray', 'border-color': content.value != '' ? 'green' : 'dimgray'}"
+      (click)="submit()"
+      type="submit"
+    >Opublikuj</dx-button>
+  </div>
 </form>

@@ -1,3 +1,25 @@
-<div>
-  <app-workpiece-carousel [inputWorkpieces]="workpieces"></app-workpiece-carousel>
+<div class="responsive-paddings dx-card border-curved" #slickK>
+  <div class="button-area">
+    <div>
+      <dx-button class="responsive-paddings" (onClick)="switchRight()">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+    <div class="button-right">
+      <dx-button class="responsive-paddings" (onClick)="switchLeft()">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+  </div>
+  <ngx-slick-carousel class="carousel"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+    (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)"
+    (afterChange)="afterChange($event)"
+    (beforeChange)="beforeChange($event)">
+    <div ngxSlickItem *ngFor="let workpiece of workpieces; let i = index" class="recomendation-slide">
+      <app-workpiece-carousel [props]="workpiece" [isRight]="isRight(i)"></app-workpiece-carousel>
+    </div>
+  </ngx-slick-carousel>
 </div>

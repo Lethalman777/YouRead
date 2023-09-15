@@ -13,25 +13,41 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileInfoComponent {
   @Input() set inputProfileId(value:number){
     this.profileId=value
-    console.log(this.profileId)
-    this.userService.getProfile(value).subscribe(data=>{
+
+    this.userService.getProfile(Number(value)).subscribe(data=>{
+      console.log(data)
       this.profile=data
     })
-    if(value==Number(this.tokenService.get())){
-      this.isLogedProfile=true
-    }
+    this.userService.loggedUserId().subscribe({
+      next:(res)=>{
+        if(value==res.userId){
+          this.isLogedProfile=true
+        }
+      }
+    })
   }
   isLogedProfile:boolean=false
   profileId!:number
   profile!:UserProfile
+  loggedUserProfileId:number=0
+  isPopupVisible:boolean=false
 
   constructor(private tokenService:TokenService, private userService:UserService,  private dialog: MatDialog){}
 
   editProfile(){
-    const dialogRef = this.dialog.open(PopupEditProfileComponent, {
-      width: '800px',
-      height: '800px',
-      data:this.profileId
-    });
+    // const dialogRef = this.dialog.open(PopupEditProfileComponent, {
+    //   width: '800px',
+    //   height: '600px',
+    //   data:this.profileId
+    // });
+    this.isPopupVisible = true
+  }
+
+  onPopupHiding(){
+    this.isPopupVisible = false
+  }
+
+  hide(){
+    console.log('FFF')
   }
 }

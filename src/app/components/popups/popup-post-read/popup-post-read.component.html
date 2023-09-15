@@ -1,0 +1,14 @@
+<dx-popup
+  [(visible)]="isPopupVisible"
+  [hideOnOutsideClick]="true"
+  (onHiding)="onPopupHiding()"
+  contentTemplate="popup-content">
+  <div *dxTemplate="let data of 'popup-content'">
+    <div class="center-items">
+      <app-post-read [props]="{post:post, isExtended:true}"></app-post-read>
+    </div>
+    <div class="center-items">
+      <app-comment-box [inputProps]="{targetId:post.id, searchParam:searchParam, type:type}"></app-comment-box>
+    </div>
+  </div>
+</dx-popup>

@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment.prod';
 import { Observable } from 'rxjs';
 import { Reaction, ReactionClicked } from '../models/types/Reaction';
-import { ReactionClickedEnum } from '../models/enums/ReactionEnum';
+import { ReactionClickedEnum, ReactionObjectEnum } from '../models/enums/ReactionEnum';
+import { SearchParam } from '../models/types/Search';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,12 @@ export class ReactionService {
 
   public createReaction(reaction:Reaction):Observable<Reaction>{
     return this.http.post<Reaction>(`${this.apiUrl}/${this.url}`, reaction)
+  }
+
+  public deleteReaction(searchParam:SearchParam, objectEnum:ReactionObjectEnum){
+    const jsonData = JSON.stringify(searchParam);
+    let params = new HttpParams().set('query', jsonData);
+    return this.http.delete(`${this.apiUrl}/${this.url}/${objectEnum}`, { params:params })
   }
 
   public getClickedReaction(reaction:ReactionClicked):Observable<ReactionClickedEnum>{

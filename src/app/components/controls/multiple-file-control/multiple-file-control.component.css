@@ -11,3 +11,13 @@
   font-size:x-large;
   align-items: center;
 }
+
+.file-button{
+  border: 2px transparent;
+  border-radius: 25px;
+  border-bottom: 2px solid dimgray;
+  border-top: 2px solid dimgray;
+  font-size: medium;
+  color: dimgray;
+  background-color: var(--background-color);
+}

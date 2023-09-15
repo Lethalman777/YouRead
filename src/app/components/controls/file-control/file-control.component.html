@@ -1,9 +1,20 @@
-<tr class="control-box">
+<dx-file-uploader
+  [multiple]="isMultiple"
+  [allowCanceling]="true"
+  [labelText]="controlProp.label"
+  uploadMode="instantly"
+  [uploadUrl]="uploadUrl"
+  [accept]="'.jpg, .png, .pdf'"
+  (onUploaded)="onFileUpload($event)"
+></dx-file-uploader>
+
+<!-- <tr class="control-box">
   <div class="control-label">{{controlProp.label}}</div>
-  <input class="control-input text-input" type="file" [formControl]="controlProp.formControl" (change)="onFileChange($event)"/>
-  <!-- <section *ngIf="isWrongDate">
-    <app-form-validation [isWrong]="username?.errors?.['required']" [message]="messages[7]"></app-form-validation>
-    <app-form-validation [isWrong]="username?.errors?.['minlength']" [message]="messages[8]"></app-form-validation>
-  </section>
-  <app-form-validation [isWrong]="isUsedEmail" [message]="messages[9]"></app-form-validation> -->
-</tr>
+ <div class="control-input">
+    <ngx-file-drop (onFileDrop)="onFileChange($event)" [multiple]="false">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+          <button class="file-button" type="button" (click)="openFileSelector()">Wybierz Zdjęcie</button>
+        </ng-template>
+    </ngx-file-drop>
+  </div>
+</tr> -->

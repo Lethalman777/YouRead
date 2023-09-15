@@ -1,9 +1,26 @@
+<!-- <dx-responsive-box>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-item *ngFor="let workpiece of workpieces; let i = index">
+    <div *ngIf="i%3==0">
+      <dxi-col></dxi-col>
+    </div>
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="i%3" [col]="i/3"></dxi-location>
+      <app-workpiece-carousel [props]="workpiece"/>
+    </dxi-item>
+  </dxi-item>
+</dx-responsive-box> -->
 
-<div class="result-grid">
-  <div *ngFor="let result of results">
-    <app-workpiece-label [props]="{workpiece:result, isAuthorVisible:true}"/>
+<div class="responsive-paddings center-items">
+  <div class="result-grid">
+    <div *ngFor="let workpiece of workpieces">
+      <app-workpiece-carousel [props]="workpiece"/>
+    </div>
   </div>
 </div>
+
 
 <!-- <div class="carousel-container"  #carouselContainer>
   <div

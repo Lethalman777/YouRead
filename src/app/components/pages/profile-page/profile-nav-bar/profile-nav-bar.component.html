@@ -1,23 +1,40 @@
-<div class="profile-navbar-grid">
-  <div class="nav-bar-left" (click)="changeArea('WorkpiecesList')">
+
+<div class="profile-navbar-grid dx-card border-curved responsive-paddings">
+  <app-button-group
+    [options]="areas"
+    [selectedOptions]="defaultArea"
+    (ButtonGroupEvent)="changeArea($event)"
+  ></app-button-group>
+</div>
+<!-- <div class="profile-navbar-grid">
+  <div
+    class="nav-bar-left"
+    [ngStyle]="{'border-color': currentArea == workpiecesList ? 'green' : 'dimgray'}"
+    (click)="changeArea('WorkpiecesList')"
+  >
     Dzieła
   </div>
-  <div class="nav-bar-center" (click)="changeArea('Dashboard')">
+  <div
+    class="nav-bar-center"
+    [ngStyle]="{'border-color': currentArea == profileNewPost ? 'green' : 'dimgray'}"
+    (click)="changeArea('NewPost')"
+    *ngIf="isLoggedProfile"
+  >
+    Stwórz Post
+  </div>
+  <div
+    class="nav-bar-center"
+    [ngStyle]="{'border-color': currentArea == profileDashboard ? 'green' : 'dimgray'}"
+    (click)="changeArea('Dashboard')"
+  >
     Dashboard
   </div>
-  <div class="nav-bar-right" (click)="changeArea('Subscriptions')">
+  <div
+    class="nav-bar-right"
+    [ngStyle]="{'border-color': currentArea == profileSubscribsions ? 'green' : 'dimgray'}"
+    (click)="changeArea('Subscriptions')"
+  >
     Subskrypcje
   </div>
-  <!-- <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" (click)="changeArea('WorkpiecesList')">Dzieła</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="changeArea('Dashboard')">Dashboard</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="changeArea('Subscriptions')">Subskrypcje</a>
-    </li>
-  </ul> -->
-</div>
+</div> -->
 

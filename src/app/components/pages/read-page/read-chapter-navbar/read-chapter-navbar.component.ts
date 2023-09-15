@@ -19,7 +19,8 @@ export class ReadChapterNavbarComponent {
       title:data.title,
       chapterNumber:data.chapterNumber,
       dateOfPublication:data.dateOfPublication,
-      workpieceId:0
+      workpieceId:0,
+      isPublished:true
     }))
   }
   @Output() ChapterChooseEvent:EventEmitter<number> = new EventEmitter<number>();

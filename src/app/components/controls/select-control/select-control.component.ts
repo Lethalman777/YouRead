@@ -16,9 +16,24 @@ export interface SelectOption{
 
 export class SelectControlComponent {
   @Input() controlProp!:ControlProp
-  @Input() options!:any[]
+  @Input() options!:any
+  @Input() valueTag:string='value'
+  @Input() labelTag:string='label'
+
+//   data:Array<{id: Number, label: String}> = [
+//     { id: 1, label: "My profile" },
+//     { id: 2, label: "Messages" },
+//     { id: 3, label: "Contacts" },
+//     { id: 4, label: "Log out" }
+// ];
 
   constructor(){
 
+  }
+
+  onValueChanged(e:any){
+    this.controlProp.formControl.setValue(e.value)
+    console.log(this.controlProp.formControl.value)
+    console.log(e.previousValue)
   }
 }

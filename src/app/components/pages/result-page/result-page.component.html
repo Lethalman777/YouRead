@@ -1,7 +1,4 @@
 <div class="result-page">
-  <app-search-box (SearchEvent)="handleSearchEvent($event)"></app-search-box> <br/>
-  <div>
-    <app-sort-box (CriteriumEvent)="handleGenreEvent($event)"></app-sort-box>
-    <app-results-box [genres]="genres" [inputSearchTerm]="searchTerm"></app-results-box>
-  </div>
+  <app-sort-box (SortEvent)="handleSortEvent($event)"></app-sort-box>
+  <app-results-box [props]="{searchTerm:searchTerm, searchParam:searchParam, workpieces:workpieces}"></app-results-box>
 </div>

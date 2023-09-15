@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -7,15 +7,17 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./popup-confirm.component.css']
 })
 export class PopupConfirmComponent {
-  message:string=""
+  @Output() HidePopupEvent:EventEmitter<boolean> = new EventEmitter<boolean>()
+  @Input() isPopupVisible:boolean = false
+  @Input()message:string=""
 
-  constructor(@Inject(MAT_DIALOG_DATA) public inputData: string,
-  public dialogRef: MatDialogRef<PopupConfirmComponent>
-  ) {
-    this.message=inputData
+  constructor() {
+    if(this.isPopupVisible){
+      console.log('fff')
+    }
   }
 
   submit(isConfirmed:boolean){
-    this.dialogRef.close(isConfirmed);
+    this.HidePopupEvent.emit(isConfirmed)
   }
 }

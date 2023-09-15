@@ -1,5 +1,5 @@
 .chapter-box{
-  justify-self: stretch;
+  /* justify-self: stretch;
   justify-content: center;
   width: auto;
   height: auto;
@@ -11,17 +11,19 @@
   align-items: center;
   display: flex;
   border-radius: 24px;
-  margin: 5px;
+  margin: 5px; */
 
+  flex-direction: row;
 }
 
 .chapter-number{
   font-size: large;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   margin-right: 15px;
 }
 
 .chapter-title{
-  font-size: x-large;
-  display: inline-block;
+  font-size: large;
+  display: flex;
 }

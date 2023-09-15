@@ -1,28 +1,45 @@
-<div class="comment-read-box">
-  <div class="comment-read-grid">
-    <div class="comment-read-author">
-      <app-author-label [author]="comment.author"></app-author-label>
+<div class="comment-super-box">
+  <div class="comment-read-box dx-card responsive-paddings border-curved">
+    <div class="author-image-box">
+      <img class="author-image" [src]="'assets/images/polskagurom.png'" alt="PNG Image">
     </div>
-    <div class="comment-read-content">
-      {{comment.content}}
-    </div>
-    <div class="comment-read-information">
-      <app-information-label [props]="{
-        targetId:comment.id,
-        information:comment.information,
-        object:reactionObject
-      }"></app-information-label>
-      <span class="comment-read-response">
-        Pokaż odpowiedzi
-        <i class="fa fa-angle-down icon" aria-hidden="true"></i>
-      </span>
-      <span class="comment-read-response" (click)="answerComment()">
-        Odpowiedz
-      </span>
+    <div class="comment-read-grid">
+      <!-- <div class="comment-read-author">
+        <app-author-label [props]="{author:comment.author, isSubscribedVisible:false}"></app-author-label>
+      </div> -->
+      <div class="comment-author-name">
+        <span class="author-name">
+          {{comment.author.username}}
+        </span>
+      </div>
+      <div class="comment-read-content">
+        {{comment.content}}
+      </div>
+      <div class="comment-read-information">
+        <app-information-label [props]="{
+          targetId:comment.id,
+          information:comment.information,
+          object:reactionObject
+        }"></app-information-label>
+        <span class="comment-read-response" (click)="showAnswers()">
+          Pokaż odpowiedzi
+          <span *ngIf="isAnswersShown; else iconFalse">
+            <i class="fa fa-angle-down icon"></i>
+          </span>
+          <ng-template #iconFalse>
+            <i class="fa fa-angle-up icon"></i>
+          </ng-template>
+        </span>
+        <span class="comment-read-response" (click)="answerComment()">
+          Odpowiedz
+        </span>
+      </div>
     </div>
   </div>
+  <div *ngIf="isAnswerComment">
+    <app-comment-write [inputProps]="{targetId:comment.targetId, type:comment.commentType, isAnswer:true, commentAnsweredId:comment.id}"></app-comment-write>
+  </div>
+  <div class="comment-answer" *ngIf="isAnswersShown">
+    <app-comment-list [props]="{type:type, searchParam:searchParam}"></app-comment-list>
+  </div>
 </div>
-<div *ngIf="isAnswerComment">
-  <app-comment-write [inputProps]="{targetId:comment.targetId, type:comment.type, isAnswer:false, commentAnsweredId:comment.id}"></app-comment-write>
-</div>
-

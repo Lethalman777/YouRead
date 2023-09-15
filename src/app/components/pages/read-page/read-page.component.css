@@ -1,0 +1,6 @@
+.user-workpiece{
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  margin-bottom: 20px;
+}

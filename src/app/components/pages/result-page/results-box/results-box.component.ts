@@ -1,58 +1,73 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { WorkpieceService } from '../../../../services/workpiece.service';
-import { UserService } from '../../../../services/user.service';
-import { GenreCriterium } from '../../../../models/types/GenreCriterium';
 import { WorkpieceLabel } from 'src/app/models/types/Workpiece';
-import { getCarouselItems, getRandomTopics } from 'src/app/models/functions/Recomendation';
-import { trigger, transition, style, animate, keyframes } from '@angular/animations';
+import { SearchParam } from 'src/app/models/types/Search';
+
+import { getEmptyParam } from 'src/app/models/functions/SearchFunction';
+
+export interface ResultsBoxProps{
+  searchTerm?:string
+  searchParam:SearchParam
+  workpieces:WorkpieceLabel[]
+}
 
 @Component({
   selector: 'app-results-box',
   templateUrl: './results-box.component.html',
-  styleUrls: ['./results-box.component.css'],
-  animations: [
-    trigger('slide', [
-      transition(':leave', [
-        animate('500ms', keyframes([
-          style({ transform: 'translateX(0%)', opacity: 1 }),
-          style({ transform: 'translateX(100%)', opacity: 0 })
-        ]))
-      ]),
-      transition(':enter', [
-        animate('500ms 500ms', keyframes([
-          style({ transform: 'translateX(-100%)', opacity: 0 }),
-          style({ transform: 'translateX(0%)', opacity: 1 })
-        ]))
-      ])
-    ])
-  ]
+  styleUrls: ['./results-box.component.css']
 })
 
 export class ResultsBoxComponent {
-  @Input() genres:GenreCriterium[]=[]
-  @Input() set inputSearchTerm(value:string){
-    this.searchTerm=value
-    this.search()
+  @Input() set props(value:ResultsBoxProps){
+    this.searchTerm=value.searchTerm
+    this.searchParam=value.searchParam
+    this.workpieces=value.workpieces
+    //this.search()
   }
-  currentIndex = 0;
-  searchTerm:string = 'a'
-  results:WorkpieceLabel[]=[]
+  searchParam:SearchParam = getEmptyParam()
+  searchTerm?:string
+  workpieces:WorkpieceLabel[]=[]
+  colNumber:number = 0
+
   constructor(private workpieceService:WorkpieceService){
-    this.workpieceService=workpieceService
-    this.search()
+    //this.search()
   }
 
-  @Input() search(){
-    const genresId:number[]=[]
-    this.genres.map(data=>{
-      if(data.isChecked){
-        genresId.push(data.id)
-      }
-    })
-    console.log(this.searchTerm)
-    this.workpieceService.searchWorkpieces().subscribe(data=>{
-      this.results=data
-      //console.log(this.results)
-    })
+  updateGridSize() {
+    const windowWidth = window.innerWidth
+    this.colNumber =  Number((windowWidth / 300).toFixed(0));
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.updateGridSize();
+  }
+
+  isNewColumn(index:number){
+
+    if(index%3 == 0){
+      this.colNumber++
+      return true
+    } else {
+      return false
+    }
+  }
+
+  newColumn(index:number):number{
+    if(index%3==0){
+      this.colNumber++
+    }
+
+    return this.colNumber
+  }
+
+  // @Input() search(){
+  //   console.log(this.searchTerm)
+  //   console.log(this.searchParam)
+
+  //   this.workpieceService.searchWorkpieces(this.searchParam, this.searchTerm).subscribe(data=>{
+  //     this.results=data
+  //     console.log(this.results)
+  //   })
+  // }
 }

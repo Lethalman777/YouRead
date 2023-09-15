@@ -1,5 +1,6 @@
 <div class="post-workpiece-list-grid">
   <div *ngFor="let workpiece of workpieces">
-      <app-workpiece-label  [props]="{workpiece:workpiece, isAuthorVisible:true}"></app-workpiece-label>
+      <!-- <app-workpiece-label  [props]="{workpiece:workpiece, isAuthorVisible:true}"></app-workpiece-label> -->
+      <app-workpiece-carousel [props]="workpiece"></app-workpiece-carousel>
   </div>
 </div>

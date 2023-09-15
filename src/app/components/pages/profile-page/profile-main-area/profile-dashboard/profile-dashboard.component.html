@@ -1,3 +1,11 @@
-<div *ngFor="let post of posts">
-  <app-post-read [post]="post"></app-post-read>
+<div class="profile-dashboard-box">
+  <div *ngIf="!isCommentShown">
+    <div *ngFor="let post of posts">
+      <app-post-read (PostCommentsEvent)="handlePostCommentsEvent($event)" [props]="{post:post, isExtended:false}"></app-post-read>
+    </div>
+  </div>
+  <div *ngIf="isCommentShown">
+    <app-post-read (PostCommentsEvent)="handlePostCommentsEvent($event)" [props]="{post:postComments, isExtended:true}"></app-post-read>
+    <app-comment-box [inputProps]="{targetId:postComments.id, searchParam:searchParam, type:type}"></app-comment-box>
+  </div>
 </div>

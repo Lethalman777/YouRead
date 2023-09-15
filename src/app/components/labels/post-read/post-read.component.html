@@ -1,20 +1,42 @@
-<div class="post-read-grid">
-  <div class="post-author">
-    <app-author-label [author]="post.author"></app-author-label>
-  </div>
-  <div class="post-content">
-    <div>
-      {{post.content}}
+<div
+  class="post-read-box dx-card border-curved responsive-paddings"
+  [ngStyle]="{'height': isExtended ? 'auto' : '300px'}"
+>
+  <div
+    class="post-read-grid"
+    [ngStyle]="{'grid-template-rows': isExtended ? 'minmax(50px, 75px) minmax(150px, 450px) 75px' : 'minmax(50px, 75px) 150px 50px'}"
+  >
+    <div class="post-author">
+      <app-author-label [props]="{author:post.author, isSubscribedVisible:true}"></app-author-label>
     </div>
-    <div *ngFor="let image of post.images">
-      <img [src]="image" alt="PNG Image"/>
+    <div
+      class="post-content"
+
+    >
+      <textarea
+        class="post-content-area" [readOnly]="true"
+        [ngStyle]="{'height': isExtended ? '100%' : '100px'}"
+      >
+        {{content}}...
+      </textarea>
+      <strong (click)="ShowComment()">{{isTextOverflow ? " Czytaj Więcej" : "" }}</strong>
+      <!-- <div *ngFor="let image of post.images">
+        <img [src]="image" alt="PNG Image"/>
+      </div> -->
+
     </div>
-  </div>
-  <div class="post-information">
-    <app-information-label [props]="{
-      targetId:post.id,
-      information:post.information,
-      object:reactionObject
-    }"></app-information-label>
+    <div class="post-information">
+      <app-information-label [props]="{
+        targetId:post.id,
+        information:post.information,
+        object:reactionObject
+      }"></app-information-label>
+      <span class="post-read-comments" (click)="ShowComment()">
+        Napisz Komentarz
+      </span>
+      <div *ngIf="isPopupVisible">
+        <app-popup-post-read [post]="post" [searchParam]="searchParam" [isPopupVisible]="true" (HidePopupEvent)="onPopupHiding($event)"></app-popup-post-read>
+      </div>
+    </div>
   </div>
 </div>

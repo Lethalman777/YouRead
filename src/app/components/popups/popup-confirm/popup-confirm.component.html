@@ -1,9 +1,13 @@
-<div>
-  <div>
-    <p>{{message}}</p>
+<dx-popup
+  [(visible)]="isPopupVisible"
+  contentTemplate="popup-content">
+  <div *dxTemplate="let data of 'popup-content'">
+    <div>
+      <p>{{message}}</p>
+    </div>
+    <div>
+      <button (click)="submit(true)">Zatwierdź</button>
+      <button (click)="submit(false)">Anuluj</button>
+    </div>
   </div>
-  <div>
-    <button (click)="submit(true)">Zatwierdź</button>
-    <button (click)="submit(false)">Anuluj</button>
-  </div>
-</div>
+</dx-popup>

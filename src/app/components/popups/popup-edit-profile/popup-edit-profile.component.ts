@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxFileDropEntry } from 'ngx-file-drop';
@@ -12,79 +12,93 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./popup-edit-profile.component.css']
 })
 export class PopupEditProfileComponent {
+  @Output() HidePopupEvent:EventEmitter<any> = new EventEmitter()
+  @Input() isPopupVisible:boolean = false
   profile!:UserProfile
   formModel: FormGroup;
   formData:FormData = new FormData()
+  isConfirmVisible:boolean = false
+  isSubmit:boolean = false
 
-  constructor(private storageService:StorageService, private userService:UserService,
-    @Inject(MAT_DIALOG_DATA) public inputData: number){
-      this.userService.getProfile(inputData).subscribe(data=>{
-        this.profile=data
+  constructor(private storageService:StorageService, private userService:UserService){
+    this.formModel = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      description: new FormControl(''),
+      image: new FormControl(new FormData()),
+      imageSecond: new FormControl(new FormData())
+    });
+      userService.loggedUserId().subscribe(data=>{
+        this.userService.getProfile(data.userId).subscribe(data1=>{
+          this.profile=data1
+          console.log(this.profile)
+        })
       })
-      this.formModel = new FormGroup({
-        username: new FormControl(this.profile.username, [
-          Validators.required,
-          Validators.minLength(3)
-        ]),
-        image: new FormControl(new FormData())
-      });
     }
 
   submit(){
+    console.log(this.formModel)
     if(!this.formModel.valid){
       return
     }
-    const profile:UserProfile={
-      id: this.profile.id,
-      username: this.username.value,
-      image: '',
-      dateOfBirth: this.profile.dateOfBirth
-    }
-    console.log(profile)
-    this.storageService.uploadImage(this.image.value).subscribe(data=>{
-      console.log(data)
-      profile.image = data.image
-      this.userService.updateProfile(profile).subscribe(data1=>{
-        console.log(data1)
-      })
-    })
+    this.isConfirmVisible = true
+    this.isSubmit = true
   }
 
-  // public dropped(files: NgxFileDropEntry[]) {
-  //   this.files = files;
+  cancel(){
+      this.isConfirmVisible = true
+      this.isSubmit = false
+  }
 
-  //   for (const droppedFile of files) {
-
-  //     // Is it a file?
-  //     if (droppedFile.fileEntry.isFile) {
-  //       const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-  //       fileEntry.file((file: File) => {
-
-  //         // Here you can access the real file
-  //         console.log(droppedFile.relativePath, file);
-
-  //         // You could upload it like this:
-  //         //const formData = new FormData()
-  //         this.formData.append(file.name, file
-  //         //, droppedFile.relativePath
-  //         )
-  //         this.fileName=file.name
-  //         console.log(this.formData.get(file.name))
-
-  //         })
-  //     } else {
-  //       // It was a directory (empty directories are added, otherwise only files)
-  //       const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-  //       //console.log(droppedFile.relativePath, fileEntry);
-  //     }
+  // onPopupHiding(){
+  //   if(this.formModel.dirty){
+  //     this.isConfirmVisible = true
+  //   }
+  //   else{
+  //     this.HidePopupEvent.emit()
   //   }
   // }
+
+  onPopupConfirmed(isConfirmed:boolean){
+    this.isConfirmVisible = false
+    if(isConfirmed){
+      if(this.isSubmit){
+        const profile:UserProfile={
+          id: this.profile.id,
+          username: this.username.value,
+          image: this.image.value,
+          dateOfBirth: this.profile.dateOfBirth,
+          subscriberCount: 0,
+          workpieceCount: 0,
+          description: this.description.value,
+          backgroundImage: this.imageSecond.value
+        }
+        console.log(profile)
+        this.userService.updateProfile(profile).subscribe(data=>{
+          console.log(data)
+          this.HidePopupEvent.emit()
+        })
+      } else {
+        this.HidePopupEvent.emit()
+      }
+    }
+  }
 
   get image() {
     return this.formModel.get('image') as FormControl;
   }
 
+  get imageSecond() {
+    return this.formModel.get('imageSecond') as FormControl;
+  }
+
   get username() {
     return this.formModel.get('username') as FormControl;
+  }
+
+  get description() {
+    return this.formModel.get('description') as FormControl;
   }
 }

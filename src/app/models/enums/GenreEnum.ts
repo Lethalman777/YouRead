@@ -1,4 +1,5 @@
 import { SelectOption } from "src/app/components/controls/select-control/select-control.component"
+import { CheckBoxOption } from "../types/Control"
 
 export enum GenreEnum {
   // mixed = "mixed",
@@ -18,17 +19,18 @@ export enum GenreEnum {
 
 export type SelectEnum<T> = {
   label: string
+  image:string
   enum: T
 }
 
 export function getGenreValues():SelectEnum<GenreEnum>[]{
   const options:SelectEnum<GenreEnum>[]=[
-    { label: "mieszany", enum:GenreEnum.mixed },
-    { label: "historyczne", enum:GenreEnum.historical },
-    { label: "fantastyka", enum:GenreEnum.fantasy },
-    { label: "science fiction", enum:GenreEnum.scienceFiction },
-    { label: "obyczajowe", enum:GenreEnum.customary },
-    { label: "sensacyjne", enum:GenreEnum.sensational },
+    { label: "mieszany", enum:GenreEnum.mixed, image: "assets/images/heroes3.png" },
+    { label: "historyczne", enum:GenreEnum.historical, image: "assets/images/gothic.png" },
+    { label: "fantastyka", enum:GenreEnum.fantasy, image: "assets/images/gomez.jpeg" },
+    { label: "science fiction", enum:GenreEnum.scienceFiction, image: "assets/images/azure3.png" },
+    { label: "obyczajowe", enum:GenreEnum.customary, image: "assets/images/onefaith.png" },
+    { label: "sensacyjne", enum:GenreEnum.sensational, image: "assets/images/agresja.png" },
   ]
 
   return options
@@ -38,4 +40,15 @@ export function getGenreLabel(genre:GenreEnum):string | undefined{
   const enums = getGenreValues()
   const label = enums.find(data=>data.enum==genre)?.label
   return label
+}
+
+export function getGenreOptions():CheckBoxOption[]{
+  return [
+    { label: "mieszany", value:GenreEnum.mixed, isChecked:false },
+    { label: "historyczne", value:GenreEnum.historical, isChecked:false },
+    { label: "fantastyka", value:GenreEnum.fantasy, isChecked:false },
+    { label: "science fiction", value:GenreEnum.scienceFiction, isChecked:false },
+    { label: "obyczajowe", value:GenreEnum.customary, isChecked:false },
+    { label: "sensacyjne", value:GenreEnum.sensational, isChecked:false }
+  ]
 }

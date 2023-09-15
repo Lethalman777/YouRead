@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GenreCriterium } from 'src/app/models/types/GenreCriterium';
+import { GenreEnum } from 'src/app/models/enums/GenreEnum';
+import { SearchDataTypeEnum, SearchPageEnum, SortTypeEnum, TypeOfEnum } from 'src/app/models/enums/SearchEnum';
+import { getEmptyParam, getSearchParam, getSearchWorkpiece } from 'src/app/models/functions/SearchFunction';
+import { SearchParam, SearchWorkpiece } from 'src/app/models/types/Search';
+import { WorkpieceLabel } from 'src/app/models/types/Workpiece';
+import { TokenService } from 'src/app/services/token.service';
+import { UserService } from 'src/app/services/user.service';
+import { WorkpieceService } from 'src/app/services/workpiece.service';
 
 @Component({
   selector: 'app-result-page',
@@ -8,23 +15,101 @@ import { GenreCriterium } from 'src/app/models/types/GenreCriterium';
   styleUrls: ['./result-page.component.css']
 })
 export class ResultPageComponent {
-  genres:GenreCriterium[]=[]
-  searchTerm:string="a"
-  id!:number
-  constructor(private route: ActivatedRoute){}
+  searchTerm?:string
+  searchParam:SearchParam = getEmptyParam()
+  searchWorkpiece:SearchWorkpiece = getSearchWorkpiece()
+  workpieces:WorkpieceLabel[]=[]
+  loggedUserProfileId:number=0
+
+  constructor(private userService:UserService, private route: ActivatedRoute, private workpieceService:WorkpieceService, private tokenService:TokenService){}
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params=>{
-      this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.userService.loggedUserId().subscribe({
+      next:(res)=>{
+        this.loggedUserProfileId = res.userId
+      }
     })
-    console.log(this.id)
+    this.route.queryParams.subscribe(params=>{
+      this.searchWorkpiece = getSearchWorkpiece()
+      const navigationState = {
+        type: params['type'],
+        genre: params['genre'],
+        searchTerm: params['searchTerm']
+      }
+      console.log('działą')
+      this.getSearchPage(navigationState)
+      this.search(this.searchWorkpiece)
+    })
   }
 
-  handleGenreEvent(genresSorted:GenreCriterium[]) {
-    this.genres=genresSorted
+  search(searchWorkpiece:SearchWorkpiece){
+    console.log(this.searchTerm)
+    console.log(this.searchParam)
+
+    this.workpieceService.searchWorkpieces(searchWorkpiece).subscribe(data=>{
+      this.workpieces=data
+      console.log(this.workpieces)
+    })
   }
 
-  handleSearchEvent(searchTerm:string) {
-    this.searchTerm=searchTerm
-    console.log(searchTerm)
+  handleSortEvent(event:any) {
+    this.searchWorkpiece.searchParam=event.searchParam
+    console.log(event.searchParam)
+    if(event.searchTerm){
+      this.searchWorkpiece.searchTerm=event.searchTerm
+      this.searchWorkpiece.sortTypeEnum=SortTypeEnum.SearchTitle
+    }
+    this.search(this.searchWorkpiece)
+  }
+
+  getSearchPage(navigationState:any){
+    switch(navigationState.type){
+      case '1':
+        this.searchWorkpiece = getSearchWorkpiece(undefined, SortTypeEnum.Recomendation, undefined, this.loggedUserProfileId)
+        break;
+      case '2':
+        this.searchWorkpiece = getSearchWorkpiece(undefined, SortTypeEnum.Trending)
+        break;
+      case '3':
+        this.searchWorkpiece = getSearchWorkpiece(undefined, undefined, undefined, this.loggedUserProfileId, true)
+        break;
+      case '4':
+        this.searchWorkpiece = getSearchWorkpiece()
+        switch(navigationState.genre){
+          case '0':
+            this.searchWorkpiece.searchParam=getSearchParam('Genre', GenreEnum.mixed, SearchDataTypeEnum.genreEnum)
+            break;
+          case '1':
+             this.searchWorkpiece.searchParam=getSearchParam('Genre', GenreEnum.historical, SearchDataTypeEnum.genreEnum)
+             break;
+          case '2':
+            this.searchWorkpiece.searchParam=getSearchParam('Genre', GenreEnum.fantasy, SearchDataTypeEnum.genreEnum)
+            break;
+          case '3':
+            this.searchWorkpiece.searchParam=getSearchParam('Genre', GenreEnum.scienceFiction, SearchDataTypeEnum.genreEnum)
+            break;
+          case '4':
+            this.searchWorkpiece.searchParam=getSearchParam('Genre', GenreEnum.customary, SearchDataTypeEnum.genreEnum)
+            break;
+          case '5':
+            this.searchWorkpiece.searchParam=getSearchParam('Genre', GenreEnum.sensational, SearchDataTypeEnum.genreEnum)
+            break;
+          default:
+            this.searchWorkpiece.searchParam=getEmptyParam()
+        }
+        break;
+      case '5':
+        this.searchWorkpiece=getSearchWorkpiece(getSearchParam(
+          'ReadHistories', true, SearchDataTypeEnum.boolean, undefined, undefined, undefined, undefined, undefined, undefined, undefined,
+          true, 'Any', getSearchParam('UserProfileId', this.loggedUserProfileId, SearchDataTypeEnum.number, undefined, undefined, undefined, undefined, undefined,
+          'v', TypeOfEnum.ReadHistory)
+        ))
+        break;
+      case '6':
+        this.searchWorkpiece=getSearchWorkpiece(undefined, SortTypeEnum.SearchTitle, navigationState.searchTerm)
+        break;
+      default:
+        this.searchWorkpiece=getSearchWorkpiece()
+        break;
+    }
   }
 }

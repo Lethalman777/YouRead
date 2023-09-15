@@ -1,6 +1,44 @@
 .read-box{
-  display: flex;
+  display: grid;
   align-items: center;
-  grid-template-columns: 100px repeat(2, 1fr) 100px ;
+  grid-template-columns: 100px repeat(2, minmax(450px, 500px)) 100px ;
   grid-gap: 5px;
+  justify-content: stretch;
+  justify-self: center;
+}
+
+.left-page{
+  grid-column: 2 / 3;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-page{
+  grid-column: 3 / 4;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.read-page{
+  justify-content: center;
+  display: flex;
+  min-width: 300px;
+  max-width: 600px;
+  min-height: 850px;
+  max-height: 900px;
+}
+
+.turn-page-button{
+  max-width:100px;
+  min-width:50px;
+  width:100%;
+}
+
+.turn-page-button-box{
+  display: flex;
+  justify-content: start;
 }

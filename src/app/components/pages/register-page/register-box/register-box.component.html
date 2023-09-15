@@ -1,13 +1,36 @@
-<div class="register-box">
+<!-- <div class="register-box">
   <h1 class="textFormat register-label">Rejestracja</h1>
   <form [formGroup]="formModel" (ngSubmit)='registration()'>
-    <app-normal-control [controlProp]="{label:'Email', formControl:email}"></app-normal-control>
-    <app-normal-control [controlProp]="{label:'Username', formControl:username}"></app-normal-control>
-    <app-normal-control [controlProp]="{label:'Password', formControl:password}"></app-normal-control>
-    <app-normal-control [controlProp]="{label:'Password Confirmed', formControl:passwordConfirm}"></app-normal-control>
+    <app-normal-control [props]="{label:'Email', formControl:email, placeHolder:'Podaj e-mail'}"></app-normal-control>
+    <app-normal-control [props]="{label:'Username', formControl:username, placeHolder:'Podaj nazwę Użytkownika'}"></app-normal-control>
+    <app-normal-control [props]="{label:'Password', formControl:password, placeHolder:'Podaj hasło'}"></app-normal-control>
+    <app-normal-control [props]="{label:'Password Confirmed', formControl:passwordConfirm, placeHolder:'Powtórz hasło'}"></app-normal-control>
     <tr class="register-button-area">
       <button class="button-submit" type="submit">Zarejestruj się</button>
       <button class="button-normal" routerLink="/log-in">Powrót</button>
     </tr>
+  </form>
+</div> -->
+
+<div class="dx-fieldset dx-card responsive-paddings">
+  <div class="dx-fieldset-header">Rejestracja</div>
+  <form class="content-block" [formGroup]="formModel" (ngSubmit)='registration()'>
+    <div class="responsive-paddings">
+      <app-normal-control [props]="{label:'Email', formControl:email, placeHolder:'Podaj e-mail'}"></app-normal-control>
+    </div>
+    <div class="responsive-paddings">
+      <app-normal-control [props]="{label:'Username', formControl:username, placeHolder:'Podaj nazwę Użytkownika'}"></app-normal-control>
+    </div>
+    <div class="responsive-paddings">
+      <app-normal-control [props]="{label:'Password', formControl:password, placeHolder:'Podaj hasło'}" [mode]="'password'"></app-normal-control>
+    </div>
+    <div class="responsive-paddings">
+      <app-normal-control [props]="{label:'Password Confirmed', formControl:passwordConfirm, placeHolder:'Powtórz hasło'}" [mode]="'password'"></app-normal-control>
+    </div>
+
+    <div class="button-area">
+      <dx-button class="responsive-paddings" (click)="registration()" type="submit">Zarejestruj się</dx-button>
+      <dx-button class="responsive-paddings" routerLink="/log-in">Powrót</dx-button>
+    </div>
   </form>
 </div>

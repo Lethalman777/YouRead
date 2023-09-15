@@ -1,0 +1,7 @@
+<div *ngFor="let validationMessage of validationMessages">
+  <div class="form-validation-message" *ngIf="validationMessage.isValid">
+    <span>
+      {{validationMessage.message}}
+    </span>
+  </div>
+</div>

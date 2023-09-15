@@ -1,4 +1,3 @@
-<h1>Komentarze</h1>
-<div *ngFor="let comment of comments">
-  <app-comment-read [comment]="comment"></app-comment-read>
+<div class="comment-list-box" *ngFor="let comment of comments">
+  <app-comment-read [props]="{comment:comment, type:type}"></app-comment-read>
 </div>

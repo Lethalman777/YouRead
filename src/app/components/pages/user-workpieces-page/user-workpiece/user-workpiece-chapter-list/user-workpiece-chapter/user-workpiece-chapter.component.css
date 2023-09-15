@@ -2,4 +2,17 @@
   display: flex;
   justify-content: stretch;
   justify-content: center;
+  flex-direction: column;
+}
+
+.user-workpiece-chapter-edit-button-left{
+  margin-right: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.user-workpiece-chapter-edit-button-right{
+  margin-left: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
 }

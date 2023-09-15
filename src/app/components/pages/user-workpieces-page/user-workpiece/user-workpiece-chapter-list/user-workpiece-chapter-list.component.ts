@@ -12,6 +12,7 @@ export class UserWorkpieceChapterListComponent {
   workpieceId!:number
   @Output() chooseChapterEvent = new EventEmitter<number>();
   @Input() chapters:ChapterLabel[]=[]
+  @Input() isEdited:boolean = false
 
   constructor(private chapterService:ChapterService, private router:Router){
 

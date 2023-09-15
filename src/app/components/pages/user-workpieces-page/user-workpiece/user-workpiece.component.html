@@ -1,25 +1,85 @@
-<div class="user-workpiece-box">
+<dx-responsive-box>
+  <dxi-row></dxi-row>
+  <dxi-col></dxi-col>
+  <dxi-col></dxi-col>
+  <dxi-col></dxi-col>
+  <dxi-col></dxi-col>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="0" [colspan]="2"></dxi-location>
+    <div class="user-workpiece-label">
+      <app-workpiece-label [props]="{workpiece:workpiece, isAuthorVisible:false}"></app-workpiece-label>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="2"></dxi-location>
+    <div class="user-workpiece-chapters-box dx-card border-curved">
+      <app-user-workpiece-chapter-box [props]="{isVisible:isChapterPosition, workpieceId:workpiece.id}" [isEdited]="isChapterPosition"></app-user-workpiece-chapter-box>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="3"></dxi-location>
+    <div class="user-workpiece-button-area dx-card border-curved">
+      <dx-button (click)="editWorkpiece()">Edytuj Informacje</dx-button>
+      <dx-button (click)="addChapter()">Dodaj Nowy Rozdział</dx-button>
+      <dx-button (click)="changeChapterPositionVisibility()">
+        {{ isChapterPosition ? 'Zakończ edycję' : 'Edytuj Rozdziały' }}
+      </dx-button>
+      <dx-button (click)="publish()">
+        {{ workpiece.isPublished ? 'wycofaj publikacje' : 'opublikuj' }}
+      </dx-button>
+      <dx-button *ngIf="workpiece.isPublished"(click)="navigation()">
+        Czytaj
+      </dx-button>
+    </div>
+  </dxi-item>
+</dx-responsive-box>
+<div *ngIf="isPublishedPopupVisible">
+  <app-popup-message
+    [isPopupVisible]="isPublishedPopupVisible"
+    [message]="'Aby opublikować dzieło musi ono mieć opublikowane rozdziały'"
+    (HidePopupEvent)="onPopupClosed()"
+  ></app-popup-message>
+</div>
+
+<!-- <div class="user-workpiece-box">
   <div class="user-workpiece-grid">
     <div class="user-workpiece-label">
       <app-workpiece-label [props]="{workpiece:workpiece, isAuthorVisible:false}"></app-workpiece-label>
     </div>
-    <div class="user-workpiece-chapters-box">
+    <div class="user-workpiece-chapters-box dx-card border-curved">
       <app-user-workpiece-chapter-box [props]="{isVisible:isChapterPosition, workpieceId:workpiece.id}"></app-user-workpiece-chapter-box>
     </div>
-    <div class="user-workpiece-button-area">
+    <div class="user-workpiece-button-area dx-card border-curved">
       <button class="button-normal user-workpiece-button" (click)="editWorkpiece()">Edytuj Informacje</button>
-      <!-- <button class="button-normal user-workpiece-button" (click)="showChapters()">{{developButtonText}}</button> -->
       <button class="button-normal user-workpiece-button" (click)="addChapter()">Dodaj Nowy Rozdział</button>
-      <button class="button-normal user-workpiece-button" (click)="changeChapterPositionVisibility()">Zmień Pozycjonowanie</button>
+      <button class="button-normal user-workpiece-button" (click)="changeChapterPositionVisibility()">
+        {{ isChapterPosition ? 'Zachowaj Kolejność' : 'Zmień Kolejność' }}
+      </button>
       <button class="button-normal user-workpiece-button" (click)="publish()">
         {{ workpiece.isPublished ? 'wycofaj publikacje' : 'opublikuj' }}
       </button>
     </div>
-    <!-- <div class="user-workpiece-chapter-setup" *ngIf="isChapterSetup">
-      <app-new-chapter (NewChapterEvent)="handleNewChapterEvent($event)" [inputWorkpieceId]="workpiece.id"></app-new-chapter>
-    </div> -->
   </div>
-<!-- <div *ngIf="isChapterVisible">
-  <app-user-workpiece-chapter-list [inputWorkpieceId]="workpiece.id"></app-user-workpiece-chapter-list>
 </div> -->
-</div>
+
+<!-- <div class="user-workpiece-box">
+  <div class="user-workpiece-grid">
+    <div class="user-workpiece-label">
+      <app-workpiece-label [props]="{workpiece:workpiece, isAuthorVisible:false}"></app-workpiece-label>
+    </div>
+    <div class="user-workpiece-chapters-box dx-card border-curved">
+      <app-user-workpiece-chapter-box [props]="{isVisible:isChapterPosition, workpieceId:workpiece.id}"></app-user-workpiece-chapter-box>
+    </div>
+    <div class="user-workpiece-button-area dx-card border-curved">
+      <button class="button-normal user-workpiece-button" (click)="editWorkpiece()">Edytuj Informacje</button>
+      <button class="button-normal user-workpiece-button" (click)="addChapter()">Dodaj Nowy Rozdział</button>
+      <button class="button-normal user-workpiece-button" (click)="changeChapterPositionVisibility()">
+        {{ isChapterPosition ? 'Zachowaj Kolejność' : 'Zmień Kolejność' }}
+      </button>
+      <button class="button-normal user-workpiece-button" (click)="publish()">
+        {{ workpiece.isPublished ? 'wycofaj publikacje' : 'opublikuj' }}
+      </button>
+    </div>
+  </div>
+</div> -->

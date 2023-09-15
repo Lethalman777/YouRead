@@ -20,26 +20,4 @@ export class ProfileMainAreaComponent {
   }
   profileId!:number
   profileArea:ProfileArea=ProfileArea.WorkpiecesList
-
-  isWorkpiecesList():boolean{
-    if(this.profileArea==ProfileArea.WorkpiecesList){
-      return true
-    }
-    return false
-  }
-
-  isDashboard():boolean{
-    console.log(this.profileId)
-    if(this.profileArea==ProfileArea.ProfileDashboard){
-      return true
-    }
-    return false
-  }
-
-  isSubscriptions():boolean{
-    if(this.profileArea==ProfileArea.ProfileSubscribsions){
-      return true
-    }
-    return false
-  }
 }

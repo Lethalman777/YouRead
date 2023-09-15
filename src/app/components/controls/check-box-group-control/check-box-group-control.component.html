@@ -1,0 +1,18 @@
+<div class="checkbox-panel">
+  <label>
+    <input
+      type="checkbox"
+      [(ngModel)]="selectAll"
+      (change)="toggleSelectAll()"
+    />
+    Select All
+  </label>
+  <label *ngFor="let option of props.formControl.value">
+    <input
+      type="checkbox"
+      [(ngModel)]="option.isChecked"
+      (change)="toggleSelect()"
+    />
+    {{ option.label }}
+  </label>
+</div>

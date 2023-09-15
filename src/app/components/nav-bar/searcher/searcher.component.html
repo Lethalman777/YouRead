@@ -1,0 +1,11 @@
+<div class="center-items">
+  <app-normal-control [props]="{label:'szukaj', formControl:searchTerm, placeHolder:'szukaj...'}" [stylingMode]="'outlined'"></app-normal-control>
+  <div class="center-items">
+    <dx-button
+      class="responsive-paddings border-curved"
+      style="margin-left: 10px;"
+      (click)="onSearch()">
+      <i class="fa fa-search"></i>
+    </dx-button>
+  </div>
+</div>

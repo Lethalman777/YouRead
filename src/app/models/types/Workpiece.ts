@@ -11,7 +11,8 @@ export type WorkpieceCreate = {
   image:string,
   userProfileId:number,
   genre:GenreEnum,
-  language:LanguageEnum
+  language:LanguageEnum,
+  tags:string[]
 }
 
 export type FileName = {
@@ -27,7 +28,8 @@ export type WorkpieceUpdate = {
   image:string,
   userProfileId:number,
   dateOfPublication:Date,
-  isPublished:boolean
+  isPublished:boolean,
+  tags:string[]
 }
 
 export type WorkpieceLabel = {

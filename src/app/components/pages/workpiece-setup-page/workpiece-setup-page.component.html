@@ -1,18 +1,20 @@
 <div>
   <app-workpiece-setup-box
     [props]="{
-      isNew:false,
+      isNew:true,
       workpiece:{
         id:0,
         title:'',
         description:'',
         genre:genre,
         language:language,
-        image:'',
+        image:'assets/images/default_cover.png',
         userProfileId:userProfileId,
         dateOfPublication:date,
-        isPublished:false
-      }
+        isPublished:false,
+        tags:[]
+      },
+      label:'Tworzenie nowego dzieła'
     }"
   ></app-workpiece-setup-box>
 </div>

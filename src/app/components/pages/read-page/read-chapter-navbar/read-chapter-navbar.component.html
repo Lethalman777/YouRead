@@ -1,4 +1,4 @@
-<div class="chapter-navbar-box">
+<!-- <div class="chapter-navbar-box">
   <div class="chapter-navbar-grid" >
     <div *ngFor="let chapter of chapters">
       <app-chapter-label
@@ -8,5 +8,16 @@
       </app-chapter-label>
     </div>
   </div>
-</div>
+</div> -->
 
+<div class="responsive-paddings dx-card border-curved">
+  <div class="chapter-navbar-chapters">
+    <header class="dx-accordion-header">Wybierz Rozdział</header>
+    <div class="chapters-grid" *ngFor="let chapter of chapters;  let i = index">
+      <app-chapter-label
+      [ngStyle]="{'color': currentChapter == chapter.chapterNumber ? 'green' : ''}"
+      (click)="chapterChoose(chapter.chapterNumber)"
+      [chapter]="chapter">
+    </app-chapter-label>    </div>
+  </div>
+</div>

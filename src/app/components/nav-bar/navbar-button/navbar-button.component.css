@@ -1,0 +1,64 @@
+.navbar-button-info {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-button-info :hover {
+  cursor: pointer;
+}
+
+:host-context(.dx-toolbar-menu-section) .navbar-button-info {
+  padding: 10px 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar-button-info .image-container {
+  overflow: hidden;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin: 0 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-button-info .image-container .navbar-button-image {
+  width: 100%;
+  height: 100%;
+  background: url("https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png") no-repeat #fff;
+  background-size: cover;
+}
+
+.navbar-button-info .navbar-button-name {
+  font-size: 14px;
+  color: var(--base-text-color); /* Replace with the actual color value */
+  margin: 0 9px;
+}
+
+.navbar-button-panel ::ng-deep .dx-list-item .dx-icon {
+  vertical-align: middle;
+  color: var(--base-text-color); /* Replace with the actual color value */
+  margin-right: 16px;
+}
+
+.navbar-button-panel.dx-rtl ::ng-deep .dx-list-item .dx-icon {
+  margin-right: 0;
+  margin-left: 16px;
+}
+
+::ng-deep .dx-context-menu.navbar-button-menu.dx-rtl .dx-submenu .dx-menu-items-container .dx-icon {
+  margin-left: 16px;
+}
+
+::ng-deep .dx-context-menu.navbar-button-menu .dx-submenu .dx-menu-items-container .dx-icon {
+  margin-right: 16px;
+}
+
+::ng-deep .dx-context-menu.navbar-button-menu .dx-menu-item .dx-menu-item-content {
+  padding: 3px 15px 4px;
+}
+
+::ng-deep .dx-theme-generic .creation-menu .dx-menu-item-content .dx-menu-item-text {
+  padding-left: 4px;
+  padding-right: 4px;
+}

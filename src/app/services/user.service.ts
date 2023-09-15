@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
 import { UserRegistration } from '../components/pages/register-page/register-page.component';
-import { NewChapter } from '../models/types/Genre';
-import { AuthorLabel, Login, UserCreate, UserProfile } from '../models/types/User';
+import { AuthResponse, AuthorLabel, Login, UserCreate, UserProfile } from '../models/types/User';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +21,30 @@ export class UserService {
 
   public loginUser(login:Login):Observable<AuthorLabel>{
     return this.http.post<AuthorLabel>(`${this.apiUrl}/${this.url}/Login`, login)
+  }
+
+  public register(user:UserCreate):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/${this.url}`, user)
+  }
+
+  public login(login:Login):Observable<AuthResponse>{
+    console.log("hjhj")
+    return this.http.post<AuthResponse>(`${this.apiUrl}/${this.url}/Login`, login)
+  }
+
+  public checkEmail(email: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${this.url}/CheckEmail/${email}`);
+  }
+
+  public loggedUserId() {
+    let token: any = sessionStorage.getItem("token");
+
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/${this.url}/CurrentLoggedUserId`, { headers: header });
   }
 
   public getAuthor(id:number):Observable<AuthorLabel>{

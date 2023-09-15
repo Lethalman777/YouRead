@@ -1,6 +1,41 @@
-<div>
-  <span *ngFor="let genre of genres">
-    <input type="checkbox" name="{{genre.name}}" (change)="onChange(genre)"/>
-    <label>{{genre.name}}</label> <br/>
-  </span>
-</div>
+<form class="responsive-paddings dx-card border-curved" [formGroup]="formModel" (ngSubmit)="onSubmit()" (change)="onSubmit()">
+  <dx-responsive-box>
+
+    <dxi-col></dxi-col>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+
+    <dxi-item style="margin-top: 10px; margin-bottom: 10px; max-width: 350px;">
+      <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location>
+      <div class="center-items" style="justify-content: start;">
+        <app-normal-control [props]="{label:'szukaj', formControl:searchTerm, placeHolder:'szukaj...'}" [stylingMode]="'outlined'"></app-normal-control>
+        <dx-button
+          class="responsive-paddings border-curved"
+          style="margin-left: 10px;"
+          (click)="onSubmit()">
+          <i class="fa fa-search"></i>
+        </dx-button>
+      </div>
+    </dxi-item>
+    <dxi-item style="margin-top: 10px; margin-bottom: 10px;">
+      <dxi-location screen="xs sm md lg" [row]="1" [col]="0"></dxi-location>
+      <app-radio-button-control [props]="{label:'jkjk', placeHolder:'mmm', formControl:dateRange, options:radioOptions}" [valueTag]="'date'"></app-radio-button-control>
+    </dxi-item>
+    <dxi-item style="margin-top: 10px; margin-bottom: 10px;">
+      <dxi-location screen="xs sm md lg" [row]="2" [col]="0"></dxi-location>
+      <app-check-box-group-control [props]="{label:'nnnn', placeHolder:'gggg', formControl:genres}"></app-check-box-group-control>
+    </dxi-item>
+    <dxi-item style="margin-top: 10px; margin-bottom: 10px; max-width: 700px;">
+      <dxi-location screen="xs sm md lg" [row]="3" [col]="0"></dxi-location>
+      <app-auto-complete-control [formControl]="tags" [controlProps]="{label:'tagi', placeHolder:'Wpisz tagi'}"></app-auto-complete-control>
+    </dxi-item>
+  </dx-responsive-box>
+</form>
+
+
+
+ <!-- <app-radio-button-control [props]="{label:'jkjk', placeHolder:'mmm', formControl:dateRange, options:radioOptions}" [valueTag]="'date'"></app-radio-button-control>
+  <app-check-box-group-control [props]="{label:'nnnn', placeHolder:'gggg', formControl:genres}"></app-check-box-group-control>
+  <app-auto-complete-control [formControl]="tags" [controlProps]="{label:'tagi', placeHolder:'Wpisz tagi'}"></app-auto-complete-control> -->

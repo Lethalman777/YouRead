@@ -1,9 +1,29 @@
-<div *ngIf="isChapterPosition">
-  <button class="user-workpiece-chapter-navigation" (click)="changeChapterPosition(true)">Przesuń Wyżej</button>
+<div class="user-workpiece-chapter-box">
+  <div class="center-items user-workpiece-chapter-header">
+    Lista Rozdziałów
+  </div>
+  <span class="user-workpiece-no-chapters center-items" *ngIf="chapters.length==0; else chaptersBox">
+    Brak Rozdziałów
+  </span>
+  <ng-template #chaptersBox>
+    <div class="user-workpiece-chapter-navigation-button" *ngIf="isChapterPosition">
+      <dx-button (click)="changeChapterPosition(true)">
+        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+          Przesuń Wyżej
+        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+    <div class="responsive-paddings user-workpiece-chapters">
+      <app-user-workpiece-chapter-list (chooseChapterEvent)="onChapterPositionClick($event)" [chapters]="chapters" [isEdited]="isEdited"></app-user-workpiece-chapter-list>
+    </div>
+    <div class="user-workpiece-chapter-navigation-button" *ngIf="isChapterPosition">
+      <dx-button (click)="changeChapterPosition(false)">
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+          Przesuń Niżej
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+  </ng-template>
 </div>
-<div class="user-workpiece-chapters">
-  <app-user-workpiece-chapter-list (chooseChapterEvent)="onChapterPositionClick($event)" [chapters]="chapters"></app-user-workpiece-chapter-list>
-</div>
-<div *ngIf="isChapterPosition">
-  <button class="user-workpiece-chapter-navigation" (click)="changeChapterPosition(false)">Przesuń Niżej</button>
-</div>
+
+<!-- class="user-workpiece-chapter-navigation" -->

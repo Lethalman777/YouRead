@@ -4,8 +4,8 @@
   padding: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
-  border: 10px solid dimgray;
-  background-color: #f5f5f5;
+  /* border: 10px solid dimgray;
+  background-color: #f5f5f5; */
   border-radius: 24px;
   justify-self: center;
   justify-content: start;
@@ -16,9 +16,10 @@
   flex-direction: column;
   justify-self: center;
   justify-content: start;
+  margin: 10px;
   grid-column: 3 / 4;
   grid-template-rows: repeat(3, 1fr);
-  border: 1px dotted red;
+  /* border: 1px dotted red; */
 }
 
 .user-workpiece-chapter-setup{
@@ -32,16 +33,18 @@
   justify-self: stretch;
   height: 100%;
   width: 100%;
+  margin: 10px;
 }
 
 .user-workpiece-chapters-box{
   grid-column: 2 / 3;
-  border: 5px solid dimgray;
-  border-radius: 24px;
+  /* border: 5px solid dimgray;
+  border-radius: 24px; */
   justify-content: stretch;
   justify-self: stretch;
-  height: 100%;
-  width: auto;
+  height: 98%;
+  width: 100%;
+  margin: 10px;
   overflow:auto;
   display: flex;
   flex-direction: column;

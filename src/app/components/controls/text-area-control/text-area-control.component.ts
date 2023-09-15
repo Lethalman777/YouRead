@@ -1,6 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TextAreaEnum } from 'src/app/models/enums/ControlEnum';
 import { ControlProp } from 'src/app/models/types/Control';
+
+export interface TextAreaControlProps{
+  label:string,
+  formControl:FormControl,
+  type:TextAreaEnum,
+  placeHolder:string,
+  isLabelVisible:boolean
+}
 
 @Component({
   selector: 'app-text-area-control',
@@ -8,14 +17,32 @@ import { ControlProp } from 'src/app/models/types/Control';
   styleUrls: ['./text-area-control.component.css']
 })
 export class TextAreaControlComponent {
-  @Input() controlProp!:ControlProp
-  @Input() formControl!:FormControl
+  @Input() props!:TextAreaControlProps
 
   constructor(){
 
   }
 
   ngOnInit() {
-    console.log(this.controlProp)
+
+  }
+
+  onValueChanged(e:any){
+    this.props.formControl.setValue(e.value)
+  }
+
+  setType(){
+    switch (this.props.type) {
+      case TextAreaEnum.comment:
+        return 'comment-text-input';
+      case TextAreaEnum.workpiece:
+        return 'workpiece-text-input';
+      case TextAreaEnum.post:
+        return 'post-text-input';
+      case TextAreaEnum.description:
+        return 'description-text-input';
+      default:
+        return 'text-input';
+    }
   }
 }

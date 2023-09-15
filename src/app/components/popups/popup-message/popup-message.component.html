@@ -1,3 +1,10 @@
-<div>
-  <p>{{message}}</p>
-</div>
+<dx-popup
+  [(visible)]="isPopupVisible"
+  [showTitle]="false"
+  [hideOnOutsideClick]="true"
+  (onHiding)="onPopupClosed()"
+  contentTemplate="popup-content">
+  <div *dxTemplate="let data of 'popup-content'">
+    {{message}}
+  </div>
+</dx-popup>

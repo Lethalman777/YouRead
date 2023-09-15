@@ -4,6 +4,7 @@ import { ReactionObjectEnum, ReactionTypeEnum } from 'src/app/models/enums/React
 import { SubscriptionService } from 'src/app/services/subscription.service';
 import { WorkpieceRead } from 'src/app/models/types/Workpiece';
 import { TokenService } from 'src/app/services/token.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-read-workpiece',
@@ -16,8 +17,13 @@ export class ReadWorkpieceComponent {
 
   constructor(private reactionService:ReactionService,
     private subscriptionService:SubscriptionService,
-    private tokenService:TokenService){
-      this.userId = Number(tokenService.get())
+    private tokenService:TokenService,
+    private userService:UserService){
+      userService.loggedUserId().subscribe({
+        next:(res)=>{
+          this.userId = res.userId
+        }
+      })
   }
 
   // clickLike(){

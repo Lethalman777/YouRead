@@ -1,5 +1,4 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-popup-message',
@@ -7,9 +6,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./popup-message.component.css']
 })
 export class PopupMessageComponent {
-  message:string=""
+  @Output() HidePopupEvent:EventEmitter<any> = new EventEmitter()
+  @Input() isPopupVisible:boolean = false
+  @Input() message:string=""
 
-  constructor(@Inject(MAT_DIALOG_DATA) public inputData: string) {
-    this.message=inputData
+  constructor() {}
+
+  onPopupClosed(){
+    this.HidePopupEvent.emit()
   }
 }

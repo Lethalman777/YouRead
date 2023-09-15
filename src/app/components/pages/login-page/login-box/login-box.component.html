@@ -1,9 +1,20 @@
-<div class="login-box">
-  <h1 class="login-label">Logowanie</h1>
-  <form [formGroup]="formModel" (ngSubmit)='login()'>
-    <app-normal-control [controlProp]="{label:'E-mail', formControl:email}"></app-normal-control>
-    <app-normal-control [controlProp]="{label:'Password', formControl:password}"></app-normal-control>
-    <!-- <tr>
+<div class="dx-fieldset dx-card responsive-paddings">
+  <div class="dx-fieldset-header">Logowanie</div>
+  <form class="content-block" [formGroup]="formModel" (ngSubmit)='login()'>
+    <div class="responsive-paddings">
+      <app-normal-control [props]="{label:'E-mail', formControl:email, placeHolder:'Podaj e-mail'}"></app-normal-control>
+    </div>
+    <div class="responsive-paddings">
+      <app-normal-control [props]="{label:'Password', formControl:password, placeHolder:'Podaj hasło'}" [mode]="'password'"></app-normal-control>
+    </div>
+    <div class="button-area">
+      <dx-button class="responsive-paddings" (click)='login()' type="submit">Zaloguj się</dx-button>
+      <dx-button class="responsive-paddings" routerLink="/log-in">Powrót</dx-button>
+    </div>
+  </form>
+</div>
+
+  <!-- <tr>
       <div>E-mail:</div>
       <input type="text" formControlName="email"  />
       <section *ngIf="isWrongData">
@@ -20,10 +31,3 @@
         </section>
       </tr>
     </div> -->
-    <tr class="login-button-area">
-      <button class="button-submit" type="submit">Zaloguj się</button>
-      <button class="button-normal" routerLink="/log-in">Powrót</button>
-    </tr>
-  </form>
-</div>
-

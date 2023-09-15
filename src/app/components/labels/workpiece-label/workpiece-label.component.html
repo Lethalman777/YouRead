@@ -1,39 +1,72 @@
 <!-- <div [ngClass]="{'workpiece-label-grid': isAuthorVisible, 'workpiece-label-grid workpiece-non-author': !isAuthorVisible}"> -->
-<div class="workpiece-label-box">
-  <div class="workpiece-label-grid" (click)="read()">
-    <!-- <div class="workpiece-image-box">
-      <img [src]="workpiece.image" alt="PNG Image" class="workpiece-image">
-    </div>
-    <div class="workpiece-title-description">
-      <div class="workpiece-title">
-        <h1>{{workpiece.title}}</h1>
+<!-- <div class="workpiece-label-box"> -->
+<div class="responsive-paddings dx-card border-curved">
+  <dx-responsive-box>
+    <dxi-col></dxi-col>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="0" [col]="0" [rowspan]="2"></dxi-location>
+      <div class="workpiece-info-box">
+        <app-workpiece-info
+        [props]="{
+          title:workpiece.title,
+          description:workpiece.description,
+          image:workpiece.image,
+          genre: getGenreLabel(workpiece.genre),
+          language:getLanguageLabel(workpiece.language)
+        }"
+      ></app-workpiece-info>
       </div>
-      <div class="workpiece-description">
-        {{workpiece.description}}
+    </dxi-item>
+
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="2" [col]="0"></dxi-location>
+      <div class="workpiece-author center-items" *ngIf="isAuthorVisible">
+        <app-author-label [props]="{author:workpiece.author, isSubscribedVisible:true}"></app-author-label>
       </div>
-    </div> -->
-    <div class="workpiece-info-box">
-      <app-workpiece-info
-      [props]="{
-        title:workpiece.title,
-        description:workpiece.description,
-        image:workpiece.image,
-        genre: getGenreLabel(workpiece.genre),
-        language:getLanguageLabel(workpiece.language)
-      }"
-    ></app-workpiece-info>
-    </div>
-    <div class="workpiece-author" *ngIf="isAuthorVisible">
-      <app-author-label [author]="workpiece.author"></app-author-label>
-    </div>
-    <div class="workpiece-information">
-      <app-information-label [props]="{
-        targetId:workpiece.id,
-        information:workpiece.information,
-        object:reactionObject
-      }">
-      </app-information-label>
-    </div>
-  </div>
+    </dxi-item>
+
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="3" [col]="0"></dxi-location>
+      <div class="workpiece-information">
+        <app-information-label [props]="{
+          targetId:workpiece.id,
+          information:workpiece.information,
+          object:reactionObject
+        }">
+        </app-information-label>
+      </div>
+    </dxi-item>
+  </dx-responsive-box>
 </div>
 
+
+
+<!-- <div class="workpiece-label-grid" >
+  <div class="workpiece-info-box">
+    <app-workpiece-info
+    [props]="{
+      title:workpiece.title,
+      description:workpiece.description,
+      image:workpiece.image,
+      genre: getGenreLabel(workpiece.genre),
+      language:getLanguageLabel(workpiece.language)
+    }"
+  ></app-workpiece-info>
+  </div>
+  <div class="workpiece-author" *ngIf="isAuthorVisible">
+    <app-author-label [props]="{author:workpiece.author, isSubscribedVisible:true}"></app-author-label>
+  </div>
+  <div class="workpiece-information">
+    <app-information-label [props]="{
+      targetId:workpiece.id,
+      information:workpiece.information,
+      object:reactionObject
+    }">
+    </app-information-label>
+  </div>
+</div> -->

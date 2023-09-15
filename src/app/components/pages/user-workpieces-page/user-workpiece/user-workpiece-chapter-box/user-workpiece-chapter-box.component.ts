@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { SearchDataTypeEnum } from 'src/app/models/enums/SearchEnum';
+import { getSearchParam } from 'src/app/models/functions/SearchFunction';
 import { ChapterLabel } from 'src/app/models/types/Chapter';
 import { ChapterService } from 'src/app/services/chapter.service';
 
@@ -16,11 +18,13 @@ export class UserWorkpieceChapterBoxComponent {
   @Input()
   set props(value:UserWorkpieceChapterBoxProps){
     this.isChapterPosition = value.isVisible
-    this.chapterService.getChapterLabels(value.workpieceId).subscribe(data=>{
+    const searchParam = getSearchParam("WorkpieceId", value.workpieceId, SearchDataTypeEnum.number)
+    this.chapterService.getChapterLabels(searchParam).subscribe(data=>{
       this.chapters=data
       console.log(this.chapters)
     })
   }
+  @Input() isEdited:boolean = false
   chapters:ChapterLabel[]=[]
   chapterPosition:number = 0
   isChapterPosition:boolean=false

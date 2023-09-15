@@ -7,9 +7,19 @@
       <div class="workpiece-title">
         <h1>{{props.title}}</h1>
       </div>
-      <div class="workpiece-description">
+      <dx-text-area
+        [value]="props.description"
+        [readOnly]="true"
+        [focusStateEnabled]="false"
+        [hoverStateEnabled]="false"
+        [stylingMode]="'underlined'"
+        height="100%"
+        width="90%"
+      >
+      </dx-text-area>
+      <!-- <div class="workpiece-description">
         {{props.description}}
-      </div>
+      </div> -->
     </div>
     <div class="workpiece-extra-info-box">
       <span class="workpiece-extra-info">

@@ -1,0 +1,24 @@
+<dx-radio-group
+  [value]="props.formControl.value"
+  [dataSource]="props.options"
+  [displayExpr]="labelTag"
+  [valueExpr]="valueTag"
+  (onValueChanged)="onValueChanged($event)"
+  layout="horizontal"
+  width="100%"
+  heigth="100%"
+>
+</dx-radio-group>
+
+<!-- <div class="radio-panel">
+  <label *ngFor="let option of props.options">
+    <input
+      type="radio"
+      name="radioOptions"
+      [value]="option.date"
+      [placeholder]="props.placeHolder"
+      [formControl]="props.formControl"
+    />
+    {{ option.label }}
+  </label>
+</div> -->

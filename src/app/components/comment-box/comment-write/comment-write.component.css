@@ -1,11 +1,31 @@
 .comment-write{
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  padding-left: 50px;
+}
+
+.comment-button-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: end;
+  padding-top: 5px
+}
+
+.comment-button{
+  border-radius: 25px;
+  font-size: medium;
+  background-color: dimgray;
+  border-color: dimgray;
+  color: var(--background-color);
 }
 
 .comment-write-control{
   min-width: 400px;
   max-width: 800px;
+  width: 100%;
   height: auto;
 }
+

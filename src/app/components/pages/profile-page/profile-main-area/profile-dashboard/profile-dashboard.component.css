@@ -1,0 +1,5 @@
+.profile-dashboard-box{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}

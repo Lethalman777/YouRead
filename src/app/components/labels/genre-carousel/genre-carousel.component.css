@@ -1,0 +1,103 @@
+/* .carousel-grid{
+  display: grid;
+  grid-gap: 5px;
+  justify-content: center;
+  overflow: auto;
+  height: 430px;
+}
+
+.carousel-grid::-webkit-scrollbar {
+  display: none;
+} */
+
+.genre-carousel-box{
+  height:100%;
+  width: 270px;
+  height:400px;
+
+  /* width:100%;
+  height:100%; */
+  /* min-width: 200px;
+  min-height: 300px;
+  max-width: 200px;
+  max-height: 300px; */
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.genre-carousel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.genre-title{
+  font-size: x-large;
+  text-align: center;
+  color:black;
+  width: 100%;
+  height: 10%;
+  /* justify-self: stretch;
+  justify-content: stretch;  */
+}
+
+.genre-carousel-image{
+  justify-self: center;
+
+  width:100%;
+  height:90%;
+  /* min-width: 200px;
+  min-height: 300px;
+  max-width: 200px;
+  max-height: 300px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.genre-image-box{
+  /* width: 100px;
+  height: 300px; */
+  justify-self: center;
+
+  width:100%;
+  height:100%;
+  /* min-width: 200px;
+  min-height: 300px;
+  max-width: 200px;
+  max-height: 300px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.genre-image{
+  justify-self: stretch;
+  justify-content: stretch;
+  width:100%;
+  height:100%;
+  /* min-width: 200px;
+  min-height: 300px;
+  max-width: 200px;
+  max-height: 300px; */
+  border-radius: 5%;
+  /* max-width: 150px;
+  max-height: 300px; */
+}
+
+.genre-carousel-image{
+  width:100%;
+  height:100%;
+  min-width: 200px;
+  min-height: 300px;
+  max-width: 200px;
+  max-height: 300px;
+}

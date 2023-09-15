@@ -6,7 +6,7 @@ export type CommentRead = {
   content:string,
   author:AuthorLabel,
   targetId:number,
-  type:CommentTypeEnum,
+  commentType:CommentTypeEnum,
   information:CommentInformation
 }
 

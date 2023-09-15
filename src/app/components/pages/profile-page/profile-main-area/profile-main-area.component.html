@@ -1,9 +1,18 @@
-<div *ngIf="isWorkpiecesList()">
-  <app-profile-workpieces-list [inputProfileId]="profileId"></app-profile-workpieces-list>
-</div>
-<div *ngIf="isDashboard()">
-  <app-profile-dashboard [inputProfileId]="profileId"></app-profile-dashboard>
-</div>
-<div *ngIf="isSubscriptions()">
-  <app-profile-subscriptions [inputProfileId]="profileId"></app-profile-subscriptions>
+<div class="profile-main-area">
+  <div class="profile-main-area-box" [ngSwitch]="profileArea">
+    <div *ngSwitchCase="0">
+      <app-profile-workpieces-list [inputProfileId]="profileId"></app-profile-workpieces-list>
+    </div>
+    <div *ngSwitchCase="1">
+      <app-profile-dashboard [inputProfileId]="profileId"></app-profile-dashboard>
+    </div>
+    <div *ngSwitchCase="2">
+      <app-profile-subscriptions [inputProfileId]="profileId"></app-profile-subscriptions>
+    </div>
+    <div *ngSwitchCase="3">
+      <app-profile-new-post></app-profile-new-post>
+    </div>
+    <div *ngSwitchDefault>Invalid option selected.</div>
+  </div>
+
 </div>

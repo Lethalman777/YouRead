@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment.prod';
 import { Observable } from 'rxjs';
 import { WorkpieceCreate, WorkpieceLabel, WorkpieceRead, WorkpieceUpdate } from '../models/types/Workpiece';
+import { SearchParam, SearchWorkpiece } from '../models/types/Search';
+import { SearchPageEnum, SortTypeEnum } from '../models/enums/SearchEnum';
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +39,26 @@ export class WorkpieceService {
     return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/UserWorkpieces/${id}`)
   }
 
-  public searchWorkpieces():Observable<WorkpieceLabel[]>{
-    return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/Search`)
+  public searchWorkpieces(searchWorkpiece:SearchWorkpiece):Observable<WorkpieceLabel[]>{
+    const jsonData = JSON.stringify(searchWorkpiece.searchParam);
+    let params = new HttpParams().set('query', jsonData);
+
+    return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/Search?searchTerm=${searchWorkpiece.searchTerm}&sort=${searchWorkpiece.sortTypeEnum}&userProfileId=${searchWorkpiece.userProfileId}&IsSubscribed=${searchWorkpiece.isSubscribed}`, { params })
   }
 
-  public getRecomendedWorkpieces(amount:number, recomendation:number):Observable<WorkpieceLabel[]>{
-    return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/Recomendation/${amount}/${recomendation}`)
+  public getRecomendedWorkpieces(id:number):Observable<WorkpieceLabel[]>{
+    return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/Recomendation/${id}`)
   }
+
+  public getTrendedWorkpieces():Observable<WorkpieceLabel[]>{
+    return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/Trending`)
+  }
+
+  public getHistoryWorkpieces(id:number):Observable<WorkpieceLabel[]>{
+    return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/History/${id}`)
+  }
+
+  // public getSearchTitleWorkpieces(searchTerm:string):Observable<WorkpieceLabel[]>{
+  //   return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/SearchWorkpiece/${searchTerm}`)
+  // }
 }

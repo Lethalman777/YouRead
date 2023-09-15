@@ -1,5 +1,11 @@
-<div *ngFor="let workpiece of workpieces">
-  <tr>
-    <app-user-workpiece [workpiece]="workpiece"></app-user-workpiece>
-  </tr>
+<div>
+  <div>
+    <dx-button (click)="createWorkpiece()">Stwórz nowe dzieło</dx-button>
+  </div>
+  <div *ngFor="let workpiece of workpieces">
+    <tr>
+      <app-user-workpiece [workpiece]="workpiece"></app-user-workpiece>
+    </tr>
+  </div>
 </div>
+

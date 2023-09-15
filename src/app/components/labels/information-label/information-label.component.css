@@ -2,15 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* background-color: lightgray; */
 }
 
 .information-item{
   display: flex;
   margin: 5px;
-  padding: 10px;
-  font-size: large;
+  padding: 5px;
+  font-size: medium;
   border-radius: 24px;
-  background-color: lightgray;
+
 }
 
 .information-icon{

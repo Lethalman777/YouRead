@@ -1,3 +1,12 @@
+.dx-card{
+  border-radius: 25px;
+}
+
+.button-area{
+  display: flex;
+  justify-content: center;
+}
+
 .login-box {
   background-color: #f5f5f5; /* Bright grey background color */
   border: 2px solid green; /* Green curved border */

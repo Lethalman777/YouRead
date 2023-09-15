@@ -1,0 +1,39 @@
+<div class="profile-label-box">
+  <div class="profile-label-grid">
+    <div class="profile-image-box">
+      <img class="profile-image" [src]="author.image" alt="PNG Image">
+    </div>
+    <div class="profile-box">
+      <span class="profile-name">
+        {{author.username}}
+      </span>
+      <div class="profile-label-info">
+        <span class="profile-subscriptions">
+          <i class="fa fa-bell" aria-hidden="true"></i>
+          {{author.subscriberCount}} subskrybentów
+        </span>
+        <span class="profile-workpieces">
+          <i class="fa fa-book" aria-hidden="true"></i>
+          {{author.workpieceCount}} dzieł
+        </span>
+      </div>
+      <span class="profile-description">
+        {{author.description}}
+      </span>
+    </div>
+    <div class="profile-subscription-button">
+      <dx-button
+        class="border-curved responsive-paddings"
+        [ngStyle]="{
+          'color': 'white',
+          'background-color': isSubscribed ? 'green' : 'dimgray',
+          'border-color': isSubscribed ? 'green' : 'dimgray'
+        }"
+        (click)="subscribe()"
+      >
+        <i class="fa fa-bell" aria-hidden="true"></i>
+        {{ isSubscribed ? 'Zasubskrybowano' : 'Subskrybuj' }}
+      </dx-button>
+    </div>
+  </div>
+</div>

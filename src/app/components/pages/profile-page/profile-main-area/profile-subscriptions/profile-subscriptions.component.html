@@ -1,4 +1,5 @@
-<div *ngFor="let subscribedProfile of subscribedProfiles">
-  <app-author-label [author]="subscribedProfile"></app-author-label>
+<div class="post-subscriptions-grid">
+  <div *ngFor="let subscribedProfile of subscribedProfiles">
+    <app-author-label [props]="{isSubscribedVisible:true, author:subscribedProfile}"></app-author-label>
+  </div>
 </div>
-

@@ -1,19 +1,31 @@
 <div class="author-label-box">
-  <div class="author-label-grid" (click)="goToProfile()">
-    <div class="author-image-box">
-      <img class="author-image" [src]="'assets/images/polskagurom.png'" alt="PNG Image">
+  <div class="author-label-grid" >
+    <div class="author-image-box" (click)="goToProfile()">
+      <img class="author-image" [src]="author.image" alt="PNG Image">
     </div>
-    <div class="author-box">
+    <div class="author-box" (click)="goToProfile()">
       <span class="author-name">
         {{author.username}}
       </span>
-      <span class="author-subscriptions">
-        1000 subskrybentów
+      <span class="author-subscriptions" *ngIf="isSubscribedVisible">
+        {{author.subscribers}} subskrybentów
       </span>
     </div>
-    <div class="author-subscription-button">
-      <button class="button-submit author-button" (click)="subscribe()">subskrybuj</button>
+    <div class="author-subscription-button" *ngIf="isSubscribedVisible">
+      <dx-button
+        class="responsive-paddings border-curved"
+        [ngStyle]="{
+          'color': 'white',
+          'background-color': isSubscribed ? 'green' : 'dimgray',
+          'border-color': isSubscribed ? 'green' : 'dimgray'
+        }"
+        (click)="subscribe()"
+      >
+        <i class="fa fa-bell" aria-hidden="true"></i>
+        {{ isSubscribed ? 'Zasubskrybowano' : 'Subskrybuj' }}
+      </dx-button>
     </div>
   </div>
 </div>
+
 

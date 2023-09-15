@@ -1,12 +1,37 @@
-<div class="profile-page-grid">
+<!-- <div class="profile-page-grid">
   <div class="profile-page-info">
-    <app-profile-info [inputProfileId]="1"></app-profile-info>
+    <app-profile-info [inputProfileId]="profileId"></app-profile-info>
   </div>
   <div class="profile-page-navbar">
-    <app-profile-nav-bar (MainAreaEvent)="handleMainAreaEvent($event)"></app-profile-nav-bar>
+    <app-profile-nav-bar (MainAreaEvent)="handleMainAreaEvent($event)" [props]="isLoggedProfile"></app-profile-nav-bar>
   </div>
   <div class="profile-page-main-area">
-    <app-profile-main-area [props]="{profileId: 1, profileArea:currentArea}"></app-profile-main-area>
+    <app-profile-main-area [props]="{profileId: profileId, profileArea:currentArea}"></app-profile-main-area>
   </div>
-</div>
+</div> -->
 
+<dx-responsive-box>
+  <dxi-col></dxi-col>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location>
+    <div class="profile-page-info">
+      <app-profile-info [inputProfileId]="profileId"></app-profile-info>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="1" [col]="0"></dxi-location>
+    <div class="profile-page-navbar">
+      <app-profile-nav-bar (MainAreaEvent)="handleMainAreaEvent($event)" [props]="isLoggedProfile"></app-profile-nav-bar>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="2" [col]="0"></dxi-location>
+    <div class="profile-page-main-area">
+      <app-profile-main-area [props]="{profileId: profileId, profileArea:currentArea}"></app-profile-main-area>
+    </div>
+  </dxi-item>
+</dx-responsive-box>

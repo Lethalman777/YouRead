@@ -14,3 +14,8 @@ export type PostRead = {
   information:Information
   images:string[]
 }
+
+export type PostComments = {
+  isCommentShown:boolean
+  post:PostRead
+}

@@ -1,15 +1,67 @@
-<div class="read-box">
-  <button class="button-normal" (click)="turnPage(false)">
+<dx-responsive-box class="responsive-paddings dx-card border-curved">
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-col></dxi-col>
+  <dxi-col></dxi-col>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location>
+    <div class="turn-page-button-box responsive-paddings">
+      <dx-button class="turn-page-button" (click)="turnPage(false)">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+  </dxi-item>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="1"></dxi-location>
+    <div class="turn-page-button-box responsive-paddings" style="justify-content: end;">
+      <dx-button class="turn-page-button" (click)="turnPage(true)">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+  </dxi-item>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="1" [col]="0"></dxi-location>
+    <app-read-workpiece-page class="read-page" [chapterPage]="chapterPages.pages[chapterPages.leftPage]"></app-read-workpiece-page>
+  </dxi-item>
+
+  <dxi-item>
+    <dxi-location screen="md lg" [row]="1" [col]="1"></dxi-location>
+    <app-read-workpiece-page class="read-page" [chapterPage]="chapterPages.pages[chapterPages.rightPage]"></app-read-workpiece-page>
+  </dxi-item>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="2" [col]="0"></dxi-location>
+    <div class="turn-page-button-box responsive-paddings">
+      <dx-button class="turn-page-button" (click)="turnPage(false)">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+  </dxi-item>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="2" [col]="1"></dxi-location>
+    <div class="turn-page-button-box responsive-paddings" style="justify-content: end;">
+      <dx-button class="turn-page-button responsive-paddings" (click)="turnPage(true)">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+  </dxi-item>
+</dx-responsive-box>
+<!-- <div class="read-box">
+  <dx-button (click)="turnPage(false)">
     <i class="fa fa-angle-left" aria-hidden="true"></i>
-  </button>
-    <div>
+  </dx-button>
+    <div class="left-page">
       <app-read-workpiece-page [chapterPage]="chapterPages.pages[chapterPages.leftPage]"></app-read-workpiece-page>
     </div>
-    <div>
+    <div class="right-page">
       <app-read-workpiece-page [chapterPage]="chapterPages.pages[chapterPages.rightPage]"></app-read-workpiece-page>
     </div>
   <button class="button-normal" (click)="turnPage(true)">
     <i class="fa fa-angle-right" aria-hidden="true"></i>
   </button>
-</div>
-
+</div> -->

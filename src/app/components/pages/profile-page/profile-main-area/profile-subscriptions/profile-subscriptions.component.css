@@ -1,0 +1,7 @@
+.post-subscriptions-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2px;
+  /* grid-template-rows: 100px 200px; */
+  place-items: center;
+}

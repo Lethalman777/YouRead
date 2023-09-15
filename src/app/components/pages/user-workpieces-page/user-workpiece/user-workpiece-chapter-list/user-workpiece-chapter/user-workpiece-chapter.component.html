@@ -1,4 +1,12 @@
-<div class="user-workpiece-chapter-box" (click)="ContinueWriting()">
+<div class="user-workpiece-chapter-box">
   <app-chapter-label [chapter]="chapter"></app-chapter-label>
-  <!-- <button class="button-normal" (click)="ContinueWriting()">Kontynuuj Tworzenie</button> -->
+  <div class="center-items" *ngIf="isEdited" >
+    <dx-button class="user-workpiece-chapter-edit-button-left" (click)="publish()">
+      {{ chapter.isPublished ? 'Wycofaj' : 'Opublikuj' }}
+    </dx-button>
+    <dx-button class="user-workpiece-chapter-edit-button-right" (click)="ContinueWriting()">
+      Edytuj Rozdział
+    </dx-button>
+  </div>
+
 </div>

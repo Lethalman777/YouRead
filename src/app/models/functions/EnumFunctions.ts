@@ -3,6 +3,11 @@ import { EnumTypeEnum } from "../enums/EnumTypeEnum";
 import { CommentTypeEnum } from "../enums/CommentEnum";
 import { GenreEnum } from "../enums/GenreEnum";
 
+export function convertStringToEnum<T>(enumType: T, numericString: string): T[keyof T] | undefined {
+  const numericValue = parseInt(numericString, 10);
+  return enumType[numericValue as keyof typeof enumType];
+}
+
 export function getOptionsFromEnum(keys:string[], values:any[]):SelectOption[]{
   const options:SelectOption[]=[]
   let i = 0

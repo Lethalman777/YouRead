@@ -30,3 +30,10 @@
     </span>
   </div>
 </div>
+<div *ngIf="isPopupVisible">
+  <app-popup-message
+    [isPopupVisible]="isLogged"
+    [message]="'Ta akcja wymaga bycia zalogowanym'"
+    (HidePopupEvent)="hidePopup()"
+  ></app-popup-message>
+</div>

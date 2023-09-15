@@ -1,9 +1,17 @@
-<tr class="control-box">
-  <div class="control-label">{{controlProp.label}}</div>
-  <input class="control-input" type="text" [formControl]="controlProp.formControl"/>
-  <!-- <section *ngIf="isWrongDate">
-    <app-form-validation [isWrong]="username?.errors?.['required']" [message]="messages[7]"></app-form-validation>
-    <app-form-validation [isWrong]="username?.errors?.['minlength']" [message]="messages[8]"></app-form-validation>
-  </section> -->
-  <!-- <app-form-validation [isWrong]="isUsedEmail" [message]="messages[9]"></app-form-validation> -->
-</tr>
+<!-- <div class="control-box">
+  <div class="control-label">{{props.label}}</div>
+  <input class="control-input" type="text" [placeholder]="props.placeHolder" [formControl]="props.formControl"/>
+</div> -->
+
+<dx-text-box
+  [value]="props.formControl.value"
+  [label]="props.label"
+  [mode]="mode"
+  labelMode="floating"
+  (onValueChanged)="onValueChanged($event)"
+  [placeholder]="props.placeHolder"
+  [stylingMode]="stylingMode"
+  width="100%"
+  heigth="100%"
+>
+</dx-text-box>

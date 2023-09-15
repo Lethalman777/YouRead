@@ -1,17 +1,16 @@
 <div>
-  <div>
+  <div class="user-workpiece">
     <app-read-workpiece [workpiece]="workpiece"></app-read-workpiece>
-  </div>
-  <div>
     <app-read-chapter-navbar
       (ChapterChooseEvent)="handleChapterChooseEvent($event)"
-      [props]="{chapters:workpiece.chapters, currentChapter:currentChapterNumber}">
+      [props]="{chapters:workpiece.chapters, currentChapter:currentChapterNumber}"
+    >
     </app-read-chapter-navbar>
   </div>
   <div>
-    <app-read-box [inputProps]="{workpieceId:workpiece.workpiece.id, chapterNumber:currentChapterNumber}"></app-read-box>
+    <app-read-box [inputProps]="{workpieceId:workpiece.workpiece.id, chapterNumber:currentChapterNumber, readHistory:readHistory}"></app-read-box>
   </div>
   <div>
-    <app-read-comment-box [workpieceId]="workpiece.workpiece.id"></app-read-comment-box>
+    <app-read-comment-box [props]="workpiece.workpiece.id"></app-read-comment-box>
   </div>
 </div>

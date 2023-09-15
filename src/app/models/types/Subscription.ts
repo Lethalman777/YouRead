@@ -7,6 +7,6 @@ export type SubscriptionCreate = {
 export type Subscription = {
   id:number
   userProfileId:number
-  profileId:number
+  subscribedProfileId:number
   dateOfCraetion:Date
 }

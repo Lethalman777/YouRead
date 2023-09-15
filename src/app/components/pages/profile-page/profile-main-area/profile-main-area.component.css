@@ -1,0 +1,10 @@
+.profile-main-area{
+  padding-left: 100px;
+  padding-right: 100px;
+  justify-content: center;
+}
+
+.profile-main-area-box{
+  justify-content: center;
+  align-items: center;
+}

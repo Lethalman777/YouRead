@@ -2,7 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenreEnum } from 'src/app/models/enums/GenreEnum';
 import { LanguageEnum } from 'src/app/models/enums/Language';
+import { SearchDataTypeEnum } from 'src/app/models/enums/SearchEnum';
+import { getSearchParam } from 'src/app/models/functions/SearchFunction';
 import { WorkpieceLabel, WorkpieceUpdate } from 'src/app/models/types/Workpiece';
+import { ChapterService } from 'src/app/services/chapter.service';
 import { WorkpieceService } from 'src/app/services/workpiece.service';
 
 @Component({
@@ -17,29 +20,66 @@ export class UserWorkpieceComponent {
   choosenChapter?:number
   developButtonText:string="Pokaż Rozdziały"
   newButtonText:string="Dodaj Nowy Rozdział"
+  isPublishedPopupVisible:boolean = false
 
-  constructor(private workpieceService:WorkpieceService, private router:Router){
+  constructor(private workpieceService:WorkpieceService, private router:Router,
+    private chapterService:ChapterService){
 
   }
 
   publish(){
-    this.workpiece.isPublished = !this.workpiece.isPublished
-    console.log(this.workpiece)
-    const workpieceUpdate:WorkpieceUpdate = {
-      id: this.workpiece.id,
-      title: this.workpiece.title,
-      description: this.workpiece.description,
-      image: this.workpiece.image,
-      userProfileId: this.workpiece.author.id,
-      dateOfPublication: new Date(),
-      genre: GenreEnum.mixed,
-      language: LanguageEnum.Polski,
-      isPublished: this.workpiece.isPublished
-    }
+    if(this.workpiece.isPublished){
+      this.workpiece.isPublished = false
+        console.log(this.workpiece)
 
-    this.workpieceService.updateWorkpiece(workpieceUpdate).subscribe(data=>{
-      console.log(data)
-    })
+        const workpieceUpdate:WorkpieceUpdate = {
+          id: this.workpiece.id,
+          title: this.workpiece.title,
+          description: this.workpiece.description,
+          image: this.workpiece.image,
+          userProfileId: this.workpiece.author.id,
+          dateOfPublication: new Date(),
+          genre: GenreEnum.mixed,
+          language: LanguageEnum.Polski,
+          isPublished: this.workpiece.isPublished,
+          tags: []
+        }
+
+        this.workpieceService.updateWorkpiece(workpieceUpdate).subscribe(data=>{
+          console.log(data)
+        })
+    } else {
+      const searchParam = getSearchParam(undefined, undefined, undefined, undefined, undefined, undefined, true, [
+        getSearchParam("WorkpieceId", this.workpiece.id, SearchDataTypeEnum.number),
+        getSearchParam("IsPublished", true, SearchDataTypeEnum.boolean)
+      ])
+
+      this.chapterService.getChapterLabels(searchParam).subscribe(data=>{
+        if(data.length > 0){
+          this.workpiece.isPublished = true
+          console.log(this.workpiece)
+
+          const workpieceUpdate:WorkpieceUpdate = {
+            id: this.workpiece.id,
+            title: this.workpiece.title,
+            description: this.workpiece.description,
+            image: this.workpiece.image,
+            userProfileId: this.workpiece.author.id,
+            dateOfPublication: new Date(),
+            genre: GenreEnum.mixed,
+            language: LanguageEnum.Polski,
+            isPublished: this.workpiece.isPublished,
+            tags: []
+          }
+
+          this.workpieceService.updateWorkpiece(workpieceUpdate).subscribe(data=>{
+            console.log(data)
+          })
+        } else {
+          this.isPublishedPopupVisible = true
+        }
+      })
+    }
   }
 
   changeChapterPositionVisibility(){
@@ -57,5 +97,13 @@ export class UserWorkpieceComponent {
   handleNewChapterEvent(isChapterSetup:boolean) {
     this.isChapterSetup = isChapterSetup
     this.newButtonText="Dodaj Nowy Rozdział"
+  }
+
+  navigation(){
+    this.router.navigate(['./read', this.workpiece.id])
+  }
+
+  onPopupClosed(){
+    this.isPublishedPopupVisible = false
   }
 }

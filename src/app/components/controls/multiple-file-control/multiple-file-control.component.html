@@ -1,9 +1,17 @@
 <tr class="control-box">
   <div class="control-label">{{controlProp.label}}</div>
-  <input class="control-input" type="file" multiple (change)="onFileChange($event)" />
+  <!-- <input class="control-input" type="file" multiple (change)="onFileChange($event)"/> -->
   <!-- <section *ngIf="isWrongDate">
     <app-form-validation [isWrong]="username?.errors?.['required']" [message]="messages[7]"></app-form-validation>
     <app-form-validation [isWrong]="username?.errors?.['minlength']" [message]="messages[8]"></app-form-validation>
   </section>
   <app-form-validation [isWrong]="isUsedEmail" [message]="messages[9]"></app-form-validation> -->
+
+  <div class="control-input">
+    <ngx-file-drop (onFileDrop)="onFileChange($event)" [multiple]="false">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+          <button class="file-button" type="button" (click)="openFileSelector()">Wybierz Zdjęcia</button>
+        </ng-template>
+    </ngx-file-drop>
+  </div>
 </tr>

@@ -1,7 +1,0 @@
-<form class="form-grid" [formGroup]="formModel" (ngSubmit)='submit()'>
-  <app-text-area-control [controlProp]="{label:'Treść', formControl:content}"></app-text-area-control>
-  <app-multiple-file-control [controlProp]="{label:'Zdjęcia', formControl:images}"></app-multiple-file-control>
-  <tr>
-    <button class="button-submit" type="submit">Opublikuj</button>
-  </tr>
-</form>

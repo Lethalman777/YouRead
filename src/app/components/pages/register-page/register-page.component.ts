@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
-import { ValidationMessage, validationMessagesList } from 'src/app/models/enums/ValidationMessage';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserCreate } from 'src/app/models/types/User';
 import { UserService } from 'src/app/services/user.service';
 
@@ -22,10 +21,15 @@ export class RegisterPageComponent {
   isWrongDate: boolean = false;
   isUsedEmail: boolean = false;
   isDifferentPasswords: boolean = false;
-  messages:ValidationMessage[]
+  returnUrl!: string;
+  user:UserCreate = {
+    username: '',
+    email: '',
+    password: '',
+    dateOfBirth: new Date()
+  }
 
-constructor(private userService:UserService, private router: Router){
-    this.messages=validationMessagesList()
+constructor(private userService:UserService, private router: Router, private route:ActivatedRoute){
     this.formModel = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -46,6 +50,10 @@ constructor(private userService:UserService, private router: Router){
         ]),
       }),
     });
+  }
+
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/login';
   }
 
   registration(){

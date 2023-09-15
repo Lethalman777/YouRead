@@ -1,4 +1,7 @@
-<div class="comment-write-box">
-  <app-comment-write [inputProps]="{targetId:props.targetId, type:props.type, isAnswer:false, commentAnsweredId:0}"></app-comment-write>
-  <app-comment-list [comments]="comments"></app-comment-list>
+<div class="comment-write-box responsive-paddings">
+  <h1>Komentarze</h1>
+  <div *ngIf="isLogged">
+    <app-comment-write [inputProps]="{targetId:props.targetId, type:props.type, isAnswer:false, commentAnsweredId:0}"></app-comment-write>
+  </div>
+  <app-comment-list [props]="{type:props.type, searchParam:props.searchParam}"></app-comment-list>
 </div>

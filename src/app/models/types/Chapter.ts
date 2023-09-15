@@ -4,6 +4,7 @@ export type ChapterRead = {
   chapterNumber:number
   dateOfPublication:Date
   pages:string[]
+  content:string
 }
 
 export type ChapterWrite = {
@@ -33,4 +34,5 @@ export type ChapterLabel = {
   chapterNumber:number
   dateOfPublication:Date
   workpieceId:number
+  isPublished:boolean
 }

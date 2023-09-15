@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { getGenreValues, GenreEnum } from 'src/app/models/enums/GenreEnum';
 import { getLanguageValues, LanguageEnum } from 'src/app/models/enums/Language';
-import { ValidationMessage, validationMessagesList } from 'src/app/models/enums/ValidationMessage';
 import { ChapterWrite } from 'src/app/models/types/Chapter';
 import { WorkpieceUpdate, WorkpieceCreate } from 'src/app/models/types/Workpiece';
 import { ChapterService } from 'src/app/services/chapter.service';
@@ -32,12 +32,13 @@ export class WritingChapterBoxComponent {
   userProfileId:number=0
   chapter!:ChapterWrite
   formModel:FormGroup
-  messages:ValidationMessage[]
+  loggedUserProfileId:number=0
 
   constructor(private workpieceService:WorkpieceService,
     private tokenService:TokenService,
-    private chapterService:ChapterService){
-    this.messages=validationMessagesList()
+    private chapterService:ChapterService,
+    private userService:UserService,
+    private router:Router){
     this.formModel = new FormGroup({
       title: new FormControl('', [
         Validators.required,
@@ -47,7 +48,15 @@ export class WritingChapterBoxComponent {
         Validators.minLength(3)
       ]),
     });
-    this.userProfileId = Number(tokenService.get())
+  }
+
+  ngOnInit(): void {
+    this.userService.loggedUserId().subscribe({
+      next:(res)=>{
+        this.loggedUserProfileId = res.userId
+      }
+    })
+
   }
 
   public submit(){
@@ -61,12 +70,18 @@ export class WritingChapterBoxComponent {
     if(this.isNew){
       this.chapterService.createChapter(this.chapter).subscribe(data=>{
         console.log(data)
+        this.navigation()
       })
     } else{
       this.chapterService.updateChapter(this.chapter).subscribe(data=>{
         console.log(data)
+        this.navigation()
       })
     }
+  }
+
+  navigation(){
+    this.router.navigate(['user-workpieces', this.loggedUserProfileId])
   }
 
   get title() {

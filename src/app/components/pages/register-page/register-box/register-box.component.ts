@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ValidationMessage, validationMessagesList } from 'src/app/models/enums/ValidationMessage';
 import { UserCreate } from 'src/app/models/types/User';
+import { AccountService } from 'src/app/services/account.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,14 +11,13 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register-box.component.css']
 })
 export class RegisterBoxComponent {
+  @Input() returnUrl!:string
   formModel: FormGroup;
   isWrongDate: boolean = false;
   isUsedEmail: boolean = false;
   isDifferentPasswords: boolean = false;
-  messages:ValidationMessage[]
 
-constructor(private userService:UserService, private router: Router){
-    this.messages=validationMessagesList()
+constructor(private userService:UserService,  private accountService:AccountService, private router: Router){
     this.formModel = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -60,7 +59,18 @@ constructor(private userService:UserService, private router: Router){
       dateOfBirth:new Date()
       }
       console.log(user)
-      this.userService.createUser(user).subscribe((data)=>{console.log(data)})
+      this.userService.register(user)
+        .subscribe({
+          next: (res: any) => {
+            console.log(res)
+          },
+          error: (err: any) => {
+            console.log(err)
+            //this.notificationService.showSuccess( this.transloco.translate('notification.registered'), "Success");
+            //this.router.navigate([this.returnUrl]);
+          }
+        })
+      //this.accountService.register(user).subscribe((data)=>{console.log(data)})
       this.router.navigate(['/login']);
     }
   }

@@ -1,3 +1,3 @@
 export enum ProfileArea{
-  WorkpiecesList, ProfileDashboard, ProfileSubscribsions
+  WorkpiecesList = 0, ProfileDashboard = 1, ProfileSubscribsions = 2, ProfileNewPost = 3
 }

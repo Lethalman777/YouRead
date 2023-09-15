@@ -1,0 +1,30 @@
+<div class="responsive-paddings dx-card border-curved">
+  <div class="button-area">
+    <div>
+      <dx-button class="responsive-paddings" (onClick)="switchRight()">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+    <div class="button-right">
+      <dx-button class="responsive-paddings" (onClick)="switchLeft()">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </dx-button>
+    </div>
+  </div>
+  <ngx-slick-carousel
+    class="carousel"
+    style="justify-content: center;"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+    (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)"
+    (afterChange)="afterChange($event)"
+    (beforeChange)="beforeChange($event)">
+    <!-- <div ngxSlickItem>
+      <app-workpiece-label [props]="{isAuthorVisible:true, workpiece:workpieces[0]}"></app-workpiece-label>
+    </div> -->
+    <div ngxSlickItem *ngFor="let genre of props; let i = index" class="recomendation-slide">
+      <app-genre-carousel [props]="{genre:genre, image:''}"></app-genre-carousel>
+    </div>
+  </ngx-slick-carousel>
+</div>

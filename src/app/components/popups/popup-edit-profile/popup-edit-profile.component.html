@@ -1,15 +1,21 @@
-<div>
-  <form [formGroup]="formModel" (ngSubmit)='submit()'>
-  <app-normal-control [controlProp]="{label:'Nazwa Użytkownika', formControl:username}"></app-normal-control>
-    <app-file-control [controlProp]="{label:'Profilowe', formControl:image}"></app-file-control>
+<dx-popup
+  [(visible)]="isPopupVisible"
+  [showTitle]="true"
+  title="Edytuj Profil"
+  contentTemplate="popup-content">
+  <div *dxTemplate="let data of 'popup-content'">
+    <form [formGroup]="formModel" (ngSubmit)='submit()'>
+      <app-normal-control [props]="{label:'Nazwa Użytkownika', formControl:username, placeHolder:'Podaj nazwę Użytkownika'}"></app-normal-control>
+      <app-text-area-control [props]="{label:'Opis Uzytkownika', formControl:description, placeHolder:'Napisz Opis...', type:3, isLabelVisible:true}"></app-text-area-control>
+      <app-file-control [controlProp]="{label:'Zdjęcie Profilowe', formControl:image}"></app-file-control>
+      <app-file-control [controlProp]="{label:'Zdjęcie w tle', formControl:imageSecond}"></app-file-control>
+      <tr>
+        <dx-button class="responsive-paddings" type="submit" (onClick)="submit()">Zatwierdź</dx-button>
+      </tr>
+    </form>
     <tr>
-      <button class="button-submit" type="submit">Zatwierdź</button>
+      <dx-button class="responsive-paddings" (onClick)="cancel()">Anuluj</dx-button>
     </tr>
-  </form>
-    <!-- <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
-    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-      Optional custom content that replaces the the entire default content.
-      <button type="button" (click)="openFileSelector()">Browse Files</button>
-    </ng-template>
-    </ngx-file-drop> -->
-</div>
+    <app-popup-confirm [message]="'Czy napewno chcesz zakończyć edycję ?'" [isPopupVisible]="isConfirmVisible" (HidePopupEvent)="onPopupConfirmed($event)"></app-popup-confirm>
+  </div>
+</dx-popup>

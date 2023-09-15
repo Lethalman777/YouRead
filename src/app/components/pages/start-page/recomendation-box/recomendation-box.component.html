@@ -1,3 +1,72 @@
-<div *ngFor="let topic of topics">
-  <app-recomendation-carousel [inputTopic]="topic"></app-recomendation-carousel>
+<!-- <dx-responsive-box class="responsive-paddings border-curved">
+  <dxi-col></dxi-col>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+  <dxi-row></dxi-row>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location>
+    <div (onClick)="navigateToRecomended()">
+      <h1>Polecane</h1>
+    </div>
+    <div>
+      <app-recomendation-carousel [props]="recomendedWorkpieces"></app-recomendation-carousel>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="1" [col]="0"></dxi-location>
+    <h2 (onClick)="navigateToTrending()">Na czasie</h2>
+    <div>
+      <app-recomendation-carousel [props]="trendedWorkpieces"></app-recomendation-carousel>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="2" [col]="0"></dxi-location>
+    <h3>Kategorie</h3>
+    <div>
+      <app-recomendation-genre-carousel [props]="genres"></app-recomendation-genre-carousel>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="3" [col]="0"></dxi-location>
+    <h4>Posty</h4>
+    <div>
+      <app-recomendation-post-carousel [props]="recomendationPostParams"></app-recomendation-post-carousel>
+    </div>
+  </dxi-item>
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="4" [col]="0"></dxi-location>
+    <h3 (onClick)="navigateToHistory()">Ostatnio czytane</h3>
+<div>
+  <app-recomendation-carousel [props]="historyWorkpieces"></app-recomendation-carousel>
+</div>
+  </dxi-item>
+</dx-responsive-box> -->
+
+
+<div class="carousel-box" *ngIf="isLogged">
+  <h1>Polecane</h1>
+  <app-recomendation-carousel [props]="recomendedWorkpieces"></app-recomendation-carousel>
+</div>
+
+<div class="carousel-box">
+  <h1>Na czasie</h1>
+  <app-recomendation-carousel [props]="trendedWorkpieces"></app-recomendation-carousel>
+</div>
+
+<div class="carousel-box">
+  <h1>Kategorie</h1>
+  <app-recomendation-genre-carousel [props]="genres"></app-recomendation-genre-carousel>
+</div>
+
+<div class="carousel-box">
+  <h1>Posty</h1>
+  <app-recomendation-post-carousel [props]="recomendationPostParams"></app-recomendation-post-carousel>
+</div>
+
+<div class="carousel-box" *ngIf="isLogged">
+  <h1>Ostatnio czytane</h1>
+  <app-recomendation-carousel [props]="historyWorkpieces"></app-recomendation-carousel>
 </div>

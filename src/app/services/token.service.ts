@@ -25,8 +25,7 @@ export class TokenService {
     this.sendAuthStateChangeNotification(true);
   }
 
-  public get(){
-    return sessionStorage.getItem("token");
-  }
-  constructor() { }
+  // public get(){
+  //   return sessionStorage.getItem("token");
+  // }
 }

@@ -1,3 +1,8 @@
+.dx-control{
+  width:100%;
+  height: 100%;
+}
+
 .input-box{
   /* min-width: 300px;
   max-width: 400px;
@@ -12,11 +17,9 @@
   flex-direction: column;
   align-items: center;
   height: auto;
-  width: auto;
   justify-content: stretch;
   width: 100%;
   height: 100%;
-  min-height: 300px;
 }
 
 .input-label{
@@ -34,10 +37,100 @@
   margin: 5px;
   text-align: center;
   width: 100%;
-  height: 100%
+  height: auto
 }
 
 .text-input:focus{
+  border-color: green;
+  box-shadow: green;
+  outline: none;
+}
+
+.comment-text-input{
+  min-width: 600px;
+  width: 100%;
+  height: auto;
+  font-size: medium;
+  padding: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: start;
+  border: 2px transparent;
+  border-radius: 25px;
+  border-bottom: 2px solid dimgray;
+  background-color: var(--background-color);
+  resize: none;
+}
+
+.comment-text-input:focus{
+  border-color: green;
+  box-shadow: green;
+  outline: none;
+}
+
+.workpiece-text-input{
+  min-height: 600px;
+  width: 90%;
+  height: 100%;
+  font-size: large;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: start;
+  border: 4px transparent;
+  border-radius: 25px;
+  border-bottom: 4px solid dimgray;
+  border-top: 4px solid dimgray;
+  background-color: var(--background-color);
+  resize: none;
+}
+
+.workpiece-text-input:focus{
+
+}
+
+.post-text-input{
+  min-width: 400px;
+  min-height: 100px;
+  width: 100%;
+  height: auto;
+  font-size: large;
+  padding: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: start;
+  border: 2px transparent;
+  border-radius: 25px;
+  border-bottom: 2px solid dimgray;
+  border-top: 2px solid dimgray;
+  background-color: var(--background-color);
+  resize: none;
+}
+
+.post-text-input:focus{
+  border-color: green;
+  box-shadow: green;
+  outline: none;
+}
+
+.description-text-input{
+  min-height: 138px;
+  width: 90%;
+  height: 100%;
+  font-size: large;
+  padding: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: start;
+  border: 4px transparent;
+  border-radius: 25px;
+  border-bottom: 4px solid dimgray;
+  border-top: 4px solid dimgray;
+  background-color: var(--background-color);
+  resize: none;
+}
+
+.description-text-input:focus{
   border-color: green;
   box-shadow: green;
   outline: none;

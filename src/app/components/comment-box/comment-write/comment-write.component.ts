@@ -4,6 +4,7 @@ import { CommentTypeEnum } from 'src/app/models/enums/CommentEnum';
 import { CommentWrite } from 'src/app/models/types/Comment';
 import { CommentService } from 'src/app/services/comment.service';
 import { TokenService } from 'src/app/services/token.service';
+import { UserService } from 'src/app/services/user.service';
 
 export interface CommentWriteProps{
   targetId:number
@@ -29,15 +30,25 @@ export class CommentWriteComponent {
   props!:CommentWriteProps
   formModel: FormGroup;
   userId!:number
+  isFocused:boolean = false
+  loggedUserProfileId:number=0
 
-  constructor(private commentService:CommentService, private tokenService:TokenService){
-    this.userId = Number(tokenService.get())
+  constructor(private commentService:CommentService, private tokenService:TokenService, private userService:UserService){
+
     this.formModel = new FormGroup({
       content: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
       ])
     });
+  }
+
+  ngOnInit(): void {
+    this. userService.loggedUserId().subscribe({
+      next:(res)=>{
+        this.loggedUserProfileId = res.userId
+      }
+    })
   }
 
   submit(){
@@ -55,7 +66,7 @@ export class CommentWriteComponent {
     const comment:CommentWrite = {
       content: this.content.value,
       workpieceId: workpieceId,
-      userProfileId: this.userId,
+      userProfileId: this.loggedUserProfileId,
       postId: postId,
       commentType: this.props.type,
       commentAnsweredId: 0
@@ -71,6 +82,13 @@ export class CommentWriteComponent {
       this.commentService.createComment(comment).subscribe(data=>{
         console.log(data)
       })
+    }
+  }
+
+  changeStatus(status:boolean){
+    this.isFocused = status
+    if(!this.isFocused){
+      this.content.setValue('')
     }
   }
 

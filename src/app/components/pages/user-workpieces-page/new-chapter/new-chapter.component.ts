@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ChapterService } from '../../../../services/chapter.service';
-import { NewChapter } from '../../../../models/types/Genre';
 import { StorageService } from 'src/app/services/storage.service';
 import { ChapterCreate, ChapterWrite } from 'src/app/models/types/Chapter';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -34,6 +33,7 @@ export class NewChapterComponent {
   }
 
   submit(){
+    console.log("gjhghg")
     if(!this.formModel.valid){
       return
     }

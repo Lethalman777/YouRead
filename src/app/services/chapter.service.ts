@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
 import { ChapterCreate, ChapterLabel, ChapterRead, ChapterWrite } from '../models/types/Chapter';
+import { SearchParam } from '../models/types/Search';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class ChapterService {
     return this.http.post<ChapterCreate>(`${this.apiUrl}/${this.url}`, chapter)
   }
 
+  public publishChapter(id:number, isPublished: boolean){
+    return this.http.post(`${this.apiUrl}/${this.url}/Publish/${id}`, isPublished)
+  }
+
   public updateChapter(chapter:ChapterWrite):Observable<ChapterWrite>{
     return this.http.put<ChapterWrite>(`${this.apiUrl}/${this.url}`, chapter)
   }
@@ -25,8 +30,10 @@ export class ChapterService {
     return this.http.put<ChapterLabel>(`${this.apiUrl}/${this.url}/ChapterLabel`, chapter)
   }
 
-  public getChapterLabels(id:number):Observable<ChapterLabel[]>{
-    return this.http.get<ChapterLabel[]>(`${this.apiUrl}/${this.url}/Chapters/${id}`)
+  public getChapterLabels(searchParam:SearchParam):Observable<ChapterLabel[]>{
+    const jsonData = JSON.stringify(searchParam);
+    let params = new HttpParams().set('query', jsonData);
+    return this.http.get<ChapterLabel[]>(`${this.apiUrl}/${this.url}/Chapters`, {params})
   }
 
   public getChapterWrite(id:number):Observable<ChapterWrite>{

@@ -1,8 +1,18 @@
-<div class="profile-info-grid">
-  <div>
-    <app-author-label [author]="{id: profile.id, username: profile.username, image: profile.image}"></app-author-label>
+<ng-container *rerender="isPopupVisible">
+  <div class="profile-info-box">
+    <div class="profile-info-grid dx-card border-curved responsive-paddings">
+      <div class="profile-background-image-box">
+        <img class="profile-background-image" [src]="profile.backgroundImage" alt="PNG Image">
+      </div>
+      <div class="profile-label">
+        <app-profile-info-label [props]="{isLoggedProfile:isLogedProfile, author:profile}"></app-profile-info-label>
+      </div>
+      <div *ngIf="isLogedProfile">
+        <dx-button class="responsive-paddings" (click)="editProfile()">Edytuj Profil</dx-button>
+        <div *ngIf="isPopupVisible">
+          <app-popup-edit-profile [isPopupVisible]="isPopupVisible" (HidePopupEvent)="onPopupHiding()"></app-popup-edit-profile>
+        </div>
+      </div>
+    </div>
   </div>
-  <div *ngIf="isLogedProfile">
-    <button class="button-normal" (click)="editProfile()">Edytuj Profil</button>
-  </div>
-</div>
+</ng-container>

@@ -1,0 +1,85 @@
+<header>
+  <dx-toolbar class="header-toolbar">
+    <dxi-item
+      *ngIf="menuToggleEnabled"
+      location="before"
+      widget="dxButton"
+      cssClass="menu-button"
+      [options]="{
+        icon: 'menu',
+        stylingMode: 'text',
+        onClick: toggleMenu
+      }">
+    </dxi-item>
+    <dxi-item
+      location="before"
+      cssClass="header-title"
+      *ngIf="title"
+      [text]="title">
+      <div (click)="titleClick()">{{title}}</div>
+    </dxi-item>
+    <dxi-item
+      *ngIf="currentRoute !== 'search'"
+      location="center">
+      <app-searcher></app-searcher>
+    </dxi-item>
+      <dxi-item *ngIf="isLogged; else elseBlock"
+        location="after"
+        locateInMenu="auto"
+        menuItemTemplate="menuItem">
+        <div *dxTemplate="let data of 'item'">
+          <dx-button
+            class="creation-button authorization"
+            width="210px"
+            height="100%"
+            stylingMode="text">
+            <div *dxTemplate="let data of 'content'">
+              <app-creation-panel [menuItems]="menuItems" menuMode="context"></app-creation-panel>
+            </div>
+          </dx-button>
+        </div>
+      </dxi-item>
+      <div *dxTemplate="let data of 'menuItem'">
+        <app-creation-panel [menuItems]="menuItems" menuMode="list"></app-creation-panel>
+      </div>
+      <dxi-item *ngIf="isLogged"
+        location="after"
+        locateInMenu="auto"
+        menuItemTemplate="userMenuItem">
+        <div *dxTemplate="let data of 'item'">
+          <dx-button
+            class="user-button authorization"
+            width="210px"
+            height="100%"
+            stylingMode="text">
+            <div *dxTemplate="let data of 'content'">
+              <app-navbar-panel [user]="user" [menuItems]="userMenuItems" menuMode="context"></app-navbar-panel>
+            </div>
+          </dx-button>
+        </div>
+      </dxi-item>
+      <div *dxTemplate="let data of 'userMenuItem'">
+        <app-navbar-panel [user]="user" [menuItems]="userMenuItems" menuMode="list"></app-navbar-panel>
+      </div>
+    <ng-template #elseBlock>
+      <dxi-item
+        location="after"
+        locateInMenu="auto"
+        menuItemTemplate="login">
+        <div *dxTemplate="let data of 'item'">
+          <app-navbar-button [icon]="'fa fa-sign-in'" [text]="'Zaloguj się'" [route]="'login'"></app-navbar-button>
+        </div>
+      </dxi-item>
+      <dxi-item
+        location="after"
+        locateInMenu="auto"
+        menuItemTemplate="register">
+        <div *dxTemplate="let data of 'item'">
+          <app-navbar-button [icon]="'fa fa-id-badge'" [text]="'Zarejestruj się'" [route]="'registration'"></app-navbar-button>
+        </div>
+      </dxi-item>
+    </ng-template>
+
+  </dx-toolbar>
+</header>
+

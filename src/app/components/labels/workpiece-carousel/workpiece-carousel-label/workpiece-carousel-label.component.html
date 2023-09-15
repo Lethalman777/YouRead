@@ -1,0 +1,34 @@
+<div class="workpiece-label-box dx-card responsive-paddings border-curved">
+  <div class="workpiece-label-grid" >
+    <div class="workpiece-title-description">
+      <!-- <div class="workpiece-title">
+        <h1>{{workpiece.title}}</h1>
+      </div> -->
+      <div class="workpiece-description">
+        {{workpiece.description}}
+      </div>
+    </div>
+    <div class="workpiece-extra-info-box">
+      <span class="workpiece-extra-info">
+        Gatunek: <span style="font-weight: bold; text-align: center;">{{getGenreLabel(workpiece.genre)}}</span>
+      </span>
+      <span class="workpiece-extra-info">
+        Język: <span style="font-weight: bold; text-align: center;">{{getLanguageLabel(workpiece.language)}}</span>
+      </span>
+    </div>
+    <div class="workpiece-read-button-box">
+      <dx-button class="responsive-paddings border-curved" (click)="read()">Zacznij Czytać</dx-button>
+    </div>
+    <div class="workpiece-author">
+      <app-author-label [props]="{author:workpiece.author, isSubscribedVisible:true}"></app-author-label>
+    </div>
+    <div class="workpiece-information">
+      <app-information-label [props]="{
+        targetId:workpiece.id,
+        information:workpiece.information,
+        object:reactionObject
+      }">
+      </app-information-label>
+    </div>
+  </div>
+</div>

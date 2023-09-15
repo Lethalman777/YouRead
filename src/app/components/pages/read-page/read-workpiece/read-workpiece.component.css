@@ -2,7 +2,7 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  grid-template-columns: minmax(10px, 1fr) minmax(400px, 3fr) minmax(10px, 1fr);
+  grid-template-columns: minmax(10px, 1fr) minmax(400px, 3fr) minmax(10px, 20px);
   /* grid-template-rows: 3fr 1fr; */
   justify-items: stretch;
 }

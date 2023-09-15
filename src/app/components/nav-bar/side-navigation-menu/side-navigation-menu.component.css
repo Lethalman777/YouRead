@@ -1,0 +1,77 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  height: 100%;
+  width: 250px !important;
+}
+
+/* Styles for .menu-container */
+.menu-container {
+  min-height: 100%;
+  display: flex;
+  flex: 1;
+}
+
+/* Styles for .dx-treeview */
+.menu-container ::ng-deep .dx-treeview {
+  /* Long text positioning */
+  white-space: nowrap;
+}
+
+/* Icon width customization */
+.menu-container ::ng-deep .dx-treeview .dx-treeview-item {
+  padding-left: 0;
+  padding-right: 0;
+  color: black;
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-treeview-item .dx-icon {
+  width: var(--side-panel-min-width) !important;
+  margin: 0 !important;
+  color:darkgray;
+}
+
+/* Arrow customization */
+.menu-container ::ng-deep .dx-treeview .dx-treeview-node {
+  padding: 0 !important;
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-treeview-toggle-item-visibility {
+  right: 10px;
+  left: auto;
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-rtl .dx-treeview-toggle-item-visibility {
+  left: 10px;
+  right: auto;
+}
+
+/* Item levels customization */
+.menu-container ::ng-deep .dx-treeview .dx-treeview-node[aria-level='1'] {
+  font-weight: bold;
+  border-bottom: 1px solid var(--base-border-color);
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-treeview-node[aria-level='2'] .dx-treeview-item-content {
+  font-weight: normal;
+  padding: 0 var(--side-panel-min-width);
+}
+
+/* Selected & Focused items customization */
+.menu-container ::ng-deep .dx-treeview .dx-treeview-node-container .dx-treeview-node.dx-state-selected:not(.dx-state-focused) > .dx-treeview-item {
+  background: transparent;
+  color: var(--base-accent);
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-treeview-node-container .dx-treeview-node.dx-state-selected > .dx-treeview-item * {
+  color: var(--base-accent);
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-treeview-node-container .dx-treeview-node:not(.dx-state-focused) > .dx-treeview-item.dx-state-hover {
+  background-color: lighten(var(--base-bg), 4.00);
+}
+
+:host-context(.dx-theme-generic) .menu-container ::ng-deep .dx-treeview .dx-treeview-node-container .dx-treeview-node.dx-state-selected.dx-state-focused > .dx-treeview-item * {
+  color: inherit;
+}

@@ -1,21 +1,21 @@
 import { Component, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ValidationMessage, validationMessagesList } from 'src/app/models/enums/ValidationMessage';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { WorkpieceService } from 'src/app/services/workpiece.service';
 import { LanguageEnum, getLanguageValues } from 'src/app/models/enums/Language';
 import { NgxFileDropEntry } from 'ngx-file-drop';
-import { Genre } from 'src/app/models/types/Genre';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { GenreEnum, SelectEnum, getGenreValues } from 'src/app/models/enums/GenreEnum';
 import { WorkpieceCreate, WorkpieceUpdate } from 'src/app/models/types/Workpiece';
 import { TokenService } from 'src/app/services/token.service';
 import { SelectOption } from '../../controls/select-control/select-control.component';
+import { Router } from '@angular/router';
 
 export interface WorkpieceSetupBoxProps{
   isNew:boolean
   workpiece:WorkpieceUpdate
+  label:string
 }
 
 @Component({
@@ -32,21 +32,28 @@ export class WorkpieceSetupBoxComponent {
     this.genre.setValue(value.workpiece.genre)
     this.language.setValue(value.workpiece.language)
     this.description.setValue(value.workpiece.description)
+    this.tags.setValue(value.workpiece.tags)
+    this.image.setValue(value.workpiece.image)
+
+    this.userProfileId = value.workpiece.userProfileId
+    this.label = value.label
   }
+  label:string=''
   isNew:boolean=true
   workpiece!:WorkpieceUpdate
   userProfileId:number=0
-  //genres:SelectOption[]=getOptionsFromEnum(Object.keys(GenreEnum), Object.values(GenreEnum))
   genres:SelectEnum<GenreEnum>[]=getGenreValues()
   languages:SelectEnum<LanguageEnum>[]=getLanguageValues()
   formModel:FormGroup
-  messages:ValidationMessage[]
+  isError:boolean=false
+  formData:any={}
+  loading:boolean=false
 
   constructor(private userService:UserService,
     private workpieceService:WorkpieceService,
     private tokenService:TokenService,
-    private storageService:StorageService){
-    this.messages=validationMessagesList()
+    private storageService:StorageService,
+    private router:Router){
     this.formModel = new FormGroup({
       title: new FormControl('', [
         Validators.required,
@@ -56,15 +63,21 @@ export class WorkpieceSetupBoxComponent {
         Validators.required,
         Validators.minLength(3)
       ]),
-      image: new FormControl(new FormData()),
-      genre: new FormControl(this.genres[0].enum),
-      language: new FormControl(this.languages[0].enum)
+      image: new FormControl(''),
+      genre: new FormControl('', [
+        Validators.required
+      ]),
+      language: new FormControl('', [
+        Validators.required
+      ]),
+      tags: new FormControl([])
     });
-    this.userProfileId = Number(tokenService.get())
   }
 
   public submit(){
+    console.log("fgfgfg")
     if(!this.formModel.valid){
+      this.isError = true
       return
     }
     console.log(this.isNew)
@@ -72,25 +85,23 @@ export class WorkpieceSetupBoxComponent {
       const workpiece:WorkpieceCreate={
         title: this.title.value,
         description: this.description.value,
-        image: '',
+        image: this.image.value,
         userProfileId: this.userProfileId,
-        language: this.language.value,
-        genre: this.genre.value
+        language: Number(this.language.value),
+        genre: Number(this.genre.value),
+        tags: this.tags.value
       }
       console.log(workpiece)
-      this.storageService.uploadImage(this.image.value).subscribe(data=>{
+      this.workpieceService.createWorkpiece(workpiece).subscribe(data=>{
         console.log(data)
-        workpiece.image = data.image
-        this.workpieceService.createWorkpiece(workpiece).subscribe(data1=>{
-          console.log(data1)
-        })
+        this.router.navigate(['user-workpieces', this.userProfileId])
       })
     }
     else{
       const workpiece:WorkpieceUpdate={
         title: this.title.value,
         description: this.description.value,
-        image: this.workpiece.image,
+        image: this.image.value,
         userProfileId: this.userProfileId,
         id: this.workpiece.id,
         genre: Number(this.genre.value),
@@ -98,26 +109,15 @@ export class WorkpieceSetupBoxComponent {
         // genre: GenreEnum.customary,
         // language: LanguageEnum.Polski,
         dateOfPublication: this.workpiece.dateOfPublication,
-        isPublished: this.workpiece.isPublished
+        isPublished: this.workpiece.isPublished,
+        tags: this.tags.value
       }
 
-      if((this.image.value as FormData).getAll('').length > 0){
-        this.storageService.uploadImage(this.image.value).subscribe(data=>{
-          console.log(data)
-          workpiece.image = data.image
-          this.workpieceService.updateWorkpiece(workpiece).subscribe(data1=>{
-            console.log(data1)
-          })
-        })
-      } else {
-        console.log(workpiece)
-        this.workpieceService.updateWorkpiece(workpiece).subscribe(data=>{
-          console.log(data)
-        })
-      }
-
+      this.workpieceService.updateWorkpiece(workpiece).subscribe(data=>{
+        console.log(data)
+        this.router.navigate(['user-workpieces', this.userProfileId])
+      })
     }
-
   }
 
   handleFileInput($event: Event) {
@@ -138,6 +138,9 @@ export class WorkpieceSetupBoxComponent {
   }
   get image() {
     return this.formModel.get('image') as FormControl;
+  }
+  get tags() {
+    return this.formModel.get('tags') as FormControl;
   }
 }
 

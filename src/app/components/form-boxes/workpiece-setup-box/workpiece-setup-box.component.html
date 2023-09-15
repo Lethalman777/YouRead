@@ -1,35 +1,126 @@
-<div class="workpiece-setup-box">
+<!-- <dx-responsive-box>
+  <dxi-row></dxi-row>
+  <dxi-col></dxi-col>
+
+  <dxi-item>
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location> -->
+<form class="dx-card responsive-paddings" [formGroup]="formModel" (ngSubmit)="submit()">
+  <h1>{{label}}</h1>
+  <dx-responsive-box>
+    <dxi-row></dxi-row>
+    <dxi-col></dxi-col>
+    <dxi-col></dxi-col>
+    <dxi-col></dxi-col>
+
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location>
+      <div class="responsive-paddings">
+        <app-file-control [controlProp]="{label:'Okładka', formControl:image}"></app-file-control>
+        <div>
+          <app-workpiece-image-label [image]="image.value"></app-workpiece-image-label>
+        </div>
+      </div>
+    </dxi-item>
+    <dxi-item class="responsive-paddings">
+      <dxi-location screen="xs sm md lg" [row]="0" [col]="1"></dxi-location>
+      <div>
+        <div class="responsive-paddings">
+          <app-normal-control [props]="{label:'Tytuł', formControl:title, placeHolder:'Podaj tytuł'}"></app-normal-control>
+          <div *ngIf="formModel.invalid && isError">
+            <app-form-validation [validationMessages]="[
+                {isValid:title.hasError('required'), message:'pole obowiązkowe'},
+                {isValid:title.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+              ]"
+            ></app-form-validation>
+          </div>
+        </div>
+        <div class="responsive-paddings" style="height: 300px;">
+          <app-text-area-control [props]="{label:'Opis', formControl:description, placeHolder:'Opis...', type:3, isLabelVisible:true}"></app-text-area-control>
+          <div *ngIf="formModel.invalid && isError">
+            <app-form-validation [validationMessages]="[
+                {isValid:description.hasError('required'), message:'pole obowiązkowe'},
+                {isValid:description.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+              ]"
+            ></app-form-validation>
+          </div>
+        </div>
+      </div>
+    </dxi-item>
+    <dxi-item class="responsive-paddings">
+      <dxi-location screen="xs sm md lg" [row]="0" [col]="2"></dxi-location>
+      <div>
+        <div class="responsive-paddings">
+          <app-select-control [controlProp]="{label:'Gatunek', formControl:genre}" [options]="genres" [valueTag]="'enum'"></app-select-control>
+          <div *ngIf="formModel.invalid && isError">
+            <app-form-validation [validationMessages]="[
+                {isValid:title.hasError('required'), message:'pole obowiązkowe'}
+              ]"
+            ></app-form-validation>
+          </div>
+        </div>
+        <div class="responsive-paddings">
+          <app-select-control [controlProp]="{label:'Język', formControl:language}" [options]="languages" [valueTag]="'enum'"></app-select-control>
+          <div *ngIf="formModel.invalid && isError">
+            <app-form-validation [validationMessages]="[
+                {isValid:title.hasError('required'), message:'pole obowiązkowe'},
+              ]"
+            ></app-form-validation>
+          </div>
+        </div>
+        <div class="responsive-paddings">
+          <app-auto-complete-control [formControl]="tags" [controlProps]="{label:'Tagi', placeHolder:'Aby dodać tag wciśnij spację'}"></app-auto-complete-control>
+        </div>
+        <div class="responsive-paddings workpiece-setup-button">
+          <dx-button class="responsive-paddings" (onClick)="submit()" type="submit">Stwórz</dx-button>
+        </div>
+      </div>
+    </dxi-item>
+  </dx-responsive-box>
+</form>
+  <!-- </dxi-item> -->
+  <!-- <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="0" [col]="1"></dxi-location>
+      <app-workpiece-info
+          [props]="{
+            title:title.value,
+            description:description.value,
+            image:image.value,
+            genre:genre.value,
+            language:language.value
+          }"
+        ></app-workpiece-info>
+  </dxi-item> -->
+<!-- </dx-responsive-box> -->
+
+<!-- <div class="workpiece-setup-box">
   <form class="formGrid" [formGroup]="formModel" (ngSubmit)='submit()'>
     <div class="workpiece-setup-column-one">
-      <app-normal-control [controlProp]="{label:'Tytuł', formControl:title}"></app-normal-control>
-      <app-text-area-control [controlProp]="{label:'Opis', formControl:description}"></app-text-area-control>
+      <app-normal-control [props]="{label:'Tytuł', formControl:title, placeHolder:'Podaj tytuł'}"></app-normal-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:title.hasError('required'), message:'pole obowiązkowe'},
+            {isValid:title.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+          ]"
+        ></app-form-validation>
+      </div>
+      <app-text-area-control [props]="{label:'Opis', formControl:description, placeHolder:'Opis...', type:3, isLabelVisible:true}"></app-text-area-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:description.hasError('required'), message:'pole obowiązkowe'},
+            {isValid:description.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+          ]"
+        ></app-form-validation>
+      </div>
     </div>
     <div class="workpiece-setup-column-two">
       <app-select-control [controlProp]="{label:'Gatunek', formControl:genre}" [options]="genres"></app-select-control>
       <app-select-control [controlProp]="{label:'Język', formControl:language}" [options]="languages"></app-select-control>
       <app-file-control [controlProp]="{label:'Okładka', formControl:image}"></app-file-control>
+      <app-auto-complete-control [controlProps]="{label:'Tagi', formControl:tags, placeHolder:'Aby dodać tag wciśnij spację'}"></app-auto-complete-control>
       <div class="workpiece-setup-button">
         <button class="button-submit" type="submit">Stwórz</button>
       </div>
     </div>
-    <!-- <tr>
-      <div>E-mail:</div>
-      <input type="text" formControlName="email"  />
-      <section *ngIf="isWrongData">
-        <app-form-validation [isWrong]="email?.errors?.['required']" [message]="messages[0]"></app-form-validation>
-      </section>
-    </tr>
-    <div formGroupName="passwordGroup">
-      <tr>
-        <div>Password:</div>
-        <input type="password" formControlName="psd" />
-        <section *ngIf="isWrongData">
-          <app-form-validation [isWrong]="password?.errors?.['required']" [message]="messages[2]"></app-form-validation>
-          <app-form-validation [isWrong]="password?.errors?.['minlength']" [message]="messages[3]"></app-form-validation>
-        </section>
-      </tr>
-    </div> -->
-
   </form>
   <div class="workpiece-info-box">
     <app-workpiece-info
@@ -42,4 +133,4 @@
     }"
   ></app-workpiece-info>
   </div>
-</div>
+</div> -->
