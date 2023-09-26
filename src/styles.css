@@ -13,6 +13,8 @@
   --base-border-color: #e0e0e0;
   --base-border-radius: 4px;
   --side-panel-min-width: 60px;
+  --column-width: 400px;
+  --grid-column: calc(100% / var(--grid-columns));
 }
 
 

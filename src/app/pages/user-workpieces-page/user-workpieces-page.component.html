@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <dx-button (click)="createWorkpiece()">Stwórz nowe dzieło</dx-button>
+  </div>
+  <div *ngIf="workpieces.length > 0; else elseBlock" class="center-items" style="flex-direction: column;">
+    <div *ngFor="let workpiece of workpieces">
+      <app-user-workpiece [workpiece]="workpiece"></app-user-workpiece>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <div class="user-workpiece-no-workpieces">
+      <span>Brak stworzonych dzieł</span>
+    </div>
+  </ng-template>
+</div>
+

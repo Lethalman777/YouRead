@@ -1,0 +1,32 @@
+<!-- <dx-responsive-box>
+  <div *ngFor="let workpiece of workpieces; let i = index">
+    <dxi-row *ngIf="i/3==0"></dxi-row>
+  </div>
+  <div *ngFor="let workpiece of workpieces; let i = index">
+    <dxi-col *ngIf="i/3==0"></dxi-col>
+  </div>
+
+  <dxi-item style="max-width: 400px;" *ngFor="let workpiece of workpieces; let i = index">
+    <dxi-location screen="xs sm md lg" [row]="0" [col]="i%3"></dxi-location>
+    <app-workpiece-carousel [props]="workpiece"/>
+  </dxi-item>
+</dx-responsive-box> -->
+
+<div class="responsive-paddings center-items">
+  <div class="workpiece-grid" id="workpieces-list">
+    <div *ngFor="let workpiece of workpieces; let i = index">
+      <app-workpiece-carousel [props]="workpiece" [isRight]="isRight(i)" [isFocused]="sendFocus(workpiece.id)" (WorkpieceFocusCloseEvent)="changeFocus($event)"/>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="carousel-container"  #carouselContainer>
+  <div
+    class="carousel"
+    >
+      <div [@moveRight] class="carousel-item"  *ngFor="let visibleResult of carouselItems let i = index">
+        <app-result [inputWorkpieceResult]="visibleResult"/>
+      </div>
+  </div>
+</div> -->

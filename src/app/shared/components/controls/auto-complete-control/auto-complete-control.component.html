@@ -1,0 +1,24 @@
+<!-- <dx-tag-box
+  [value]="formControl.value"
+  class="dx-control"
+  style="min-width: 200px;"
+  [dataSource]="tags"
+  [searchEnabled]="true"
+  valueExpr="label"
+  displayExpr="label"
+  (onValueChanged)="onValueChanged($event)"
+  width="100%"
+  heigth="100%"
+></dx-tag-box> -->
+
+<dx-autocomplete
+  [dataSource]="tags"
+  [searchTimeout]="300"
+  valueExpr="label"
+  displayExpr="label"
+  labelMode="floating"
+  [showClearButton]="true"
+  width="100%"
+  heigth="100%"
+>
+</dx-autocomplete>

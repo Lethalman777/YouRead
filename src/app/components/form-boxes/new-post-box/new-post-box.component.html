@@ -1,7 +1,0 @@
-<form class="form-grid center-items" [formGroup]="formModel" (ngSubmit)='submit()'>
-  <div style="min-width: 600px;">
-    <app-text-area-control [props]="{label:'Treść', formControl:content, placeHolder:'Napisz post...', type:2, isLabelVisible:false}"></app-text-area-control>
-  </div>
-  <app-file-control [controlProp]="{label:'Zdjęcia', formControl:images}" [isMultiple]="true"></app-file-control>
-  <dx-button class="responsive-paddings border-curved" (click)="submit()" type="submit">Opublikuj</dx-button>
-</form>
