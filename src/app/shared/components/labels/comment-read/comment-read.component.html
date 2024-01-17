@@ -8,12 +8,14 @@
         <app-author-label [props]="{author:comment.author, isSubscribedVisible:false}"></app-author-label>
       </div> -->
       <div class="comment-author-name">
-        <span class="author-name">
-          {{comment.author.username}}
+        <span class="author-name text-color">
+          <strong>{{comment.author.username}}</strong>
         </span>
       </div>
       <div class="comment-read-content">
-        {{comment.content}}
+        <span class="text-color">
+          {{comment.content}}
+        </span>
       </div>
       <div class="comment-read-information">
         <app-information-label [props]="{
@@ -21,16 +23,16 @@
           information:comment.information,
           object:reactionObject
         }"></app-information-label>
-        <span class="comment-read-response" (click)="showAnswers()">
+        <span class="comment-read-response text-color" (click)="showAnswers()">
           Pokaż odpowiedzi
           <span *ngIf="isAnswersShown; else iconFalse">
-            <i class="fa fa-angle-down icon"></i>
+            <i class="fa fa-angle-up icon"></i>
           </span>
           <ng-template #iconFalse>
-            <i class="fa fa-angle-up icon"></i>
+            <i class="fa fa-angle-down icon"></i>
           </ng-template>
         </span>
-        <span class="comment-read-response" (click)="answerComment()">
+        <span class="comment-read-response text-color" (click)="answerComment()">
           Odpowiedz
         </span>
       </div>
@@ -40,6 +42,6 @@
     <app-comment-write [inputProps]="{targetId:comment.targetId, type:comment.commentType, isAnswer:true, commentAnsweredId:comment.id}"></app-comment-write>
   </div>
   <div class="comment-answer" *ngIf="isAnswersShown">
-    <app-comment-list [props]="{type:type, searchParam:searchParam}"></app-comment-list>
+    <app-comment-list [props]="{type:type, searchParam:searchParam}" [isSortByVisible]="false"></app-comment-list>
   </div>
 </div>

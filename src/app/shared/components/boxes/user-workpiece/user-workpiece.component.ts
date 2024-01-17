@@ -40,7 +40,7 @@ export class UserWorkpieceComponent {
           userProfileId: this.workpiece.author.id,
           dateOfPublication: new Date(),
           genre: GenreEnum.mixed,
-          language: LanguageEnum.Polski,
+          language: LanguageEnum.Polish,
           isPublished: this.workpiece.isPublished,
           tags: []
         }
@@ -67,7 +67,7 @@ export class UserWorkpieceComponent {
             userProfileId: this.workpiece.author.id,
             dateOfPublication: new Date(),
             genre: GenreEnum.mixed,
-            language: LanguageEnum.Polski,
+            language: LanguageEnum.Polish,
             isPublished: this.workpiece.isPublished,
             tags: []
           }

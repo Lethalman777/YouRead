@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { DxTreeViewTypes } from 'devextreme-angular/ui/tree-view';
-import { navigation } from 'src/app/shared/constants/navigation';
+import { navigationLogged, navigationNotLogged } from 'src/app/shared/constants/navigation';
 import * as events from 'devextreme/events';
 import { TokenService } from 'src/app/shared/services/token.service';
 
@@ -24,7 +24,6 @@ export class SideNavigationMenuComponent {
   @Input()
   set selectedItem(value: String) {
     this._selectedItem = value;
-    console.log(this.menu.instance)
     if (!this.menu.instance) {
       return;
     }
@@ -37,16 +36,22 @@ export class SideNavigationMenuComponent {
   private _items!: Record <string, unknown>[];
   get items() {
     if (!this._items) {
-      this._items = navigation.map((item) => {
-        if(item.path && !(/^\//.test(item.path))){
-          item.path = `/${item.path}`;
-        }
-         return { ...item, expanded: !this._compactMode }
-        });
-    }
+      if(this.tokenService.isLoggedIn()){
+        this._items = navigationLogged.map((item) => {
+          if(item.path && !(/^\//.test(item.path))){
+            item.path = `/${item.path}`;
+          }
+           return { ...item, expanded: !this._compactMode }
+          });
+      } else {
+        this._items = navigationNotLogged.map((item) => {
+          if(item.path && !(/^\//.test(item.path))){
+            item.path = `/${item.path}`;
+          }
+           return { ...item, expanded: !this._compactMode }
+          });
+      }
 
-    if(!this.tokenService.isLoggedIn()){
-      this._items = this._items.filter(item=>item['text'] != "Polecane" && item['text'] != "Historia Użytkownika" && item['text'] != "Subskrypcje")
     }
 
     return this._items;
@@ -74,13 +79,12 @@ export class SideNavigationMenuComponent {
   constructor(private elementRef: ElementRef, public tokenService:TokenService) { }
 
   onItemClick(event: DxTreeViewTypes.ItemClickEvent) {
-    console.log("kkk")
+    console.log("jjj")
     this.selectedItemChanged.emit(event);
   }
 
   ngOnInit(): void {
     this.isLogged = this.tokenService.isLoggedIn()
-
   }
 
   ngAfterViewInit() {

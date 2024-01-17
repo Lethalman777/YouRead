@@ -1,3 +1,7 @@
 .text-area{
   height: 600px;
 }
+
+.title-box{
+  max-width: 505px;
+}

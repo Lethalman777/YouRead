@@ -4,31 +4,35 @@
       <img class="profile-image" [src]="author.image" alt="PNG Image">
     </div>
     <div class="profile-box">
-      <span class="profile-name">
-        {{author.username}}
+      <span class="profile-name text-color">
+        <strong>{{author.username}}</strong>
       </span>
       <div class="profile-label-info">
-        <span class="profile-subscriptions">
-          <i class="fa fa-bell" aria-hidden="true"></i>
-          {{author.subscriberCount}} subskrybentów
+        <span class="profile-subscriptions text-color">
+          <i class="fa fa-bell text-color" aria-hidden="true"></i>
+          <span class="text-color">
+            {{author.subscriberCount}} subskrybentów
+          </span>
         </span>
-        <span class="profile-workpieces">
-          <i class="fa fa-book" aria-hidden="true"></i>
-          {{author.workpieceCount}} dzieł
+        <span class="profile-workpieces text-color">
+          <i class="fa fa-book text-color" aria-hidden="true"></i>
+          <span class="text-color">
+            {{author.workpieceCount}} dzieł
+          </span>
         </span>
       </div>
+      <!-- <textarea [readOnly]="true">
+        {{author.description}}
+      </textarea> -->
       <span class="profile-description">
         {{author.description}}
       </span>
     </div>
     <div class="profile-subscription-button">
       <dx-button
-        class="border-curved responsive-paddings"
-        [ngStyle]="{
-          'color': 'white',
-          'background-color': isSubscribed ? 'green' : 'dimgray',
-          'border-color': isSubscribed ? 'green' : 'dimgray'
-        }"
+        class="responsive-paddings border-curved standard-margin"
+        [ngClass]="isSubscribed ? 'clicked-button' : 'button-normal' "
+
         (click)="subscribe()"
       >
         <i class="fa fa-bell" aria-hidden="true"></i>

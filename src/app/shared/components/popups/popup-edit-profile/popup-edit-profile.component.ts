@@ -17,6 +17,7 @@ export class PopupEditProfileComponent {
   formData:FormData = new FormData()
   isConfirmVisible:boolean = false
   isSubmit:boolean = false
+  isError:boolean=false
 
   constructor(private storageService:StorageService, private userService:UserService){
     this.formModel = new FormGroup({
@@ -24,7 +25,9 @@ export class PopupEditProfileComponent {
         Validators.required,
         Validators.minLength(3)
       ]),
-      description: new FormControl(''),
+      description: new FormControl('', [
+        Validators.maxLength(150)
+      ]),
       image: new FormControl(''),
       imageSecond: new FormControl('')
     });
@@ -43,6 +46,7 @@ export class PopupEditProfileComponent {
   submit(){
     console.log(this.formModel)
     if(!this.formModel.valid){
+      this.isError = true
       return
     }
     this.isConfirmVisible = true

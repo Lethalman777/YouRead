@@ -1,12 +1,29 @@
 <form class="dx-card responsive-paddings formGrid" [formGroup]="formModel" (ngSubmit)="submit()">
   <h1>Tworzenie rozdziału</h1>
-  <div class="responsive-paddings">
+  <div class="responsive-paddings title-box">
     <app-normal-control [props]="{label:'Tytuł', formControl:title, placeHolder:'Podaj tytuł'}"></app-normal-control>
+    <div *ngIf="formModel.invalid && isError">
+      <app-form-validation [validationMessages]="[
+          {isValid:title.hasError('required'), message:'pole obowiązkowe'},
+          {isValid:title.hasError('minlength'), message:'wymagane minimum 3 znaki'},
+          {isValid:title.hasError('maxlength'), message:'maksimum 50 znaków'}
+        ]"
+      ></app-form-validation>
+    </div>
   </div>
   <div class="responsive-paddings text-area">
     <app-text-area-control [props]="{label:'Treść Rozdziału', formControl:file, placeHolder:'Napisz rozdział...', type:1, isLabelVisible:true}"></app-text-area-control>
+    <div *ngIf="formModel.invalid && isError">
+      <app-form-validation [validationMessages]="[
+          {isValid:file.hasError('required'), message:'pole obowiązkowe'},
+          {isValid:file.hasError('minlength'), message:'wymagane minimum 3 znaki'},
+          {isValid:file.hasError('maxlength'), message:'maksimum 1050 znaków'}
+
+        ]"
+      ></app-form-validation>
+    </div>
   </div>
-  <div class="responsive-paddings">
-    <dx-button class="responsive-paddings border-curved" (click)="submit()" type="submit">Stwórz</dx-button>
+  <div class="responsive-paddings center-items">
+    <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="submit()" type="submit">Stwórz</dx-button>
   </div>
 </form>

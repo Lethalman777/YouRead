@@ -20,18 +20,18 @@
   <dxi-item>
     <dxi-location screen="xs sm md lg" [row]="0" [col]="3"></dxi-location>
     <div class="user-workpiece-button-area dx-card border-curved">
-      <dx-button (click)="editWorkpiece()">Edytuj Informacje</dx-button>
-      <dx-button (click)="addChapter()">Dodaj Nowy Rozdział</dx-button>
-      <dx-button (click)="changeChapterPositionVisibility()">
+      <dx-button (click)="editWorkpiece()" class="button-normal button-top">Edytuj Informacje</dx-button>
+      <dx-button (click)="addChapter()" class="button-normal">Dodaj Nowy Rozdział</dx-button>
+      <dx-button (click)="changeChapterPositionVisibility()" class="button-normal">
         {{ isChapterPosition ? 'Zakończ edycję' : 'Edytuj Rozdziały' }}
       </dx-button>
-      <dx-button (click)="publish()">
+      <dx-button (click)="publish()" class="button-normal">
         {{ workpiece.isPublished ? 'wycofaj publikacje' : 'opublikuj' }}
       </dx-button>
-      <dx-button *ngIf="workpiece.isPublished"(click)="navigation()">
+      <dx-button *ngIf="workpiece.isPublished"(click)="navigation()" class="button-normal">
         Czytaj
       </dx-button>
-      <dx-button (click)="deleteWorkpiece()">Usuń</dx-button>
+      <dx-button (click)="deleteWorkpiece()" class="button-normal button-down">Usuń</dx-button>
     </div>
   </dxi-item>
 </dx-responsive-box>

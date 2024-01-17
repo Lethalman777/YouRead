@@ -1,0 +1,13 @@
+<dx-date-box
+  type="date"
+  [max]="startDate"
+  [value]="formControl.value"
+  (onValueChanged)="onValueChanged($event)"
+  [label]="label"
+  labelMode="floating"
+  dateOutOfRangeMessage="Niedozwolona data"
+  pickerType="calendar"
+  applyButtonText="Zatwierdź"
+  cancelButtonText="Anuluj"
+  [acceptCustomValue]="true">
+</dx-date-box>

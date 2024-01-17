@@ -1,15 +1,27 @@
 <div class="dx-fieldset dx-card responsive-paddings">
-  <div class="dx-fieldset-header">Logowanie</div>
+  <div class="dx-fieldset-header center-items">Logowanie</div>
   <form class="content-block" [formGroup]="formModel" (ngSubmit)='login()'>
     <div class="responsive-paddings">
       <app-normal-control [props]="{label:'E-mail', formControl:email, placeHolder:'Podaj e-mail'}"></app-normal-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:email.hasError('required'), message:'pole obowiązkowe'},
+          ]"
+        ></app-form-validation>
+      </div>
     </div>
     <div class="responsive-paddings">
-      <app-normal-control [props]="{label:'Password', formControl:password, placeHolder:'Podaj hasło'}" [mode]="'password'"></app-normal-control>
+      <app-normal-control [props]="{label:'Hasło', formControl:password, placeHolder:'Podaj hasło'}" [mode]="'password'"></app-normal-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:password.hasError('required'), message:'pole obowiązkowe'}
+          ]"
+        ></app-form-validation>
+      </div>
     </div>
     <div class="button-area">
-      <dx-button class="responsive-paddings" (click)='login()' type="submit">Zaloguj się</dx-button>
-      <dx-button class="responsive-paddings" routerLink="/log-in">Powrót</dx-button>
+      <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)='login()' type="submit">Zaloguj się</dx-button>
+      <dx-button class="responsive-paddings border-curved standard-margin button-normal" routerLink="/registration">Załóż konto</dx-button>
     </div>
   </form>
 </div>

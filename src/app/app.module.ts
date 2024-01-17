@@ -68,7 +68,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { RecomendationGenreCarouselComponent } from './shared/components/carousels/recomendation-genre-carousel/recomendation-genre-carousel.component';
 import { GenreCarouselComponent } from './shared/components/labels/genre-carousel/genre-carousel.component';
-import { DxAutocompleteModule, DxBoxModule, DxButtonGroupModule, DxButtonModule, DxContextMenuModule, DxDrawerModule, DxFileUploaderModule, DxFormModule, DxListModule, DxPopupModule, DxRadioGroupModule, DxResponsiveBoxModule, DxScrollViewModule, DxSelectBoxModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule, DxToolbarModule, DxTooltipModule, DxTreeViewModule } from 'devextreme-angular';
+import { DxAutocompleteModule, DxBoxModule, DxButtonGroupModule, DxButtonModule, DxCheckBoxModule, DxContextMenuModule, DxDateBoxModule, DxDrawerModule, DxFileUploaderModule, DxFormModule, DxListModule, DxPopupModule, DxRadioGroupModule, DxResponsiveBoxModule, DxScrollViewModule, DxSelectBoxModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule, DxToolbarModule, DxTooltipModule, DxTreeViewModule } from 'devextreme-angular';
 import { RadioButtonControlComponent } from './shared/components/controls/radio-button-control/radio-button-control.component';
 import { CheckBoxGroupControlComponent } from './shared/components/controls/check-box-group-control/check-box-group-control.component';
 import { ButtonGroupComponent } from './shared/components/controls/button-group/button-group.component';
@@ -95,6 +95,8 @@ import { AuthService } from './shared/services/auth.service';
 import { ScreenService } from './shared/services/screen.service';
 import { WorkpiecesListComponent } from './shared/components/lists/workpieces-list/workpieces-list.component';
 import { TagControlComponent } from './shared/components/controls/tag-control/tag-control.component';
+import { DateControlComponent } from './shared/components/controls/date-control/date-control.component';
+import { SubscriptionLabelComponent } from './shared/components/labels/subscription-label/subscription-label.component';
 
 @NgModule({
   declarations: [
@@ -177,7 +179,9 @@ import { TagControlComponent } from './shared/components/controls/tag-control/ta
     RerenderDirective,
     SearcherComponent,
     WorkpiecesListComponent,
-    TagControlComponent
+    TagControlComponent,
+    DateControlComponent,
+    SubscriptionLabelComponent
   ],
   imports: [
     BrowserModule,
@@ -196,6 +200,7 @@ import { TagControlComponent } from './shared/components/controls/tag-control/ta
     SlickCarouselModule,
     DxFormModule,
     DxBoxModule,
+    DxDateBoxModule,
     DxTooltipModule,
     DxAutocompleteModule,
     DxToolbarModule,
@@ -210,6 +215,7 @@ import { TagControlComponent } from './shared/components/controls/tag-control/ta
     DxButtonGroupModule,
     DxButtonModule,
     DxListModule,
+    DxCheckBoxModule,
     DxRadioGroupModule,
     DxSelectBoxModule,
     DxContextMenuModule,

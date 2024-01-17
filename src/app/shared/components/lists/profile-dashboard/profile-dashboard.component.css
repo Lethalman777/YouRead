@@ -3,3 +3,14 @@
   display: flex;
   flex-direction: column;
 }
+
+.profile-dashboard-post{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sort-box{
+  max-width: 200px;
+  margin-left: 35px;
+  margin-top: 10px;
+}

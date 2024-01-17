@@ -14,18 +14,17 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class LoginBoxComponent {
   formModel: FormGroup;
   isWrongData: boolean = false;
+  isError:boolean=false
   @Input() returnUrl!: string;
 
   constructor(private userService:UserService, private accountService:AccountService,
     private router:Router, private tokenService:TokenService, private route:ActivatedRoute){
     this.formModel = new FormGroup({
       email: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
+        Validators.required
       ]),
       psd: new FormControl('', [
-         Validators.required,
-         Validators.minLength(6)
+         Validators.required
       ])
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -33,7 +32,10 @@ export class LoginBoxComponent {
 
   login(){
     console.log(this.formModel)
-    if(this.formModel.valid){
+    if(!this.formModel.valid){
+      this.isError = true
+      return
+    }
       const user:Login = {
         email:this.email?.value,
         password:this.password?.value
@@ -61,10 +63,6 @@ export class LoginBoxComponent {
       //   this.tokenService.set(String(data.id))
       //   this.router.navigate(['/workpiece-results'])
       // })
-    }
-    else{
-      this.isWrongData=true
-    }
   }
 
   // onControlChange(formControl: FormControl, formControlValue: any){

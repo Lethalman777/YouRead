@@ -8,4 +8,5 @@ import { ChapterLabel } from 'src/app/shared/models/Chapter';
 })
 export class ChapterLabelComponent {
   @Input() chapter!:ChapterLabel
+  @Input() isSelected:boolean = false
 }

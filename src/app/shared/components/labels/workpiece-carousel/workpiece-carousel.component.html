@@ -1,7 +1,7 @@
-<div [id]="'workpiece-carousel-'+ConvertIdToString()" class="workpiece-carousel-box">
+<div [id]="'workpiece-carousel-'+carouselName+'-'+ConvertIdToString()" class="workpiece-carousel-box">
   <div class="workpie-carousel">
     <div class="workpiece-title">
-      <h1>{{workpiece.title}}</h1>
+      <h1 class="text-color">{{workpiece.title}}</h1>
     </div>
     <div
       class="workpiece-carousel-image"
@@ -20,11 +20,11 @@
     </div>
     <dx-tooltip
       [visible]="isFocused"
-      [target]="'#workpiece-carousel-'+ConvertIdToString()"
+      [target]="'#workpiece-carousel-'+carouselName+'-'+ConvertIdToString()"
       showEvent="dxhoverstart"
-      (onShown)="changeFocus()"
+      (onShowing)="changeFocus()"
       [animation]="{ show: { type: 'pop', from: { scale: 0.8 } } }"
-      [position]="{ my:'top' }">
+      [position]="{ my:'center' }">
       <div *dxTemplate="let data of 'content'">
         <app-workpiece-carousel-label [props]="workpiece"></app-workpiece-carousel-label>
       </div>

@@ -2,6 +2,7 @@
   [(visible)]="isPopupVisible"
   [hideOnOutsideClick]="true"
   (onHiding)="onPopupHiding()"
+  [showTitle]="false"
   contentTemplate="popup-content">
   <div *dxTemplate="let data of 'popup-content'">
     <div class="center-items">

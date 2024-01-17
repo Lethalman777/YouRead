@@ -29,6 +29,7 @@ export class WritingChapterBoxComponent {
   chapter!:ChapterWrite
   formModel:FormGroup
   loggedUserProfileId:number=0
+  isError:boolean=false
 
   constructor(private workpieceService:WorkpieceService,
     private tokenService:TokenService,
@@ -38,10 +39,13 @@ export class WritingChapterBoxComponent {
     this.formModel = new FormGroup({
       title: new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.maxLength(50),
       ]),
       file: new FormControl('', [
-        Validators.minLength(3)
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(1050),
       ]),
     });
   }
@@ -57,6 +61,7 @@ export class WritingChapterBoxComponent {
 
   public submit(){
     if(!this.formModel.valid){
+      this.isError = true
       return
     }
 

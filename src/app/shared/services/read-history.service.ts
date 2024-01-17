@@ -18,6 +18,7 @@ export class ReadHistoryService {
   }
 
   public updateReadHistory(readHistory:ReadHistory):Observable<ReadHistory>{
+    console.log("jjj")
     return this.http.put<ReadHistory>(`${this.apiUrl}/${this.url}`, readHistory)
   }
 

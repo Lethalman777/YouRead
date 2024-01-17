@@ -19,4 +19,8 @@ export class ProfileMainAreaComponent {
   }
   profileId!:number
   profileArea:ProfileArea=ProfileArea.WorkpiecesList
+
+  newPostSubmitted(){
+    this.profileArea=ProfileArea.ProfileDashboard
+  }
 }

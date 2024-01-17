@@ -1,12 +1,12 @@
 <div class="responsive-paddings dx-card border-curved" #slickK>
   <div class="button-area">
     <div>
-      <dx-button class="responsive-paddings" (onClick)="switchRight()">
+      <dx-button class="responsive-paddings border-curved standard-margin button-normal" (onClick)="switchRight()">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
       </dx-button>
     </div>
     <div class="button-right">
-      <dx-button class="responsive-paddings" (onClick)="switchLeft()">
+      <dx-button class="responsive-paddings border-curved standard-margin button-normal" (onClick)="switchLeft()">
         <i class="fa fa-angle-right" aria-hidden="true"></i>
       </dx-button>
     </div>
@@ -19,7 +19,7 @@
     (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)">
     <div ngxSlickItem *ngFor="let workpiece of workpieces; let i = index" class="recomendation-slide">
-      <app-workpiece-carousel [props]="workpiece" [isRight]="isRight(i)" [isFocused]="sendFocus(workpiece.id)" (WorkpieceFocusCloseEvent)="changeFocus($event)"></app-workpiece-carousel>
+      <app-workpiece-carousel [props]="workpiece" [isRight]="isRight(i)" [isFocused]="sendFocus(workpiece.id)" [carouselName]="carouselName" (WorkpieceFocusCloseEvent)="changeFocus($event)"></app-workpiece-carousel>
     </div>
   </ngx-slick-carousel>
 </div>

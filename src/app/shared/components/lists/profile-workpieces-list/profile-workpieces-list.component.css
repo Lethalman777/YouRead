@@ -5,3 +5,9 @@
   /* grid-template-rows: 100px 200px; */
   place-items: center;
 }
+
+.sort-box{
+  max-width: 200px;
+  margin-left: 35px;
+  margin-top: 10px;
+}

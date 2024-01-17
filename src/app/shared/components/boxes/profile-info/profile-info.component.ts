@@ -30,23 +30,29 @@ export class ProfileInfoComponent {
   profile!:UserProfile
   loggedUserProfileId:number=0
   isPopupVisible:boolean=false
+  isDeletePopupVisible:boolean=false
 
   constructor(private tokenService:TokenService, private userService:UserService,  private dialog: MatDialog){}
 
   editProfile(){
-    // const dialogRef = this.dialog.open(PopupEditProfileComponent, {
-    //   width: '800px',
-    //   height: '600px',
-    //   data:this.profileId
-    // });
     this.isPopupVisible = true
+  }
+
+  deleteProfile(){
+    this.isDeletePopupVisible = true
   }
 
   onPopupHiding(){
     this.isPopupVisible = false
+    this.isDeletePopupVisible = false
   }
 
-  hide(){
-    console.log('FFF')
+  onPopupDeleteHiding(isConfirmed:boolean){
+    this.isDeletePopupVisible = false
+    if(isConfirmed){
+      this.userService.deleteProfile(this.profileId).subscribe(data=>{
+        console.log(data)
+      })
+    }
   }
 }

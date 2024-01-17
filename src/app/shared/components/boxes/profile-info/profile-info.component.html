@@ -8,9 +8,13 @@
         <app-profile-info-label [props]="{isLoggedProfile:isLogedProfile, author:profile}"></app-profile-info-label>
       </div>
       <div *ngIf="isLogedProfile">
-        <dx-button class="responsive-paddings" (click)="editProfile()">Edytuj Profil</dx-button>
+        <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="editProfile()">Edytuj Profil</dx-button>
+        <!-- <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="deleteProfile()">Usuń Profil</dx-button> -->
         <div *ngIf="isPopupVisible">
           <app-popup-edit-profile [isPopupVisible]="isPopupVisible" (HidePopupEvent)="onPopupHiding()"></app-popup-edit-profile>
+        </div>
+        <div *ngIf="isDeletePopupVisible">
+          <app-popup-confirm [isPopupVisible]="isDeletePopupVisible" (HidePopupEvent)="onPopupDeleteHiding($event)"></app-popup-confirm>
         </div>
       </div>
     </div>

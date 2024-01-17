@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { SubscriptionLabel } from 'src/app/shared/models/Subscription';
 import { AuthorLabel } from 'src/app/shared/models/User';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 
@@ -15,7 +16,7 @@ export class ProfileSubscriptionsComponent {
     })
   }
   profileId!:number
-  subscribedProfiles:AuthorLabel[]=[]
+  subscribedProfiles:SubscriptionLabel[]=[]
 
   constructor(private subscriptionService:SubscriptionService){}
 

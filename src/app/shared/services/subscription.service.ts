@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/app/environments/environment.prod';
-import { SubscriptionCreate } from '../models/Subscription';
+import { SubscriptionCreate, SubscriptionLabel } from '../models/Subscription';
 import { SearchParam } from '../models/Search';
 import { AuthorLabel } from '../models/User';
 
@@ -19,8 +19,8 @@ export class SubscriptionService {
     return this.http.post<Subscription>(`${this.apiUrl}/${this.url}`, subscription)
   }
 
-  public getSubscriptions(id:number):Observable<AuthorLabel[]>{
-    return this.http.get<AuthorLabel[]>(`${this.apiUrl}/${this.url}/GetSubscriptions?id=${id}`)
+  public getSubscriptions(id:number):Observable<SubscriptionLabel[]>{
+    return this.http.get<SubscriptionLabel[]>(`${this.apiUrl}/${this.url}/GetSubscriptions?id=${id}`)
   }
 
   public getSubscription(searchParam:SearchParam):Observable<Subscription[]>{

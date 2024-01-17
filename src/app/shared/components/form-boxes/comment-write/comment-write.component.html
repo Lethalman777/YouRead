@@ -1,14 +1,18 @@
-<form class="comment-write" [formGroup]="formModel" (ngSubmit)='submit()'>
+<form class="comment-write responsive-paddings"[formGroup]="formModel" (ngSubmit)='submit()'>
   <div style="min-width: 600px; max-width: 600px;" (click)="changeStatus(true)">
     <app-text-area-control [props]="{label:'Dodaj Komentarz', formControl:content, placeHolder:'Napisz Komentarz...', type:0, isLabelVisible:false}"></app-text-area-control>
   </div>
   <div class="comment-button-box" *ngIf="isFocused">
-    <dx-button class="responsive-paddings border-curved" (click)="changeStatus(false)">Anuluj</dx-button>
+    <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="changeStatus(false)">Anuluj</dx-button>
     <dx-button
-      class="responsive-paddings border-curved"
-      [ngStyle]="{'background-color': content.value != '' ? 'green' : 'dimgray', 'border-color': content.value != '' ? 'green' : 'dimgray'}"
+      class="responsive-paddings border-curved standard-margin button-normal"
       (click)="submit()"
       type="submit"
     >Opublikuj</dx-button>
   </div>
+  <div *ngIf="isConfirmVisible">
+    <app-popup-confirm [message]="'Czy na pewno chcesz opublikować komentarz ?'" [isPopupVisible]="isConfirmVisible" (HidePopupEvent)="onPopupConfirmed($event)"></app-popup-confirm>
+  </div>
 </form>
+
+<!-- [ngStyle]="{'background-color': content.value != '' ? 'green' : 'dimgray', 'border-color': content.value != '' ? 'green' : 'dimgray'}" -->

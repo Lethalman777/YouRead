@@ -13,13 +13,22 @@
       class="post-content"
 
     >
+      <!-- <dx-text-area
+        [value]="content"
+        [readOnly]="true"
+        [focusStateEnabled]="false"
+        [hoverStateEnabled]="false"
+        height="90%"
+        width="90%"
+        [stylingMode]="'underlined'"
+      ></dx-text-area> -->
       <textarea
         class="post-content-area" [readOnly]="true"
         [ngStyle]="{'height': isExtended ? '100%' : '100px'}"
       >
-        {{content}}...
+        {{isTextOverflow ? content + "..." : content }}
       </textarea>
-      <strong (click)="ShowComment()">{{isTextOverflow ? " Czytaj Więcej" : "" }}</strong>
+      <strong class="read-more" (click)="ShowComment()">{{isTextOverflow ? " Czytaj Więcej" : "" }}</strong>
       <!-- <div *ngFor="let image of post.images">
         <img [src]="image" alt="PNG Image"/>
       </div> -->
@@ -31,7 +40,7 @@
         information:post.information,
         object:reactionObject
       }"></app-information-label>
-      <span class="post-read-comments" (click)="ShowComment()">
+      <span class="post-read-comments text-color" (click)="ShowComment()">
         Napisz Komentarz
       </span>
       <div *ngIf="isPopupVisible">

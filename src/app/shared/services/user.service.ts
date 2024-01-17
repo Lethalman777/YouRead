@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment.prod';
 import { UserCreate, UserProfile, Login, AuthorLabel, AuthResponse } from '../models/User';
+import { getEmptyParam } from '../functions/SearchFunction';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,10 @@ export class UserService {
 
   public updateProfile(profile:UserProfile):Observable<UserProfile>{
     return this.http.put<UserProfile>(`${this.apiUrl}/${this.url}`, profile)
+  }
+
+  public deleteProfile(id:number):Observable<any>{
+    console.log(id)
+    return this.http.delete(`${this.apiUrl}/${this.url}/${id}`)
   }
 }

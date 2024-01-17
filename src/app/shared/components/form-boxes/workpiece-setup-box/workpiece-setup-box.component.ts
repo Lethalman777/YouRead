@@ -1,13 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LanguageEnum, getLanguageValues } from 'src/app/shared/enums/Language';
-import { GenreEnum, SelectEnum, getGenreValues } from 'src/app/shared/enums/GenreEnum';
+import { GenreEnum, getGenreValues } from 'src/app/shared/enums/GenreEnum';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { WorkpieceService } from 'src/app/shared/services/workpiece.service';
 import { WorkpieceUpdate, WorkpieceCreate } from 'src/app/shared/models/Workpiece';
+import { SelectEnum } from 'src/app/shared/models/Other';
+import { UserProfile } from 'src/app/shared/models/User';
 
 export interface WorkpieceSetupBoxProps{
   isNew:boolean
@@ -34,7 +36,13 @@ export class WorkpieceSetupBoxComponent {
 
     this.userProfileId = value.workpiece.userProfileId
     this.label = value.label
+    if(this.isNew){
+      this.popupMessage='Czy napewno chcesz stworzyć nowe dzieło ?'
+    } else {
+      this.popupMessage='Czy napewno chcesz zedytować dzieło ?'
+    }
   }
+  @Output() HidePopupEvent:EventEmitter<any> = new EventEmitter()
   label:string=''
   isNew:boolean=true
   workpiece!:WorkpieceUpdate
@@ -45,6 +53,9 @@ export class WorkpieceSetupBoxComponent {
   isError:boolean=false
   formData:any={}
   loading:boolean=false
+  isConfirmVisible:boolean = false
+  popupMessage:string=''
+
 
   constructor(private userService:UserService,
     private workpieceService:WorkpieceService,
@@ -54,11 +65,13 @@ export class WorkpieceSetupBoxComponent {
     this.formModel = new FormGroup({
       title: new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.maxLength(50)
       ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.maxLength(50)
       ]),
       image: new FormControl(''),
       genre: new FormControl('', [
@@ -72,48 +85,55 @@ export class WorkpieceSetupBoxComponent {
   }
 
   public submit(){
-    console.log("fgfgfg")
     if(!this.formModel.valid){
       this.isError = true
       return
     }
+    this.isConfirmVisible = true
     console.log(this.isNew)
-    if(this.isNew){
-      const workpiece:WorkpieceCreate={
-        title: this.title.value,
-        description: this.description.value,
-        image: this.image.value,
-        userProfileId: this.userProfileId,
-        language: Number(this.language.value),
-        genre: Number(this.genre.value),
-        tags: this.tags.value
-      }
-      console.log(workpiece)
-      this.workpieceService.createWorkpiece(workpiece).subscribe(data=>{
-        console.log(data)
-        this.router.navigate(['user-workpieces', this.userProfileId])
-      })
-    }
-    else{
-      const workpiece:WorkpieceUpdate={
-        title: this.title.value,
-        description: this.description.value,
-        image: this.image.value,
-        userProfileId: this.userProfileId,
-        id: this.workpiece.id,
-        genre: Number(this.genre.value),
-        language: Number(this.language.value),
-        // genre: GenreEnum.customary,
-        // language: LanguageEnum.Polski,
-        dateOfPublication: this.workpiece.dateOfPublication,
-        isPublished: this.workpiece.isPublished,
-        tags: this.tags.value
-      }
 
-      this.workpieceService.updateWorkpiece(workpiece).subscribe(data=>{
-        console.log(data)
-        this.router.navigate(['user-workpieces', this.userProfileId])
-      })
+  }
+
+  onPopupConfirmed(isConfirmed:boolean){
+    this.isConfirmVisible = false
+    if(isConfirmed){
+      if(this.isNew){
+        const workpiece:WorkpieceCreate={
+          title: this.title.value,
+          description: this.description.value,
+          image: this.image.value,
+          userProfileId: this.userProfileId,
+          language: Number(this.language.value),
+          genre: Number(this.genre.value),
+          tags: this.tags.value
+        }
+        console.log(workpiece)
+        this.workpieceService.createWorkpiece(workpiece).subscribe(data=>{
+          console.log(data)
+          this.router.navigate(['user-workpieces', this.userProfileId])
+        })
+      }
+      else{
+        const workpiece:WorkpieceUpdate={
+          title: this.title.value,
+          description: this.description.value,
+          image: this.image.value,
+          userProfileId: this.userProfileId,
+          id: this.workpiece.id,
+          genre: Number(this.genre.value),
+          language: Number(this.language.value),
+          // genre: GenreEnum.customary,
+          // language: LanguageEnum.Polski,
+          dateOfPublication: this.workpiece.dateOfPublication,
+          isPublished: this.workpiece.isPublished,
+          tags: this.tags.value
+        }
+
+        this.workpieceService.updateWorkpiece(workpiece).subscribe(data=>{
+          console.log(data)
+          this.router.navigate(['user-workpieces', this.userProfileId])
+        })
+      }
     }
   }
 

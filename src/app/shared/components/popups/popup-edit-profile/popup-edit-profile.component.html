@@ -5,17 +5,47 @@
   contentTemplate="popup-content">
   <div *dxTemplate="let data of 'popup-content'">
     <form [formGroup]="formModel" (ngSubmit)='submit()'>
-      <app-normal-control [props]="{label:'Nazwa Użytkownika', formControl:username, placeHolder:'Podaj nazwę Użytkownika'}"></app-normal-control>
-      <app-text-area-control [props]="{label:'Opis Uzytkownika', formControl:description, placeHolder:'Napisz Opis...', type:3, isLabelVisible:true}"></app-text-area-control>
-      <app-file-control [controlProp]="{label:'Zdjęcie Profilowe', formControl:image}"></app-file-control>
-      <app-file-control [controlProp]="{label:'Zdjęcie w tle', formControl:imageSecond}"></app-file-control>
-      <tr>
-        <dx-button class="responsive-paddings" type="submit" (onClick)="submit()">Zatwierdź</dx-button>
-      </tr>
+      <div class="username-box">
+        <app-normal-control [props]="{label:'Nazwa Użytkownika', formControl:username, placeHolder:'Podaj nazwę Użytkownika'}"></app-normal-control>
+        <div *ngIf="formModel.invalid && isError">
+          <app-form-validation [validationMessages]="[
+              {isValid:username.hasError('required'), message:'pole obowiązkowe'},
+              {isValid:username.hasError('minlength'), message:'wymagane minimum 3 znaki'},
+              {isValid:username.hasError('maxlength'), message:'maksimum 50 znaków'}
+            ]"
+          ></app-form-validation>
+        </div>
+      </div>
+      <div class="description-box">
+        <app-text-area-control [props]="{label:'Opis Uzytkownika', formControl:description, placeHolder:'Napisz Opis...', type:3, isLabelVisible:true}"></app-text-area-control>
+        <div *ngIf="formModel.invalid && isError">
+          <app-form-validation [validationMessages]="[
+              {isValid:description.hasError('maxlength'), message:'maksimum 150 znaków'}
+            ]"
+          ></app-form-validation>
+        </div>
+      </div>
+      <div class="image-box">
+        <app-file-control [controlProp]="{label:'Zdjęcie Profilowe', formControl:image}"></app-file-control>
+        <div>
+          <div class="profile-image-box">
+            <img class="profile-image" [src]="image.value" alt="PNG Image">
+          </div>
+        </div>
+      </div>
+      <div class="image-box">
+        <app-file-control [controlProp]="{label:'Zdjęcie w tle', formControl:imageSecond}"></app-file-control>
+        <div>
+          <div class="background-image-box">
+            <img class="background-image" [src]="imageSecond.value" alt="PNG Image">
+          </div>
+        </div>
+      </div>
+      <div class="center-items" style="flex-direction: row;">
+        <dx-button class="responsive-paddings border-curved standard-margin button-normal" type="submit" (onClick)="submit()">Zatwierdź</dx-button>
+        <dx-button class="responsive-paddings border-curved standard-margin button-normal" (onClick)="cancel()">Anuluj</dx-button>
+      </div>
     </form>
-    <tr>
-      <dx-button class="responsive-paddings" (onClick)="cancel()">Anuluj</dx-button>
-    </tr>
     <app-popup-confirm [message]="'Czy napewno chcesz zakończyć edycję ?'" [isPopupVisible]="isConfirmVisible" (HidePopupEvent)="onPopupConfirmed($event)"></app-popup-confirm>
   </div>
 </dx-popup>

@@ -1,9 +1,29 @@
 <div class="checkbox-panel">
+  <dx-check-box
+    #seletAllCheckbox
+    text="Zaznacz wszytkie"
+    [value]="selectAll"
+    (onValueChanged)="toggleSelectAll($event)"
+  >
+  </dx-check-box>
+  <div *ngFor="let option of props.formControl.value">
+    <dx-check-box
+      [text]="option.label"
+      [value]="option.isChecked"
+      (afterValueChanged)="toggleSelect()"
+    >
+    </dx-check-box>
+  </div>
+
+</div>
+
+<!-- <div class="checkbox-panel">
   <label>
     <input
       type="checkbox"
       [(ngModel)]="selectAll"
       (change)="toggleSelectAll()"
+      [ngClass]="selectAll ? 'checkbox-checked' : ''"
     />
     Select All
   </label>
@@ -12,7 +32,8 @@
       type="checkbox"
       [(ngModel)]="option.isChecked"
       (change)="toggleSelect()"
+      [ngClass]="option.isChecked ? 'checkbox-checked' : ''"
     />
     {{ option.label }}
   </label>
-</div>
+</div> -->

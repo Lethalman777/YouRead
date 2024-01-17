@@ -1,32 +1,33 @@
 <div class="information-box">
-  <div class="information-item">
+  <div class="information-comment-item text-color">
     <i
       class="fa fa-comments icon"
-      [ngStyle]="{'color': information.commentCount > 0 ? 'black' : 'dimgray'}"
-      aria-hidden="true"></i>
+      [ngStyle]="{'color': information.commentCount > 0 ? 'black' : 'var(--base-bg)'}"
+      aria-hidden="true">
+    </i>
     <span class="information-info">{{information.commentCount}}</span>
   </div>
   <div class="information-item">
     <i
       class="fa fa-thumbs-up icon"
-      [ngStyle]="{'color': isLike ? 'green' : 'dimgray'}"
+      [ngStyle]="{'color': isLike ? 'var(--base-accent)' : 'var(--base-bg)'}"
       aria-hidden="true"
       (click)="clickLike()"
     ></i>
-    <span class="information-info">{{information.likeCount}}</span>
+    <span class="information-info text-color">{{information.likeCount}}</span>
   </div>
-  <div class="information-item">
+  <div class="information-item text-color">
     <i
       class="fa fa-thumbs-down icon"
-      [ngStyle]="{'color': isDislike ? 'green' : 'dimgray'}"
+      [ngStyle]="{'color': isDislike ? 'var(--base-danger-color)' : 'var(--base-bg)'}"
       aria-hidden="true"
       (click)="clickDislike()"
     ></i>
     <span class="information-info">{{information.dislikeCount}}</span>
   </div>
-  <div class="information-item">
+  <div class="information-date-item text-color">
     <span class="information-info">
-      Opublikowano: <span style="font-weight: bold; text-align: center;">{{publicationDate}}</span>
+      Opublikowano:<span style="font-weight: bold; text-align: center;"> {{publicationDate}}</span>
     </span>
   </div>
 </div>

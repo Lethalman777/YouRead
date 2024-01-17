@@ -1,12 +1,6 @@
 /* @import "D:\\Angular_Projects\\YouRead\\src\\themes\\generated\\dx.generic.you-read-scheme.css"; */
 .app{
-  background-color: #2a2a2a;
-  color: #dedede;
-  color: #1ca8dd;
-  font-weight: 400;
-  font-size: 12px;
-  font-family: "Helvetica Neue","Segoe UI",helvetica,verdana,sans-serif;
-  line-height: 1.33334;
+  height: 100%;
 }
 
 .app-grid{

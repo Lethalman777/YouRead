@@ -1,8 +1,8 @@
 <div class="center-items">
-  <app-normal-control [props]="{label:'szukaj', formControl:searchTerm, placeHolder:'szukaj...'}" [stylingMode]="'outlined'"></app-normal-control>
+  <app-auto-complete-control [controlProps]="{label:'szukaj', placeHolder:'szukaj...', allTags:suggestions}" label="szukaj" placeHolder="szukaj..." [formControl]="searchTerm"></app-auto-complete-control>
   <div class="center-items">
     <dx-button
-      class="responsive-paddings border-curved"
+      class="responsive-paddings border-curved standard-margin button-normal"
       style="margin-left: 10px;"
       (click)="onSearch()">
       <i class="fa fa-search"></i>

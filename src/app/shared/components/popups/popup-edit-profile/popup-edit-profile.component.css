@@ -1,3 +1,57 @@
 .popup-edit-profile{
   justify-self: center;
 }
+
+.username-box{
+  max-width: 500px;
+  margin: 10px;
+}
+
+.description-box{
+  max-width: 500px;
+  height: 150px;
+  margin: 10px;
+}
+
+.image-box{
+  margin: 10px;
+}
+
+.button-box{
+  margin: 10px
+}
+
+.background-image{
+  width: 70%;
+  height: 90%;
+  min-height: 100px;
+  max-height: 150px;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.background-image-box{
+  width:100%;
+  height: 100%;
+  min-height: 100px;
+  max-height: 150px;
+  grid-row: 1 / 2;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.profile-image-box{
+  grid-column: 1 / 2;
+  align-self: center;
+  width: 100px;
+  height: 100px;
+  justify-content: stretch;
+  justify-items: stretch;
+}
+
+.profile-image{
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: 3px solid dimgray;
+}

@@ -1,13 +1,16 @@
 <dx-popup
   [(visible)]="isPopupVisible"
-  contentTemplate="popup-content">
+  contentTemplate="popup-content"
+  [showTitle]="false"
+  width="auto"
+  height="auto">
   <div *dxTemplate="let data of 'popup-content'">
-    <div>
-      <p>{{message}}</p>
-    </div>
-    <div>
-      <button (click)="submit(true)">Zatwierdź</button>
-      <button (click)="submit(false)">Anuluj</button>
+    <div class="center-items" style="flex-direction: column;">
+        <p style="text-align: center;">{{message}}</p>
+      <div class="center-items">
+        <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="submit(true)">Zatwierdź</dx-button>
+        <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="submit(false)">Anuluj</dx-button>
+      </div>
     </div>
   </div>
 </dx-popup>

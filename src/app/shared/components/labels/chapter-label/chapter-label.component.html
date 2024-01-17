@@ -1,8 +1,8 @@
-<div class="responsive-paddings dx-card border-curved center-items chapter-box">
-    <!-- <div class="chapter-number">
-      {{chapter.chapterNumber}}
-    </div> -->
-    <div class="chapter-title">
-      {{chapter.title}}
-     </div>
+<div
+  class="responsive-paddings dx-card border-curved center-items chapter-box button-normal"
+  [ngClass]="isSelected ? 'chapter-selected' : 'button-normal'"
+>
+  <div class="chapter-title">
+    {{chapter.title}}
+  </div>
 </div>

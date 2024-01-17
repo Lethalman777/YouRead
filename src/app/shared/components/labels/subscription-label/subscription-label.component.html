@@ -1,0 +1,37 @@
+<div class="profile-info-box">
+  <div class="profile-info-grid dx-card border-curved responsive-paddings">
+    <div class="profile-background-image-box">
+      <img class="profile-background-image" [src]="profile.backgroundImage" alt="PNG Image">
+    </div>
+    <div class="profile-label">
+      <div class="profile-label-box">
+        <div class="profile-label-grid">
+          <div class="profile-image-box">
+            <img class="profile-image" [src]="profile.image" alt="PNG Image">
+          </div>
+          <div class="profile-box text-color">
+            <div class="profile-first-row">
+              <span class="profile-name">
+                {{profile.username}}
+              </span>
+              <div class="profile-subscription-button" *ngIf="isLoggedProfile">
+                <dx-button
+                  class="responsive-paddings border-curved standard-margin"
+                  [ngClass]="isSubscribed ? 'clicked-button' : 'button-normal' "
+
+                  (click)="subscribe()"
+                >
+                  <i class="fa fa-bell" aria-hidden="true"></i>
+                  {{ isSubscribed ? 'Zasubskrybowano' : 'Subskrybuj' }}
+                </dx-button>
+              </div>
+            </div>
+            <span class="profile-description">
+              {{profile.description}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

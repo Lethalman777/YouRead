@@ -7,16 +7,17 @@
     <dxi-row></dxi-row>
     <dxi-row></dxi-row>
 
-    <dxi-item style="margin-top: 10px; margin-bottom: 10px; max-width: 350px;">
+    <dxi-item style="margin-top: 10px; margin-bottom: 10px; max-width: 550px;">
       <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location>
       <div class="center-items" style="justify-content: start;">
-        <app-normal-control [props]="{label:'szukaj', formControl:searchTerm, placeHolder:'szukaj...'}" [stylingMode]="'outlined'"></app-normal-control>
+        <app-auto-complete-control [controlProps]="{label:'szukaj', placeHolder:'szukaj...', allTags:suggestions}" label="szukaj" placeHolder="szukaj..." [formControl]="searchTerm"></app-auto-complete-control>
         <dx-button
-          class="responsive-paddings border-curved"
+          class="responsive-paddings border-curved standard-margin button-normal"
           style="margin-left: 10px;"
           (click)="onSubmit()">
-          <i class="fa fa-search"></i>
+          <i class="fa fa-search"></i> Szukaj
         </dx-button>
+        <!-- <app-select-control [controlProp]="{label:'Sortuj według', formControl:sortBy}" placeholder="sortuj według" [options]="sortByOptions" [valueTag]="'enum'" (SelectedOptionEvent)="sortList($event)"></app-select-control> -->
       </div>
     </dxi-item>
     <dxi-item style="margin-top: 10px; margin-bottom: 10px;">

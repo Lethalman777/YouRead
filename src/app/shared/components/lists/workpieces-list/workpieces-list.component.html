@@ -12,6 +12,9 @@
   </dxi-item>
 </dx-responsive-box> -->
 
+<div class="sort-box">
+  <app-select-control [controlProp]="{label:'Sortuj według', formControl:sortBy}" placeholder="sortuj według" [options]="sortByOptions" [valueTag]="'enum'" (SelectedOptionEvent)="handleSortBy($event)"></app-select-control>
+</div>
 <div class="responsive-paddings center-items">
   <div class="workpiece-grid" id="workpieces-list">
     <div *ngFor="let workpiece of workpieces; let i = index">

@@ -1,6 +1,9 @@
 <div class="profile-dashboard-box">
+  <div class="sort-box">
+    <app-select-control [controlProp]="{label:'Sortuj według', formControl:sortBy}" placeholder="sortuj według" [options]="sortByOptions" [valueTag]="'enum'" (SelectedOptionEvent)="handleSortBy($event)"></app-select-control>
+  </div>
   <div *ngIf="!isCommentShown">
-    <div *ngFor="let post of posts">
+    <div class="profile-dashboard-post" *ngFor="let post of posts">
       <app-post-read (PostCommentsEvent)="handlePostCommentsEvent($event)" [props]="{post:post, isExtended:false}"></app-post-read>
     </div>
   </div>

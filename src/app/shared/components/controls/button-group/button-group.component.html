@@ -6,5 +6,14 @@
   [(selectedItems)]="selectedOptions"
   width="100%"
   heigth="100%"
+  buttonTemplate="customTemplate"
 >
+<div class="button-normal" *dxTemplate="let data of 'customTemplate'">
+  <ng-container [ngTemplateOutlet]="customTemplate" [ngTemplateOutletContext]="{ data: data }"></ng-container>
+</div>
 </dx-button-group>
+
+<ng-template #customTemplate let-buttonData="data">
+  <!-- Define your custom button content here -->
+  {{ buttonData.text }}
+</ng-template>

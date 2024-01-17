@@ -12,7 +12,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class WorkpieceSetupPageComponent {
   genre:GenreEnum=GenreEnum.mixed
-  language:LanguageEnum=LanguageEnum.Polski
+  language:LanguageEnum=LanguageEnum.Polish
   userProfileId:number = 0
   workpiece!:WorkpieceUpdate
   date:Date=new Date()

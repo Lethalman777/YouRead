@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment.prod';
 import { SearchWorkpiece } from '../models/Search';
 import { WorkpieceCreate, WorkpieceUpdate, WorkpieceRead, WorkpieceLabel } from '../models/Workpiece';
+import { StringLabel } from '../models/Other';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,11 @@ export class WorkpieceService {
   public getHistoryWorkpieces(id:number):Observable<WorkpieceLabel[]>{
     return this.http.get<WorkpieceLabel[]>(`${this.apiUrl}/${this.url}/History/${id}`)
   }
+
+  public getWorkpieceTitles():Observable<StringLabel[]>{
+    return this.http.get<StringLabel[]>(`${this.apiUrl}/${this.url}/WorkpieceTitles`)
+  }
+
 
   public deleteWorkpiece(id:number):Observable<any>{
     console.log("ghgh")

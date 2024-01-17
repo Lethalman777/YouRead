@@ -16,6 +16,12 @@
   flex-direction: row;
 }
 
+.chapter-selected{
+  background-color: var(--base-accent);
+  border: solid 2px var(--base-bg);
+  color: var(--base-bg);
+}
+
 .chapter-number{
   font-size: large;
   display: flex;

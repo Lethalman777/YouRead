@@ -3832,7 +3832,7 @@
   display: block;
 }
 .dx-scrollview-content {
-  position: static;
+  /* position: static; */
 }
 .dx-scrollview-content::after,
 .dx-scrollview-content::before {

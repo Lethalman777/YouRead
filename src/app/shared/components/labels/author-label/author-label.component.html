@@ -4,21 +4,18 @@
       <img class="author-image" [src]="author.image" alt="PNG Image">
     </div>
     <div class="author-box" (click)="goToProfile()">
-      <span class="author-name">
-        {{author.username}}
+      <span class="author-name text-color">
+        <strong>{{author.username}}</strong>
       </span>
-      <span class="author-subscriptions" *ngIf="isSubscribedVisible">
+      <span class="author-subscriptions text-color">
         {{author.subscribers}} subskrybentów
       </span>
     </div>
     <div class="author-subscription-button" *ngIf="isSubscribedVisible">
       <dx-button
-        class="responsive-paddings border-curved"
-        [ngStyle]="{
-          'color': 'white',
-          'background-color': isSubscribed ? 'green' : 'dimgray',
-          'border-color': isSubscribed ? 'green' : 'dimgray'
-        }"
+        class="responsive-paddings border-curved standard-margin"
+        [ngClass]="isSubscribed ? 'clicked-button' : 'button-normal' "
+
         (click)="subscribe()"
       >
         <i class="fa fa-bell" aria-hidden="true"></i>
@@ -27,5 +24,3 @@
     </div>
   </div>
 </div>
-
-

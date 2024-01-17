@@ -10,3 +10,12 @@ export type Subscription = {
   subscribedProfileId:number
   dateOfCraetion:Date
 }
+
+export type SubscriptionLabel = {
+  id:number
+  username:string
+  image:string
+  backgroundImage:string
+  description:string
+  subscribers:number
+}

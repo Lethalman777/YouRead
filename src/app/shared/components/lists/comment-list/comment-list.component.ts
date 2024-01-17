@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { CommentTypeEnum } from 'src/app/shared/enums/CommentEnum';
+import { SortByEnum, getSortByOptions } from 'src/app/shared/enums/SortByEnum';
 import { CommentRead } from 'src/app/shared/models/Comment';
 import { SearchParam } from 'src/app/shared/models/Search';
 import { CommentService } from 'src/app/shared/services/comment.service';
@@ -23,10 +25,31 @@ export class CommentListComponent {
     })
   }
 
+  @Input() isSortByVisible = true
+
   type!:CommentTypeEnum
   comments:CommentRead[]=[]
+  sortByOptions=getSortByOptions().filter(item=>item.enum == SortByEnum.likeAsc || item.enum == SortByEnum.dateDesc)
+  sortBy= new FormControl('')
 
   constructor(private commentService:CommentService){
+
+  }
+
+  handleSortBy(sortOption:SortByEnum){
+    switch(sortOption){
+      case SortByEnum.likeAsc:
+        this.comments.sort((a, b) => {
+          return (b.information.likeCount - b.information.dislikeCount/2) - (a.information.likeCount - a.information.dislikeCount/2)
+        });
+        break;
+      case SortByEnum.dateDesc:
+        this.comments.sort((a, b) => {
+          return a.information.publicationDate.getDate() - b.information.publicationDate.getDate()
+        });
+        break;
+      default: break;
+    }
 
   }
 }

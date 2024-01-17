@@ -10,7 +10,7 @@
       <app-profile-subscriptions [inputProfileId]="profileId"></app-profile-subscriptions>
     </div>
     <div *ngSwitchCase="3">
-      <app-profile-new-post></app-profile-new-post>
+      <app-profile-new-post (NewPostEvent)="newPostSubmitted()"></app-profile-new-post>
     </div>
     <div *ngSwitchDefault>Invalid option selected.</div>
   </div>

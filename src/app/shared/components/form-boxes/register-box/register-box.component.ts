@@ -16,6 +16,7 @@ export class RegisterBoxComponent {
   isWrongDate: boolean = false;
   isUsedEmail: boolean = false;
   isDifferentPasswords: boolean = false;
+  isError:boolean=false
 
 constructor(private userService:UserService,  private accountService:AccountService, private router: Router){
     this.formModel = new FormGroup({
@@ -37,26 +38,20 @@ constructor(private userService:UserService,  private accountService:AccountServ
          Validators.minLength(6)
         ]),
       }),
+      birthDate: new FormControl(new Date(String(new Date().getFullYear()-15)+"-01-01"))
     });
   }
 
   registration(){
-    this.isWrongDate = !this.formModel.valid;
-    if (
-      this.formModel.value.passwordGroup.psd !=
-      this.formModel.value.passwordGroup.pconfirm
-    ) {
-      this.isDifferentPasswords = true;
-      return;
+    if(!this.formModel.valid || this.password.value != this.passwordConfirm.value){
+      this.isError = true
+      return
     }
-    this.isDifferentPasswords = false;
-
-    if(this.formModel.valid){
       const user:UserCreate={
       email:this.formModel.value.email,
       username:this.formModel.value.username,
       password:this.formModel.value.passwordGroup.psd,
-      dateOfBirth:new Date()
+      dateOfBirth:this.birthDate.value
       }
       console.log(user)
       this.userService.register(user)
@@ -72,7 +67,6 @@ constructor(private userService:UserService,  private accountService:AccountServ
         })
       //this.accountService.register(user).subscribe((data)=>{console.log(data)})
       this.router.navigate(['/login']);
-    }
   }
   get email() {
     return this.formModel.get('email') as FormControl;
@@ -88,5 +82,9 @@ constructor(private userService:UserService,  private accountService:AccountServ
 
   get passwordConfirm() {
     return this.formModel.get('passwordGroup')?.get('pconfirm') as FormControl;
+  }
+
+  get birthDate() {
+    return this.formModel.get('birthDate') as FormControl;
   }
 }

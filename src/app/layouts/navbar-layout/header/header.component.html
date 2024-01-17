@@ -1,10 +1,10 @@
 <header>
-  <dx-toolbar class="header-toolbar">
+  <dx-toolbar class="header-toolbar card-color">
     <dxi-item
       *ngIf="menuToggleEnabled"
       location="before"
       widget="dxButton"
-      cssClass="menu-button"
+      cssClass="menu-button text-color"
       [options]="{
         icon: 'menu',
         stylingMode: 'text',
@@ -13,7 +13,7 @@
     </dxi-item>
     <dxi-item
       location="before"
-      cssClass="header-title"
+      cssClass="header-title text-color"
       *ngIf="title"
       [text]="title">
       <div (click)="titleClick()">{{title}}</div>

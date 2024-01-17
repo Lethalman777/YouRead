@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { getGenreOptions } from 'src/app/shared/enums/GenreEnum';
 import { getDateRadio } from 'src/app/shared/functions/Date';
 import { SearchDataTypeEnum, SearchOperatorEnum, TypeOfEnum } from 'src/app/shared/enums/SearchEnum';
 import { getEmptyParam, getSearchParam } from 'src/app/shared/functions/SearchFunction';
 import { CheckBoxOption } from 'src/app/shared/models/Control';
 import { SearchParam } from 'src/app/shared/models/Search';
+import { WorkpieceService } from 'src/app/shared/services/workpiece.service';
+import { SortByEnum, getSortByOptions } from 'src/app/shared/enums/SortByEnum';
+import { getGenreCheckboxes, getGenreValues } from 'src/app/shared/enums/GenreEnum';
 
 @Component({
   selector: 'app-sort-box',
@@ -16,15 +18,25 @@ export class SortBoxComponent {
   @Output() SortEvent:EventEmitter<{searchParam:SearchParam, searchTerm:string}> = new EventEmitter<{searchParam:SearchParam, searchTerm:string}>()
   loading = false
   formModel!:FormGroup
+  suggestions:{label:string}[] = []
   radioOptions=getDateRadio()
-  constructor(){
+  constructor(public workpieceService:WorkpieceService){
     this.formModel=new FormGroup({
       searchTerm: new FormControl(''),
       dateRange: new FormControl(),
-      genres: new FormControl(getGenreOptions()),
+      genres: new FormControl(getGenreCheckboxes()),
       tags: new FormControl([])
     })
     console.log(this.dateRange.value)
+  }
+
+  ngOnInit(): void {
+    this.workpieceService.getWorkpieceTitles().subscribe(data=>{
+      this.suggestions = data.map((item)=>{
+        return {label:item.value}
+      })
+      console.log(this.suggestions)
+    })
   }
 
   async onSubmit() {
@@ -50,7 +62,9 @@ export class SortBoxComponent {
         true, 'Count', getSearchParam('Tag', element, undefined, undefined, undefined, undefined, undefined, undefined,
         'v', TypeOfEnum.WorkpieceTag)))
     })
+
     if(this.dateRange.value != null){
+      console.log("hjh")
       searchParam.params.push(getSearchParam('CreationDate', this.dateRange.value, SearchDataTypeEnum.date, SearchOperatorEnum.greaterThanOrEqual))
     }
 
@@ -77,3 +91,4 @@ export class SortBoxComponent {
     return this.formModel.get('tags') as FormControl;
   }
 }
+

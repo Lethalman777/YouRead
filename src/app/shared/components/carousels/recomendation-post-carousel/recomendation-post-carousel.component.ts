@@ -3,6 +3,8 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { PostRead } from 'src/app/shared/models/Post';
 import { SearchParam } from 'src/app/shared/models/Search';
 import { PostService } from 'src/app/shared/services/post.service';
+import { TokenService } from 'src/app/shared/services/token.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-recomendation-post-carousel',
@@ -12,10 +14,14 @@ import { PostService } from 'src/app/shared/services/post.service';
 export class RecomendationPostCarouselComponent {
   @Input() set props(value:SearchParam){
     this.param=value
-    this.postService.searchPosts(this.param).subscribe(data=>{
-      this.posts=data
-      console.log(this.posts)
-    })
+    if(this.tokenService.isLoggedIn()){
+      this.userService.loggedUserId().subscribe(id=>{
+        this.postService.getSubscribedPosts(value.value).subscribe(data=>{
+          this.posts=data
+          console.log(this.posts)
+        })
+      })
+    }
   }
 
   param!:SearchParam
@@ -23,7 +29,7 @@ export class RecomendationPostCarouselComponent {
   indext:number=0
   isFocused:boolean=false
 
-  constructor(private postService:PostService){
+  constructor(private postService:PostService, private tokenService:TokenService, private userService:UserService){
 
   }
 
@@ -33,7 +39,8 @@ export class RecomendationPostCarouselComponent {
     "slidesToShow": Number((window.innerWidth / 550).toFixed(0)),
     "slidesToScroll": Number((window.innerWidth / 550).toFixed(0)),
     infinite: true,
-    ariableWidth: true
+    ariableWidth: true,
+    arrows: false
   };
 
   updateSlideConfig() {
@@ -42,7 +49,8 @@ export class RecomendationPostCarouselComponent {
       slidesToShow: Number((windowWidth / 550).toFixed(0)),
       slidesToScroll: Number((windowWidth / 550).toFixed(0)),
       infinite: true,
-      ariableWidth: true
+      ariableWidth: true,
+      arrows: false
     };
 
     this.slickCarousel.unslick();

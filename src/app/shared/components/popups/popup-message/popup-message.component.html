@@ -3,7 +3,9 @@
   [showTitle]="false"
   [hideOnOutsideClick]="true"
   (onHiding)="onPopupClosed()"
-  contentTemplate="popup-content">
+  contentTemplate="popup-content"
+  width="auto"
+  height="auto">
   <div *dxTemplate="let data of 'popup-content'">
     {{message}}
   </div>

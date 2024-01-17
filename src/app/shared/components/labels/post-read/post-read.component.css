@@ -26,6 +26,14 @@
   width: 100%;
 }
 
+.post-read-comments:hover{
+  cursor: pointer;
+}
+
+.read-more:hover{
+  cursor: pointer;
+}
+
 .post-author{
   grid-row: 1 / 2;
 }
@@ -41,7 +49,8 @@
   border: none;
   /* background-color: var(--background-color); */
   text-align: start;
-  color:dimgray;
+  color:var(--base-text-color);
+  background-color: var(--base-card-color);
   font-size: medium;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }

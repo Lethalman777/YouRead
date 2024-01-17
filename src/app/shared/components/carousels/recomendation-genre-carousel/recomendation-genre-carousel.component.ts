@@ -1,6 +1,7 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
-import { SelectEnum, GenreEnum } from 'src/app/shared/enums/GenreEnum';
+import { GenreEnum } from 'src/app/shared/enums/GenreEnum';
+import { SelectEnum } from 'src/app/shared/models/Other';
 
 @Component({
   selector: 'app-recomendation-genre-carousel',
@@ -26,7 +27,8 @@ export class RecomendationGenreCarouselComponent {
     "slidesToShow": Number((window.innerWidth / 300).toFixed(0)),
     "slidesToScroll": Number((window.innerWidth / 300).toFixed(0)),
     infinite: true,
-    ariableWidth: true
+    ariableWidth: true,
+    arrows: false
   };
 
   updateSlideConfig() {
@@ -35,7 +37,8 @@ export class RecomendationGenreCarouselComponent {
       slidesToShow: Number((windowWidth / 300).toFixed(0)),
       slidesToScroll: Number((windowWidth / 300).toFixed(0)),
       infinite: true,
-      ariableWidth: true
+      ariableWidth: true,
+      arrows: false
     };
 
     this.slickCarousel.unslick();

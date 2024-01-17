@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommentTypeEnum } from 'src/app/shared/enums/CommentEnum';
 import { CommentWrite } from 'src/app/shared/models/Comment';
+import { SearchParam } from 'src/app/shared/models/Search';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -27,11 +28,14 @@ export class CommentWriteComponent {
       commentAnsweredId:value.commentAnsweredId
     }
   }
+  @Output() RerenderEvent:EventEmitter<any> = new EventEmitter<any>()
+
   props!:CommentWriteProps
   formModel: FormGroup;
   userId!:number
   isFocused:boolean = false
   loggedUserProfileId:number=0
+  isConfirmVisible:boolean = false
 
   constructor(private commentService:CommentService, private tokenService:TokenService, private userService:UserService){
 
@@ -55,7 +59,13 @@ export class CommentWriteComponent {
     if(!this.formModel.valid){
       return
     }
-    let postId:number = 0
+    this.isConfirmVisible = true
+  }
+
+  onPopupConfirmed(isConfirmed:boolean){
+    this.isConfirmVisible = false
+    if(isConfirmed){
+      let postId:number = 0
     let workpieceId:number = 0
     if(this.props.type == CommentTypeEnum.workpiece){
       workpieceId = this.props.targetId
@@ -76,12 +86,15 @@ export class CommentWriteComponent {
       comment.commentAnsweredId = this.props.commentAnsweredId
       this.commentService.createComment(comment).subscribe(data=>{
         console.log(data)
+        this.RerenderEvent.emit()
       })
     } else {
       console.log(comment)
       this.commentService.createComment(comment).subscribe(data=>{
         console.log(data)
+        this.RerenderEvent.emit()
       })
+    }
     }
   }
 

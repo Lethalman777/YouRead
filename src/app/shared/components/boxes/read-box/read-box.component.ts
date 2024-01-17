@@ -40,18 +40,33 @@ export class ReadBoxComponent {
     // })
   }
 
+  getRightPage(){
+    if(this.chapterPages.rightPage > this.chapterPages.pages.length-1){
+      return ""
+    } else {
+      return this.chapterPages.pages[this.chapterPages.rightPage]
+    }
+  }
+
   turnPage(isRight:boolean){
     if(isRight){
-      this.chapterPages.leftPage=this.chapterPages.rightPage
-      this.chapterPages.rightPage++
+      if(this.chapterPages.rightPage === this.chapterPages.pages.length-1 || this.chapterPages.leftPage === this.chapterPages.pages.length-1){
+        return
+      }
+      this.chapterPages.leftPage+=2
+      this.chapterPages.rightPage+=2
     }else{
-      this.chapterPages.rightPage=this.chapterPages.leftPage
-      this.chapterPages.leftPage--
+      if(this.chapterPages.leftPage === 0){
+        return
+      }
+      this.chapterPages.rightPage-=2
+      this.chapterPages.leftPage-=2
     }
 
     if(this.tokenService.isLoggedIn()){
       this.readHistory.leftPage = this.chapterPages.leftPage
       this.readHistory.rightPage = this.chapterPages.rightPage
+      console.log(this.readHistory.leftPage, this.readHistory.rightPage)
       this.readHistoryService.updateReadHistory(this.readHistory).subscribe(data=>{
         console.log(data)
       })

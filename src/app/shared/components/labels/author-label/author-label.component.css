@@ -24,11 +24,15 @@
   justify-items: stretch;
 }
 
+.author-image-box:hover{
+  cursor:pointer;
+}
+
 .author-image{
   width: 90%;
   height: 90%;
   border-radius: 50%;
-  border: 2px solid dimgray;
+  border: 2px solid var(--base-accent);
 }
 
 .author-box{
@@ -43,10 +47,13 @@
   height: 100%;
 }
 
+.author-box:hover{
+  cursor:pointer;
+}
+
 .author-subscriptions{
   font-size:smaller;
   text-align: center;
-  color: dimgray;
 }
 
 .author-name{

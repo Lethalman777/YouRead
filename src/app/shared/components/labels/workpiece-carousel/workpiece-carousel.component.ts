@@ -11,6 +11,7 @@ export class WorkpieceCarouselComponent {
     this.workpiece=value
   }
   @Input() isRight:boolean = true
+  @Input() carouselName:string = ""
   @Output() WorkpieceFocusEvent = new EventEmitter<number>()
   @Output() WorkpieceFocusCloseEvent = new EventEmitter<number>()
 

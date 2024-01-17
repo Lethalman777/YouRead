@@ -54,7 +54,6 @@ export class HeaderComponent {
     //this.authService.getUser().then((e) => this.user = e.data);
 
     this.isLogged = this.tokenService.isLoggedIn()
-    console.log(this.isLogged)
     if(this.isLogged){
       this.userService.loggedUserId().subscribe(data=>{
         this.userService.getProfile(data.userId).subscribe(data1=>{

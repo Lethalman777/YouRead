@@ -11,9 +11,6 @@ export class PopupConfirmComponent {
   @Input()message:string=""
 
   constructor() {
-    if(this.isPopupVisible){
-      console.log('fff')
-    }
   }
 
   submit(isConfirmed:boolean){

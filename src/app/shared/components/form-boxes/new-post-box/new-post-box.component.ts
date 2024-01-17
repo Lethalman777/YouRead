@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostCreate } from 'src/app/shared/models/Post';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -14,6 +14,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class NewPostBoxComponent {
   formModel: FormGroup;
   loggedUserProfileId:number=0
+  isError:boolean=false
+  isConfirmVisible:boolean = false
+
+  @Output() NewPostEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private postService:PostService,
@@ -29,7 +33,8 @@ export class NewPostBoxComponent {
     this.formModel = new FormGroup({
       content: new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.maxLength(1050),
       ]),
       images: new FormControl(new FormData()),
     });
@@ -37,25 +42,33 @@ export class NewPostBoxComponent {
 
   submit(){
     if(!this.formModel.valid){
+      this.isError = true
       return
     }
+    this.isConfirmVisible = true
+  }
 
-    const post:PostCreate = {
-      content: this.content.value,
-      images: [],
-      userProfileId: this.loggedUserProfileId
-    }
-    console.log("kkk")
-    console.log(this.images.value)
-    this.storageService.uploadMultipleImages(this.images.value).subscribe(data=>{
-      console.log(data)
-      data.forEach(image => {
-        post.images.push(image.image)
-      });
-      this.postService.createPost(post).subscribe(data1=>{
-        console.log(data1)
+  onPopupConfirmed(isConfirmed:boolean){
+    this.isConfirmVisible = false
+    if(isConfirmed){
+      const post:PostCreate = {
+        content: this.content.value,
+        images: [],
+        userProfileId: this.loggedUserProfileId
+      }
+      console.log("kkk")
+      console.log(this.images.value)
+      this.storageService.uploadMultipleImages(this.images.value).subscribe(data=>{
+        console.log(data)
+        data.forEach(image => {
+          post.images.push(image.image)
+        });
+        this.postService.createPost(post).subscribe(data1=>{
+          console.log(data1)
+          this.NewPostEvent.emit()
+        })
       })
-    })
+    }
   }
 
   get content() {

@@ -1,9 +1,23 @@
 <form class="form-grid center-items" [formGroup]="formModel" (ngSubmit)='submit()'>
-  <div style="min-width: 600px;">
+  <div class="content-box">
     <app-text-area-control [props]="{label:'Treść', formControl:content, placeHolder:'Napisz post...', type:2, isLabelVisible:false}"></app-text-area-control>
+    <div *ngIf="formModel.invalid && isError">
+      <app-form-validation [validationMessages]="[
+          {isValid:content.hasError('required'), message:'pole obowiązkowe'},
+          {isValid:content.hasError('minlength'), message:'wymagane minimum 3 znaki'},
+          {isValid:content.hasError('maxlength'), message:'maksimum 1050 znaków'}
+
+        ]"
+      ></app-form-validation>
+    </div>
+    <div class="center-items" style="margin-top: 10px;">
+      <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="submit()" type="submit">Opublikuj</dx-button>
+    </div>
   </div>
-  <div class="center-items">
+  <div *ngIf="isConfirmVisible">
+    <app-popup-confirm [message]="'Czy na pewno chcesz opublikować post ?'" [isPopupVisible]="isConfirmVisible" (HidePopupEvent)="onPopupConfirmed($event)"></app-popup-confirm>
+  </div>
+  <!-- <div class="center-items">
     <app-file-control [controlProp]="{label:'Zdjęcia', formControl:images}" [isMultiple]="true"></app-file-control>
-  </div>
-  <dx-button class="responsive-paddings border-curved" (click)="submit()" type="submit">Opublikuj</dx-button>
+  </div> -->
 </form>

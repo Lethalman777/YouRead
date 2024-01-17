@@ -23,7 +23,15 @@
 .menu-container ::ng-deep .dx-treeview .dx-treeview-item {
   padding-left: 0;
   padding-right: 0;
-  color: black;
+  color: var(--base-text-color);
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-treeview-item:hover .dx-icon {
+  color: var(--base-accent);
+}
+
+.menu-container ::ng-deep .dx-treeview .dx-treeview-item:hover {
+  color: var(--base-accent);
 }
 
 .menu-container ::ng-deep .dx-treeview .dx-treeview-item .dx-icon {

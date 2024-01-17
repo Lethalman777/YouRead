@@ -28,6 +28,10 @@
   flex-direction: column;
 }
 
+.genre-carousel-box:hover{
+  cursor: pointer;
+}
+
 .genre-carousel{
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-profile-new-post',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-new-post.component.css']
 })
 export class ProfileNewPostComponent {
+  @Output() NewPostEvent: EventEmitter<any> = new EventEmitter<any>();
 
+  newPostSubmitted(){
+    this.NewPostEvent.emit()
+  }
 }

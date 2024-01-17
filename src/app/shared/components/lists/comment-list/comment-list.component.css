@@ -1,3 +1,9 @@
 .comment-list-box{
   width:100%;
 }
+
+.sort-box{
+  max-width: 200px;
+  margin-left: 35px;
+  margin-top: 10px;
+}

@@ -1,9 +1,70 @@
+<div class="responsive-paddings dx-card border-curved workpiece-label-box">
+  <dx-responsive-box>
+    <dxi-col></dxi-col>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+    <dxi-row></dxi-row>
+
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="0" [col]="0" [rowspan]="2"></dxi-location>
+      <div class="workpiece-title-description">
+        <div class="workpiece-description">
+          <dx-text-area
+          [value]="workpiece.description"
+          [readOnly]="true"
+          [focusStateEnabled]="false"
+          [hoverStateEnabled]="false"
+          [stylingMode]="'underlined'"
+          height="100%"
+          width="90%"
+        >
+        </dx-text-area>
+        </div>
+      </div>
+    </dxi-item>
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="2" [col]="0"></dxi-location>
+      <div class="workpiece-extra-info-box text-color">
+        <span class="workpiece-extra-info">
+          Gatunek: <span style="font-weight: bold; text-align: center;">{{getGenreLabel(workpiece.genre)}}</span>
+        </span>
+        <span class="workpiece-extra-info">
+          Język: <span style="font-weight: bold; text-align: center;">{{getLanguageLabel(workpiece.language)}}</span>
+        </span>
+      </div>
+    </dxi-item>
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="3" [col]="0"></dxi-location>
+      <div class="workpiece-read-button-box">
+        <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="read()">Zacznij Czytać</dx-button>
+      </div>
+    </dxi-item>
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="4" [col]="0"></dxi-location>
+      <div class="workpiece-author">
+        <app-author-label [props]="{author:workpiece.author, isSubscribedVisible:true}"></app-author-label>
+      </div>
+    </dxi-item>
+    <dxi-item>
+      <dxi-location screen="xs sm md lg" [row]="5" [col]="0"></dxi-location>
+      <div class="workpiece-information">
+        <app-information-label [props]="{
+          targetId:workpiece.id,
+          information:workpiece.information,
+          object:reactionObject
+        }">
+        </app-information-label>
+      </div>
+    </dxi-item>
+  </dx-responsive-box>
+</div>
+<!--
 <div class="workpiece-label-box dx-card responsive-paddings border-curved">
   <div class="workpiece-label-grid" >
     <div class="workpiece-title-description">
-      <!-- <div class="workpiece-title">
-        <h1>{{workpiece.title}}</h1>
-      </div> -->
       <div class="workpiece-description">
         {{workpiece.description}}
       </div>
@@ -31,4 +92,4 @@
       </app-information-label>
     </div>
   </div>
-</div>
+</div> -->

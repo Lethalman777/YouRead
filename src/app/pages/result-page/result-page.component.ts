@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GenreEnum } from 'src/app/shared/enums/GenreEnum';
 import { SearchDataTypeEnum, SortTypeEnum, TypeOfEnum } from 'src/app/shared/enums/SearchEnum';
+import { SortByEnum } from 'src/app/shared/enums/SortByEnum';
 import { getEmptyParam, getSearchParam, getSearchWorkpiece } from 'src/app/shared/functions/SearchFunction';
 import { SearchParam, SearchWorkpiece } from 'src/app/shared/models/Search';
 import { WorkpieceLabel } from 'src/app/shared/models/Workpiece';
@@ -23,7 +24,8 @@ export class ResultPageComponent {
 
   constructor(private userService:UserService, private route: ActivatedRoute,
     private workpieceService:WorkpieceService, private tokenService:TokenService){}
-  ngOnInit(): void {
+
+    ngOnInit(): void {
     if(this.tokenService.isLoggedIn()){
       this.userService.loggedUserId().subscribe({
         next:(res)=>{

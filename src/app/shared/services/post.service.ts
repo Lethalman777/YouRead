@@ -23,6 +23,11 @@ export class PostService {
     return this.http.get<PostRead[]>(`${this.apiUrl}/${this.url}/${id}`)
   }
 
+  public getSubscribedPosts(id:number):Observable<PostRead[]>{
+    console.log(id)
+    return this.http.get<PostRead[]>(`${this.apiUrl}/${this.url}/Subscribed/${id}`)
+  }
+
   public searchPosts(searchParam:SearchParam):Observable<PostRead[]>{
     const jsonData = JSON.stringify(searchParam);
     let params = new HttpParams().set('query', jsonData);

@@ -32,6 +32,7 @@ export class CommentBoxComponent {
   props!:CommentBoxProps
   comments!:CommentRead[]
   isLogged:boolean = false
+  isRerender:boolean = false
 
   constructor(private commentService:CommentService, private tokenService:TokenService){
 
@@ -39,5 +40,11 @@ export class CommentBoxComponent {
 
   ngOnInit(): void {
    this.isLogged = this.tokenService.isLoggedIn()
+  }
+
+  rerender(){
+    console.log(this.isRerender)
+    this.isRerender = !this.isRerender
+    console.log(this.isRerender)
   }
 }

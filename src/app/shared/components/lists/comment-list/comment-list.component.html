@@ -1,3 +1,6 @@
+<div class="center-items sort-box" *ngIf="isSortByVisible">
+  <app-select-control [controlProp]="{label:'Sortuj według', formControl:sortBy}" placeholder="sortuj według" [options]="sortByOptions" [valueTag]="'enum'" (SelectedOptionEvent)="handleSortBy($event)"></app-select-control>
+</div>
 <div class="comment-list-box" *ngFor="let comment of comments">
   <app-comment-read [props]="{comment:comment, type:type}"></app-comment-read>
 </div>

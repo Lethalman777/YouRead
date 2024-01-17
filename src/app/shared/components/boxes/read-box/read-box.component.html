@@ -8,7 +8,7 @@
   <dxi-item>
     <dxi-location screen="xs sm md lg" [row]="0" [col]="0"></dxi-location>
     <div class="turn-page-button-box responsive-paddings">
-      <dx-button class="turn-page-button" (click)="turnPage(false)">
+      <dx-button class="turn-page-button responsive-paddings border-curved standard-margin button-normal" (click)="turnPage(false)">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
       </dx-button>
     </div>
@@ -17,7 +17,7 @@
   <dxi-item>
     <dxi-location screen="xs sm md lg" [row]="0" [col]="1"></dxi-location>
     <div class="turn-page-button-box responsive-paddings" style="justify-content: end;">
-      <dx-button class="turn-page-button" (click)="turnPage(true)">
+      <dx-button class="turn-page-button responsive-paddings border-curved standard-margin button-normal" (click)="turnPage(true)">
         <i class="fa fa-angle-right" aria-hidden="true"></i>
       </dx-button>
     </div>
@@ -30,13 +30,13 @@
 
   <dxi-item>
     <dxi-location screen="md lg" [row]="1" [col]="1"></dxi-location>
-    <app-read-workpiece-page class="read-page" [chapterPage]="chapterPages.pages[chapterPages.rightPage]"></app-read-workpiece-page>
+    <app-read-workpiece-page class="read-page" [chapterPage]="getRightPage()"></app-read-workpiece-page>
   </dxi-item>
 
   <dxi-item>
     <dxi-location screen="xs sm md lg" [row]="2" [col]="0"></dxi-location>
     <div class="turn-page-button-box responsive-paddings">
-      <dx-button class="turn-page-button" (click)="turnPage(false)">
+      <dx-button class="turn-page-button responsive-paddings border-curved standard-margin button-normal" (click)="turnPage(false)">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
       </dx-button>
     </div>
@@ -45,7 +45,7 @@
   <dxi-item>
     <dxi-location screen="xs sm md lg" [row]="2" [col]="1"></dxi-location>
     <div class="turn-page-button-box responsive-paddings" style="justify-content: end;">
-      <dx-button class="turn-page-button responsive-paddings" (click)="turnPage(true)">
+      <dx-button class="turn-page-button responsive-paddings border-curved standard-margin button-normal" (click)="turnPage(true)">
         <i class="fa fa-angle-right" aria-hidden="true"></i>
       </dx-button>
     </div>

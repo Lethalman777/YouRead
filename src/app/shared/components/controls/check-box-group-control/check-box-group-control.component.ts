@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CheckBoxOption } from 'src/app/shared/models/Control';
 
@@ -16,8 +16,11 @@ export interface CheckBoxGroupControlProps{
 export class CheckBoxGroupControlComponent {
   @Input() props!:CheckBoxGroupControlProps
   selectAll = false;
+  @ViewChild('seletAllCheckbox') seletAllCheckbox!: ElementRef;
 
-  toggleSelectAll() {
+  toggleSelectAll(e:any) {
+    console.log(e.value)
+    this.selectAll=e.value
     if (!this.selectAll) {
       this.props.formControl.value.forEach((element:CheckBoxOption) => {
         element.isChecked=false
@@ -30,7 +33,11 @@ export class CheckBoxGroupControlComponent {
     console.log(this.props.formControl.value)
   }
 
+
+
   toggleSelect() {
     this.selectAll=false
+    console.log(this.seletAllCheckbox)
+    console.log(this.selectAll)
   }
 }

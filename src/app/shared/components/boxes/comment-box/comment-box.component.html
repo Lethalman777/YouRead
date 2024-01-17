@@ -1,7 +1,9 @@
-<div class="comment-write-box responsive-paddings">
-  <h1>Komentarze</h1>
-  <div *ngIf="isLogged">
-    <app-comment-write [inputProps]="{targetId:props.targetId, type:props.type, isAnswer:false, commentAnsweredId:0}"></app-comment-write>
+<ng-container *rerender="isRerender">
+  <div class="comment-write-box responsive-paddings text-color">
+    <h1>Komentarze</h1>
+    <div *ngIf="isLogged">
+      <app-comment-write [inputProps]="{targetId:props.targetId, type:props.type, isAnswer:false, commentAnsweredId:0}" (RerenderEvent)="rerender()"></app-comment-write>
+    </div>
+    <app-comment-list [props]="{type:props.type, searchParam:props.searchParam}"></app-comment-list>
   </div>
-  <app-comment-list [props]="{type:props.type, searchParam:props.searchParam}"></app-comment-list>
-</div>
+</ng-container>

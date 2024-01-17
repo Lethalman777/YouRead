@@ -1,7 +1,7 @@
 import { GenreEnum } from "../enums/GenreEnum";
 import { SearchPageEnum } from "../enums/SearchEnum";
 
-export const  navigation = [
+export const  navigationLogged = [
   {
     text: 'Główna',
     path: '/home',
@@ -90,5 +90,73 @@ export const  navigation = [
     state:{
       type:SearchPageEnum.History
     }
+  }
+];
+
+export const  navigationNotLogged = [
+  {
+    text: 'Główna',
+    path: '/home',
+    icon: 'home',
+    state: {
+      type: SearchPageEnum.Main
+    }
+  },
+  {
+    text: 'Na czasie',
+    path: '/search',
+    icon: 'globe',
+    state: {
+      type: SearchPageEnum.Trending
+    }
+  },
+  {
+    text: 'Gatunki',
+    icon: 'bookmark',
+    state: {
+      type: SearchPageEnum.Genre
+    },
+    items: [
+      {
+        text: 'Obyczajowe',
+        path: '/search',
+        state:{
+          type: SearchPageEnum.Genre,
+          genre: GenreEnum.customary
+        }
+      },
+      {
+        text: 'Historyczne',
+        path: '/search',
+        state:{
+          type: SearchPageEnum.Genre,
+          genre: GenreEnum.historical
+        }
+      },
+      {
+        text: 'Fantasy',
+        path: '/search',
+        state:{
+          type: SearchPageEnum.Genre,
+          genre: GenreEnum.fantasy
+        }
+      },
+      {
+        text: 'Sensacyjne',
+        path: '/search',
+        state:{
+          type: SearchPageEnum.Genre,
+          genre: GenreEnum.sensational
+        }
+      },
+      {
+        text: 'Science-Fiction',
+        path: '/search',
+        state:{
+          type: SearchPageEnum.Genre,
+          genre: GenreEnum.scienceFiction
+        }
+      }
+    ]
   }
 ];

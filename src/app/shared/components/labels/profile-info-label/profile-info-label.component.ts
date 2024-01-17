@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SearchDataTypeEnum } from 'src/app/shared/enums/SearchEnum';
 import { getSearchParam } from 'src/app/shared/functions/SearchFunction';
 import { SearchParam } from 'src/app/shared/models/Search';
+import { SubscriptionCreate } from 'src/app/shared/models/Subscription';
 import { UserProfile } from 'src/app/shared/models/User';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { TokenService } from 'src/app/shared/services/token.service';
@@ -51,6 +52,15 @@ export class ProfileInfoLabelComponent {
 
   }
   subscribe(){
+    this.userService.loggedUserId().subscribe(data=>{
+      const createSubscription:SubscriptionCreate={
+        userProfileId: data.id,
+        subscribedProfileId: this.author.id,
+        dateOfCraetion: new Date()
+      }
+      this.subscriptionService.createSubscription(createSubscription).subscribe(data=>{
 
+      })
+    })
   }
 }

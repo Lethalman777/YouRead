@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SearchPageEnum } from 'src/app/shared/enums/SearchEnum';
+import { WorkpieceService } from 'src/app/shared/services/workpiece.service';
 
 @Component({
   selector: 'app-searcher',
@@ -10,8 +11,9 @@ import { SearchPageEnum } from 'src/app/shared/enums/SearchEnum';
 })
 export class SearcherComponent {
   formModel!:FormGroup
+  suggestions:{label:string}[] = []
 
-  constructor(private router:Router, public route:ActivatedRoute){
+  constructor(private router:Router, public route:ActivatedRoute, public workpieceService:WorkpieceService){
     this.formModel = new FormGroup({
       searchTerm: new FormControl('')
     })
@@ -24,6 +26,12 @@ export class SearcherComponent {
         this.onRouteChange(event);
       }
     });
+    this.workpieceService.getWorkpieceTitles().subscribe(data=>{
+      this.suggestions = data.map((item)=>{
+        return {label:item.value}
+      })
+      console.log(this.suggestions)
+    })
   }
 
   onRouteChange(routeEvent:any) {

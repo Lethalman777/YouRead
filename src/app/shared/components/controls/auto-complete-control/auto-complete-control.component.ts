@@ -4,7 +4,8 @@ import { Tags } from 'src/app/shared/constants/TagConstants';
 
 export interface AutoCompleteControlProps{
   label:string,
-  placeHolder:string
+  placeHolder:string,
+  allTags: {label: string}[]
 }
 
 @Component({
@@ -17,15 +18,17 @@ export class AutoCompleteControlComponent {
     console.log(value)
     this.props=value
     this.filteredOptions = this.formTag.value
+    this.allTags = value.allTags
+    this.tags = this.allTags
   }
 
   props!:AutoCompleteControlProps
   @Input()formControl:FormControl = new FormControl([])
+  @Input()label:string=""
+  @Input()placeHolder:string=""
   formTag: FormControl = new FormControl('');
-  allTags: {label: string}[] = Object.values(Tags).map((tag)=>{
-    return {label: tag}
-  })
-  tags:{label:string}[] = this.allTags
+  @Input()allTags: {label: string}[] = []
+  tags:{label:string}[] = []
 
 //   data:Array<{id: Number, label: String, icon: String}> = [
 //     { id: 1, label: "My profile", icon: "user" },

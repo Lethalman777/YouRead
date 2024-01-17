@@ -1,4 +1,5 @@
 import { CheckBoxOption } from "../models/Control"
+import { SelectEnum } from "../models/Other"
 
 export enum GenreEnum {
   mixed = 0,
@@ -7,12 +8,6 @@ export enum GenreEnum {
   scienceFiction = 3,
   customary = 4,
   sensational = 5
-}
-
-export type SelectEnum<T> = {
-  label: string
-  image:string
-  enum: T
 }
 
 export function getGenreValues():SelectEnum<GenreEnum>[]{
@@ -28,19 +23,21 @@ export function getGenreValues():SelectEnum<GenreEnum>[]{
   return options
 }
 
+export function getGenreCheckboxes():CheckBoxOption[]{
+  const options:CheckBoxOption[]=[
+    { label: "mieszany", value:GenreEnum.mixed, isChecked: false },
+    { label: "historyczne", value:GenreEnum.historical, isChecked: false },
+    { label: "fantastyka", value:GenreEnum.fantasy, isChecked: false },
+    { label: "science fiction", value:GenreEnum.scienceFiction, isChecked: false },
+    { label: "obyczajowe", value:GenreEnum.customary, isChecked: false },
+    { label: "sensacyjne", value:GenreEnum.sensational, isChecked: false },
+  ]
+
+  return options
+}
+
 export function getGenreLabel(genre:GenreEnum):string | undefined{
   const enums = getGenreValues()
   const label = enums.find(data=>data.enum==genre)?.label
   return label
-}
-
-export function getGenreOptions():CheckBoxOption[]{
-  return [
-    { label: "mieszany", value:GenreEnum.mixed, isChecked:false },
-    { label: "historyczne", value:GenreEnum.historical, isChecked:false },
-    { label: "fantastyka", value:GenreEnum.fantasy, isChecked:false },
-    { label: "science fiction", value:GenreEnum.scienceFiction, isChecked:false },
-    { label: "obyczajowe", value:GenreEnum.customary, isChecked:false },
-    { label: "sensacyjne", value:GenreEnum.sensational, isChecked:false }
-  ]
 }

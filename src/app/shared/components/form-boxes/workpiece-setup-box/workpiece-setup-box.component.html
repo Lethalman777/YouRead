@@ -29,7 +29,8 @@
           <div *ngIf="formModel.invalid && isError">
             <app-form-validation [validationMessages]="[
                 {isValid:title.hasError('required'), message:'pole obowiązkowe'},
-                {isValid:title.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+                {isValid:title.hasError('minlength'), message:'wymagane minimum 3 znaki'},
+                {isValid:title.hasError('maxlength'), message:'maksimum 50 znaków'}
               ]"
             ></app-form-validation>
           </div>
@@ -39,7 +40,8 @@
           <div *ngIf="formModel.invalid && isError">
             <app-form-validation [validationMessages]="[
                 {isValid:description.hasError('required'), message:'pole obowiązkowe'},
-                {isValid:description.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+                {isValid:description.hasError('minlength'), message:'wymagane minimum 3 znaki'},
+                {isValid:description.hasError('maxlength'), message:'maksimum 500 znaków'}
               ]"
             ></app-form-validation>
           </div>
@@ -53,7 +55,7 @@
           <app-select-control [controlProp]="{label:'Gatunek', formControl:genre}" [options]="genres" [valueTag]="'enum'"></app-select-control>
           <div *ngIf="formModel.invalid && isError">
             <app-form-validation [validationMessages]="[
-                {isValid:title.hasError('required'), message:'pole obowiązkowe'}
+                {isValid:genre.hasError('required'), message:'pole obowiązkowe'}
               ]"
             ></app-form-validation>
           </div>
@@ -62,7 +64,7 @@
           <app-select-control [controlProp]="{label:'Język', formControl:language}" [options]="languages" [valueTag]="'enum'"></app-select-control>
           <div *ngIf="formModel.invalid && isError">
             <app-form-validation [validationMessages]="[
-                {isValid:title.hasError('required'), message:'pole obowiązkowe'},
+                {isValid:language.hasError('required'), message:'pole obowiązkowe'},
               ]"
             ></app-form-validation>
           </div>
@@ -71,11 +73,14 @@
           <app-tag-control [formControl]="tags" [controlProps]="{label:'Tagi', placeHolder:'Aby dodać tag wciśnij spację'}"></app-tag-control>
         </div>
         <div class="responsive-paddings workpiece-setup-button">
-          <dx-button class="responsive-paddings" (onClick)="submit()" type="submit">Stwórz</dx-button>
+          <dx-button class="responsive-paddings border-curved standard-margin button-normal" (onClick)="submit()" type="submit">Stwórz</dx-button>
         </div>
       </div>
     </dxi-item>
   </dx-responsive-box>
+  <div *ngIf="isConfirmVisible">
+    <app-popup-confirm [message]="popupMessage" [isPopupVisible]="isConfirmVisible" (HidePopupEvent)="onPopupConfirmed($event)"></app-popup-confirm>
+  </div>
 </form>
   <!-- </dxi-item> -->
   <!-- <dxi-item>

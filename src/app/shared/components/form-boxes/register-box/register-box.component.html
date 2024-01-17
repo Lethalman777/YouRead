@@ -13,24 +13,56 @@
 </div> -->
 
 <div class="dx-fieldset dx-card responsive-paddings">
-  <div class="dx-fieldset-header">Rejestracja</div>
+  <div class="dx-fieldset-header center-items">Rejestracja</div>
   <form class="content-block" [formGroup]="formModel" (ngSubmit)='registration()'>
     <div class="responsive-paddings">
       <app-normal-control [props]="{label:'Email', formControl:email, placeHolder:'Podaj e-mail'}"></app-normal-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:email.hasError('required'), message:'pole obowiązkowe'},
+            {isValid:email.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+          ]"
+        ></app-form-validation>
+      </div>
     </div>
     <div class="responsive-paddings">
-      <app-normal-control [props]="{label:'Username', formControl:username, placeHolder:'Podaj nazwę Użytkownika'}"></app-normal-control>
+      <app-normal-control [props]="{label:'Nazwa Użytkownika', formControl:username, placeHolder:'Podaj nazwę Użytkownika'}"></app-normal-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:username.hasError('required'), message:'pole obowiązkowe'},
+            {isValid:username.hasError('minlength'), message:'wymagane minimum 3 znaki'}
+          ]"
+        ></app-form-validation>
+      </div>
     </div>
     <div class="responsive-paddings">
-      <app-normal-control [props]="{label:'Password', formControl:password, placeHolder:'Podaj hasło'}" [mode]="'password'"></app-normal-control>
+      <app-normal-control [props]="{label:'Hasło', formControl:password, placeHolder:'Podaj hasło'}" [mode]="'password'"></app-normal-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:password.hasError('required'), message:'pole obowiązkowe'},
+            {isValid:password.hasError('minlength'), message:'wymagane minimum 6 znaków'}
+          ]"
+        ></app-form-validation>
+      </div>
     </div>
     <div class="responsive-paddings">
-      <app-normal-control [props]="{label:'Password Confirmed', formControl:passwordConfirm, placeHolder:'Powtórz hasło'}" [mode]="'password'"></app-normal-control>
+      <app-normal-control [props]="{label:'Powtórz Hasło', formControl:passwordConfirm, placeHolder:'Powtórz hasło'}" [mode]="'password'"></app-normal-control>
+      <div *ngIf="formModel.invalid && isError">
+        <app-form-validation [validationMessages]="[
+            {isValid:passwordConfirm.hasError('required'), message:'pole obowiązkowe'},
+            {isValid:passwordConfirm.hasError('minlength'), message:'wymagane minimum 6 znaków'},
+            {isValid:this.password.value != this.passwordConfirm.value, message:'powtórzone hasło jest nieprawidłowe'}
+          ]"
+        ></app-form-validation>
+      </div>
+    </div>
+    <div class="responsive-paddings">
+      <app-date-control [formControl]="birthDate" pickertype="calendar" label="Podaj datę urodzenia"></app-date-control>
     </div>
 
     <div class="button-area">
-      <dx-button class="responsive-paddings" (click)="registration()" type="submit">Zarejestruj się</dx-button>
-      <dx-button class="responsive-paddings" routerLink="/log-in">Powrót</dx-button>
+      <dx-button class="responsive-paddings border-curved standard-margin button-normal" (click)="registration()" type="submit">Zarejestruj się</dx-button>
+      <dx-button class="responsive-paddings border-curved standard-margin button-normal" routerLink="/login">Mam już konto</dx-button>
     </div>
   </form>
 </div>

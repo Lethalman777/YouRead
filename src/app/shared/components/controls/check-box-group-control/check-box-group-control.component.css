@@ -1,0 +1,6 @@
+.checkbox-checked{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}

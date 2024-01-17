@@ -26,9 +26,9 @@ export class PostReadComponent {
       this.content=this.post.content
       this.isTextOverflow=false
     } else {
-      if(this.post.content.length > 310){
+      if(this.post.content.length > 130){
         this.isTextOverflow = true
-        this.content=this.post.content.slice(0, 310)
+        this.content=this.post.content.slice(0, 130)
         console.log(this.content)
       } else {
         this.isTextOverflow = false
@@ -47,7 +47,7 @@ export class PostReadComponent {
   isPopupVisible:boolean = false
   searchParam:SearchParam = getEmptyParam()
 
-  constructor(private postService:PostService, private dialog: MatDialog){
+  constructor(){
 
   }
 

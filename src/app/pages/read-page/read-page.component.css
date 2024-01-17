@@ -1,6 +1,16 @@
 .user-workpiece{
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: center;
   margin-bottom: 20px;
+}
+
+.read-box{
+  display: flex;
+  justify-content: stretch;
+}
+
+.comment-box{
+  display: flex;
+  justify-content: center;
 }

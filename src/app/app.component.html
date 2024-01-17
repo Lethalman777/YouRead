@@ -1,8 +1,7 @@
 <ng-container *rerender="tokenService.isLoggedIn()">
-  <app-outer-navbar [title]="title">
-    <div class="responsive-paddings">
-      <router-outlet></router-outlet>
+  <app-outer-navbar style="justify-content: stretch;" [title]="title">
+    <div class="responsive-paddings background-color app" >
+      <router-outlet class="app"></router-outlet>
     </div>
   </app-outer-navbar>
 </ng-container>
-

@@ -1,15 +1,15 @@
 <div class="user-workpiece-chapter-box">
-  <div class="center-items user-workpiece-chapter-header">
+  <div class="center-items user-workpiece-chapter-header text-color">
     Lista Rozdziałów
   </div>
-  <div class="user-workpiece-no-chapters center-items" *ngIf="chapters.length==0; else chaptersBox">
+  <div class="user-workpiece-no-chapters center-items text-color" *ngIf="chapters.length==0; else chaptersBox">
     <span>
       Brak Rozdziałów
     </span>
   </div>
   <ng-template #chaptersBox>
     <div class="user-workpiece-chapter-navigation-button" *ngIf="isChapterPosition">
-      <dx-button (click)="changeChapterPosition(true)">
+      <dx-button class="button-normal" (click)="changeChapterPosition(true)">
         <i class="fa fa-angle-double-up" aria-hidden="true"></i>
           Przesuń Wyżej
         <i class="fa fa-angle-double-up" aria-hidden="true"></i>

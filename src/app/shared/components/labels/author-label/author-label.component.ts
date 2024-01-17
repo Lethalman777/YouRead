@@ -23,47 +23,21 @@ export class AuthorLabelComponent {
     this.author=value.author
     this.isSubscribedVisible=value.isSubscribedVisible
     if(this.tokenService.isLoggedIn()){
-      const searchParam:SearchParam=getSearchParam(undefined, undefined, undefined, undefined, undefined, true, true, [
-        getSearchParam('UserProfileId', this.loggedUserProfileId, SearchDataTypeEnum.number),
-        getSearchParam('SubscribedProfileId', this.author.id, SearchDataTypeEnum.number)
-      ])
-  //     const searchParam:SearchParam={
-  //       propertyName: '',
-  //       operator: SearchOperatorEnum.equal,
-  //       dataType: SearchDataTypeEnum.number,
-  //       value: 0,
-  //       isAnd: true,
-  //       isAndInBlock: false,
-  //       isEmpty: true,
-  //       params: [
-  //     {
-  //       propertyName: 'UserProfileId',
-  //       operator: SearchOperatorEnum.equal,
-  //       dataType: SearchDataTypeEnum.number,
-  //       value: Number(this.tokenService.get()),
-  //       isAnd: true,
-  //       isAndInBlock: false,
-  //       isEmpty: false,
-  //       params: []
-  //     },
-  //     {
-  //       propertyName: 'SubscribedProfileId',
-  //       operator: SearchOperatorEnum.equal,
-  //       dataType: SearchDataTypeEnum.number,
-  //       value: this.author.id,
-  //       isAnd: true,
-  //       isAndInBlock: false,
-  //       isEmpty: false,
-  //       params: []
-  //     }
-  //   ]
-  // }
-
-      this.subscriptionService.getSubscription(searchParam).subscribe(data=>{
-        if(data.length==0){
-          this.isSubscribed=false
-        } else {
-          this.isSubscribed=true
+      this.userService.loggedUserId().subscribe({
+        next:(res)=>{
+          this.loggedUserProfileId = res.userId
+          const searchParam:SearchParam=getSearchParam(undefined, undefined, undefined, undefined, undefined, true, true, [
+            getSearchParam('UserProfileId', res.userId, SearchDataTypeEnum.number),
+            getSearchParam('SubscribedProfileId', this.author.id, SearchDataTypeEnum.number)
+          ])
+          this.subscriptionService.getSubscription(searchParam).subscribe(data=>{
+            if(data.length==0){
+              this.isSubscribed=false
+            } else {
+              this.isSubscribed=true
+              console.log("sds")
+            }
+          })
         }
       })
     } else {
@@ -76,13 +50,7 @@ export class AuthorLabelComponent {
   loggedUserProfileId:number=0
 
   constructor(private userService:UserService, private subscriptionService:SubscriptionService, private tokenService:TokenService, private router:Router){
-    if(tokenService.isLoggedIn()){
-      this.userService.loggedUserId().subscribe({
-        next:(res)=>{
-          this.loggedUserProfileId = res.userId
-        }
-      })
-    }
+
   }
 
   goToProfile(){

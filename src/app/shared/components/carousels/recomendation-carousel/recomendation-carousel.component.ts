@@ -14,6 +14,7 @@ export class RecomendationCarouselComponent {
   @Input() set props(value:WorkpieceLabel[]){
     this.workpieces=value
   }
+  @Input() carouselName:string = ""
 
   params:SearchParam[]=[]
   workpieces:WorkpieceLabel[]=[]
@@ -46,7 +47,8 @@ export class RecomendationCarouselComponent {
       "slidesToShow": Number((window.innerWidth / 300).toFixed(0)),
       "slidesToScroll": Number((window.innerWidth / 300).toFixed(0)),
       infinite: true,
-      ariableWidth: true
+      ariableWidth: true,
+      arrows: false
     };
 
     updateSlideConfig() {
@@ -55,7 +57,8 @@ export class RecomendationCarouselComponent {
         slidesToShow: Number((windowWidth / 300).toFixed(0)),
         slidesToScroll: Number((windowWidth / 300).toFixed(0)),
         infinite: true,
-        ariableWidth: true
+        ariableWidth: true,
+        arrows: false
       };
 
       this.slickCarousel.unslick();
